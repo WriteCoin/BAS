@@ -305,3 +305,168 @@ function BAS_solve_coordinates_captcha() {
     imageData: args.imageData || ""
   })!
 }
+
+/**
+ * Настройки Браузера (BAS-функция)
+ * Изменяет настройки браузера: работа с сетью, canvas, webgl и другое. Используйте действие "Получить отпечаток" чтобы поменять отпечаток браузера.
+ * Пустая строка или 0 означает, что значение изменяться не будут.
+ * Смена параметров "Флеш", "Расширения", "Widevine" или "Командная строка" перезапустит браузер и таким образом обнулят остальные настройки(прокси, заголовки, и т.д.), так что лучшее место для этого действия - начало работы потока.
+ * Расширение Chrome можно использовать в BAS, введя либо id расширения, либо url расширения, либо путь к расширению в поле "Расширения:". Id расширения - это уникальная строка длиной 32, например padekgcemlokbadohgkifijomclgjgif. Url расширения - это основной адрес расширения в магазине Chrome. Его домен - chrome.google.com, например: https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif. Путь расширения - это путь к распакованным файлым расширения. Каждый путь должен содержать папку с manifest.json и другими файлами. Смотрите эту ссылку, для инструкций касающихся распаковки расширений и другой информации об их использовании.
+ * Чтобы включить флеш, вам нужно помимо изменения настройки "Флеш" в этом действии также установить флеш на ваш ПК. Инстукция расположена здесь https://wiki.bablosoft.com/doku.php?id=how_to_enable_flash.
+ * Если вы хотите поменять настройки для всех потоков, то лучше воспользоваться вкладкой настройки.
+ * 
+ * 
+ * Параметры:
+ * 
+ * @param {string} flash enable | disable | ''
+ * Использование флеш может раскрыть ваш ip, поэтому включать его не рекомендуется. Если вы все же хотите включить флеш, измените эту настройку и установите его на вашем ПК, инструкции находятся в блоке ниже.
+ * Примеры:
+ * enable - Использовать flash
+ * disable - Не использовать flash
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {string} widevine enable | disable | ''
+ * Включить или отключить плагин Widevine.
+ * Примеры:
+ * enable - Использовать Widevine
+ * disable - Не использовать Widevine
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {string} webRTC enable | disable | replace | ''
+ * Использование WebRTC также может раскрыть ваш ip даже если вы используете прокси.
+ * Примеры:
+ * enable - Включить WebRTC
+ * disable - Отключить WebRTC
+ * replace - Заменить ip, возвращаемые WebRTC значениями из поля 'WebRTC список ip'.
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {string} webRTCIps
+ * Заменить ip, возвращаемые WebRTC значениями из этого поля. Эта настройка работает только если параметр 'WebRTC' установлен в значение 'replace'. Каждая строка этого поля должна содержать один ip. Этот параметр предназначен только для целей отладки, правильный способ изменения WebRTC ip - использовать действие 'Прокси'.
+ * Примеры:
+ * 192.168.0.1 - Локальный адрес
+ * 142.1.2.3 - Внешний адрес
+ * Clear - Удалить все ip
+ * Пустая строка - Не изменять
+ * 
+ * @param {string} canvas enable | disable | noise | ''
+ * Это html элемент, который содержит графику: разнообразные фигуры, изображения, текст и т.д. Разные браузеры и операционные системы рисуют эти элементы немного по-разному. Сайт может использовать эти отличия, чтобы идентифицировать вас среди других пользователей. BAS позволяет защитить вас отключая canvas-элемент полностью или добавляя шум к получаемому изображению.
+ * Примеры:
+ * enable - Использовать canvas
+ * disable - Не использовать canvas
+ * noise - Добавить шум к изображению canvas.
+ * Только для целей отладки, используйте сервис FingersprintSwitcher, чтобы задать шум.
+ * Пустая строка - Не изменять эту настройку.
+ * 
+ * @param {stirng} canvasNoise Шаблон шума canvas. Эта настройка находится здесь только для целей отладки, правильный метод добавления шума - использования сервиса FingersprintSwitcher
+ * 
+ * @param {string} webGL enable | disable | noise | ''
+ * Также как и canvas позволяет идентифицировать вас среди других пользователей.
+ * Примеры:
+ * enable - Исопльзовать WebGL
+ * disable - Не использовать WebGL
+ * noise - Добавить шум к изображению WebGL.
+ * Только для целей отладки, используйте сервис FingersprintSwitcher, чтобы задать шум.
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {string} webGLNoise Шаблон шума WebGL. Эта настройка находится здесь только для целей отладки, правильный метод добавления шума - использование сервиса FingersprintSwitcher
+ * 
+ * @param {string} webGLVendor Через свойство WebGL vendor сайт может узнать характеристики вашего оборудования через javascript, так что имеет смысл менять это значение. Пустое поле оставит реальное значение. Эта настройка находится здесь только для целей отладки, правильный метод добавления шума - использование сервиса FingersprintSwitcher
+ * Примеры:
+ * Google Inc. - Пример поля из реального браузера
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {string} webGLRenderer Через свойство WebGL renderer сайт может узнать характеристики вашего оборудования через javascript, так что имеет смысл менять это значение. Пустое поле оставит реальное значение. Эта настройка находится здесь только для целей отладки, правильный метод добавления шума - использование сервиса FingersprintSwitcher
+ * Примеры:
+ * Google Inc. - ANGLE (NVIDIA GeForce GTX 550 Ti DIrect3D11 vs_5_0 ps_5_0)
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {string} audio enable | disable | noise | ''
+ * Сайт может идентифицировать пользователя, генерируя звук и считывая его как массив данных. Различные браузеры и операционные системы будут выполнять эту операцию с немного разными результатами. BAS позволяет защитить вас, запретив браузеру получать звуковые данные или добавляя шум к этим данным.
+ * Примеры:
+ * enable - Включить audio api
+ * disable - Отключить методы audio api, используемые для получения отпечатков
+ * noise - Добавить шум к получаемому звуку. Только для целей отладки, используйте сервис FingersprintSwitcher, чтобы задать шум.
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {string} audioNoise Шаблон шума audio. Эта настройка находится здесь только для целей отладки, правильный метод добавления шума - использование сервиса FingersprintSwitcher
+ * 
+ * @param {string} QUIC enable | disable | ''
+ * Включить протокол QUIC. В отличие от HTTP, протокол QUIC построен поверх UDP. Не все прокси поддерживают UDP. Это означает, что включение QUIC может вызвать проблемы при работе с определенными прокси. Рекомендуется включать эту опцию только в том случае, если вы уверены, что прокси ее поддерживает. ПО умолчанию отключено.
+ * Примеры:
+ * enable - Включить QUIC
+ * disable - Отключить QUIC
+ * Пустая строка - Не изменять эту настройку
+ * 
+ * @param {number} maxFPS Ограничения частоты кадров
+ * Максимальное количество раз за одну секунду, которое содержимого браузера может быть отрисовано. Чем ниже это значение, тем меньше будет нагрузка на процессор.
+ * Установка слишком низкого значения может повлиять на работоспособность сайта. Снижение его ниже 30 может привести к непредсказуемым последствиям. Минимальное значение 10.
+ * Примеры:
+ * 30 - Ограничить частоту кадров 30
+ * 0 - Не менять частоту кадров
+ * 
+ * @param {string} extensions Каждая строка должна содержать либо путь к файлу, либо id расширения, либо url расширения, примеры: с:/путь/к/расширению/ http://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif padekgdemlokbadohgkifijomclgjgif
+ * Расширение Chrome можно использовать в BAS, введя в это поле либо id расширения, либо url расширения, либо путь к расширению. Самый простой способ начать использовать расширение - скопировать url из магазина Chrome в это поле.
+ * Примеры:
+ * http://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif - Загрузить расширение по url
+ * padekgdemlokbadohgkifijomclgjgif - Загрузить расширение по id
+ * c:/extensions/background - Загрузить расширение из заданной папки. Файл c:/extensions/background/manifest.json обязательно должен существовать
+ * Clear - Убрать все расширения
+ * Пустая строка - Не изменять
+ * 
+ * @param {string} commandLines Каждая строка должна содержать один параметр командной строки, который будет использоваться для запуска браузера. Это может быть как отлько один ключ так и ключ вместе со значением, Примеры: --disable-component-update --lang=ru-RU
+ * Это поле может содержать дополнительные параметры командной строки, используемые для запуска браузера. Их также можно указать, изменив файл chrome_command_line.txt внутри папки apps/BASVERSION. Если в обоих местах будет указан один и тот же ключ, предпочтение будет отдано этому полю. Предыдущий список параметров командной строки будет заменен этим значением.
+ * Примеры:
+ * --key - Отправить только ключ
+ * --key=value - Отправить ключ со значением
+ * Clear - Удалить все параметры командной строки
+ * Пустая строка - Не изменять
+ */
+function BAS_settings() {
+  const args = _arguments()
+  const Params = {}
+  const flash = args.flash || ""
+  const widevine = args.widevine || ""
+  const param_extensions = args.extensions || ""
+  _require_extensions(param_extensions)!
+  const extensions = (_result())
+  const commandLines = args.commandLines || ""
+  const webRTC = args.webRTC || ""
+  const webRTCIps = (args.webRTCIps || "").split(/\r?\n/).filter(function(x) {
+    return x && x.length > 0
+  }).map(function(x) {
+    return x.replace(/\s/g, '')
+  }).join(';')
+  const canvas = args.canvas || ""
+  const canvasNoise = args.canvasNoise || ""
+  const audio = args.audio || ""
+  const audioNoise = args.audioNoise || ""
+  const QUIC = args.QUIC || ""
+  const maxFPS = args.maxFPS || 0
+  const webGL = args.webGL || ""
+  const webGLNoise = args.webGLNoise || ""
+  const webGLVendor = args.webGLVendor || ""
+  const webGLRenderer = args.webGLRenderer || ""
+  if (flash.length > 0) Params.UseFlash = flash === 'enable'
+  if (widevine.length > 0) Params.UseWidevine = widevine === 'enable'
+  if (webRTC.length > 0) Params.Webrtc = webRTC
+  if (canvas.length > 0) Params.Canvas = canvas
+  if (canvasNoise.length > 0) Params.CanvasNoise = canvasNoise
+  if (audio.length > 0) Params.Audio = audio
+  if (audioNoise.length > 0) Params.AudioNoise = audioNoise
+  if (QUIC.length > 0) Params.QUIC = QUIC
+  if (maxFPS > 0) Params.MaxFPS = maxFPS
+  if (webGL.length > 0) Params.Webgl = webGL
+  if (webGLNoise.length > 0) Params.WebglNoise = webGLNoise
+  if (webGLVendor.length > 0) Params.Webgl.unmaskedVendor = webGLVendor
+  if (webGLRenderer.length > 0) Params.Webgl.unmaskedRenderer = webGLRenderer
+
+  if (extensions.length > 0) Params.Extensions = extensions
+  if (extensions === 'Clear') Params.Extensions = ''
+
+  if (commandLines.length > 0) Params.CommandLine = commandLines
+  if (commandLines === 'Clear') Params.CommandLine = ''
+
+  if (webRTCIps.length > 0) Params.WebrtcIps = webRTCIps
+  if (webRTCIps === 'Clear') Params.WebrtcIps = ''
+  _settings(Params)!
+}
