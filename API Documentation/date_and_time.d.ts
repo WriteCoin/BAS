@@ -5,7 +5,7 @@
  * @param format 'auto' | 'yyyy-MM-dd' | 'hh:mm:ss' | 'yyyy-MM-ddThh:mm:ss'
  * Формат даты и времени
  */
-declare function _parse_date(value: string, format: string): Date
+declare function _parse_date(value: Date | string, format: string): Date
 
 /**
  * Дату В Строку
