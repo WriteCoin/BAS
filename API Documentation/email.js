@@ -1,3 +1,15 @@
+function proxy_set_hash(proxy, proxy_type, login, password) {
+  const hash = proxy_parse(proxy)
+  if (proxy_type !== 'auto') {
+    hash.IsHttp = proxy_type === 'http'
+  }
+  if (login.length > 0 && password.length > 0) {
+    hash.name = login
+    hash.password = password
+  }
+  return hash
+}
+
 /**
  * Почта Прокси
  * По умолчанию клиент imap работает без прокси, но он может быть задан с помощью этого действия.
@@ -29,15 +41,9 @@ function BAS_imap_client_set_proxy(proxy, proxy_type, login, password) {
   const proxy_type = args.proxy_type || 'http'
   const login = args.login || ''
   const password = args.password || ''
+  
+  const hash = proxy_set_hash(proxy, proxy_type, login, password)
 
-  const hash = proxy_parse(proxy)
-  if (proxy_type !== 'auto') {
-    hash.IsHttp = proxy_type === 'http'
-  }
-  if (login.length > 0 && password.length > 0) {
-    hash.name = login
-    hash.password = password
-  }
   imap_client_set_proxy(hash.server, hash.Port, hash.IsHttp, hash.name, hash.password)
 }
 

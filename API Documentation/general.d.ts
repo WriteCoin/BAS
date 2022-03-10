@@ -129,3 +129,23 @@ declare function clear_log(): void
  */
 declare function result(text: string, number: number): void
 
+/**
+ * Читать Буфер Обмена
+ * Прочитать данные указанного типа из буфера обмена.
+ * Буфер обмена является глобальным для всей системы и должен быть заблокирован перед использованием в многопоточном режиме.
+ * @param isBase64 Сохранить в формате base64
+ * @param mimeType 'text/plain' | 'text/html'
+ * Mime Тип
+ */
+declare function _get_clipboard(isBase64: boolean, mimeType: string): string
+
+/**
+ * Запись В Буфер Обмена
+ * Записать данные указанного типа в буфер обмена.
+ * Буфер обмена является глобальным для всей системы и должен быть заблокирован перед использованием в многопоточном режиме.
+ * @param isBase64 Данные представлены в формате base64
+ * @param mimeType 'text/plain' | 'text/html'
+ * Mime Тип
+ * @param data Данные
+ */
+declare function set_clipboard(isBase64: boolean, mimeType: string, data: string): void

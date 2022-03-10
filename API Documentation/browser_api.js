@@ -76,14 +76,9 @@ function BAS_proxy() {
   const password = _function_argument('password')
   const settings = _function_argument('settings')
   const info = _function_argument('info')
-  const hash = proxy_parse(proxy)
-  if (proxy_type !== "auto") {
-    hash.IsHttp = proxy_type === "http"
-  }
-  if (login.length > 0 && password.length > 0) {
-    hash.name = login
-    hash.password = password
-  }
+
+  const hash = proxy_set_hash(proxy, proxy_type, login, password)
+
   if (_get_profile().length > 0) {
     if (hash.server.length === 0) {
       native("filesystem", "removefile", _get_profile() + "/proxy.txt")
