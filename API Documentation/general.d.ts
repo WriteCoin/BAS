@@ -149,3 +149,32 @@ declare function _get_clipboard(isBase64: boolean, mimeType: string): string
  * @param data Данные
  */
 declare function set_clipboard(isBase64: boolean, mimeType: string, data: string): void
+
+/**
+ * Выполнить javascript код в контексте веб интерфейса.
+ * Если веб интерфейс не включен, это действие не делает ничего.
+ * Веб интерфейс можно включить через кабинет премиум аккаунта.
+ * Если вы хотите запустить код в контексте BAS, используйте действие "Выполнить код".
+ * BAS также предоставляет выполнять код с помощью node.js. для этого нужно использовать модуль "Встроенные языки".
+ * Здесь вы можете поместить любой javascript код, включая код, который использует внешние библиотеки.
+ * Есть возможность использовать переменные и ресурсы.
+ * 
+ * Пример #1. Показать оповещение. 
+ * alert("Message")
+ * 
+ * Пример #2. Вывод переменной БАС в консоль браузера.
+ * console.log([[TEST_VARIABLE]])
+ * 
+ * BAS использует uikit https://getuikit.com/docs/introduction для рендеринга контролов, и вы также можете использовать эту библиотеку.
+ * 
+ * Пример #3. Показать уведомление через uikit.
+ * UIkit.notification('My message');
+ * 
+ * Библиотека Jquery тоже поддерживается.
+ * 
+ * Пример #4. изменить значение текстового поля.
+ * $("#control-id").val("Input value");
+ * 
+ * @param Script 
+ */
+declare function _web_interface_eval(Script: string): void
