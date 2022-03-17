@@ -179,7 +179,7 @@ function BAS_render(x, y, width, height) {
 }
 
 /**
- * Решить Капчу
+ * Решить Капчу (BAS-функция)
  * Это действие решает капчу в виде картинки(не recaptcha) и работает, только если у вас есть данные изображения, отформатированного как строка в формате base64.
  * Текст капчи сохраняется в переменной и может быть использован позже.
  * Если вы хотите решить капчу из элемента на экране, вы должны нажать на него и используйте действие "Решить Капчу".
@@ -196,8 +196,9 @@ function BAS_render(x, y, width, height) {
  * @param {string} serverUrl Url сервера. Может быть пустым. Примеры:
  * http://127.0.0.3:8083/
  * Пустая строка - Использовать url по умолчанию, например, http://rucaptcha.com для rucaptcha.
+ * @return Строка с результатом решения капчи
  */
-function BAS_solveCaptcha(dataBase64, method, key, serverUrl) {
+function BAS_solveCaptcha() {
   const dataBase64 = _function_argument('dataBase64')
   const method = _function_argument('method')
   const key = _function_argument('key')
