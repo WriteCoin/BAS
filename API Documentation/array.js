@@ -123,8 +123,5 @@ function listMerge(source, target) {
  * @returns boolean
  */
 function listCompare(arr, arrCompare) {
-  return (
-    JSON.stringify(arr.slice().sort()) ===
-    JSON.stringify(arrCompare.slice().sort())
-  )
+  return (JSON.stringify(arr.slice().sort()) === JSON.stringify(arrCompare.slice().sort()))
 }

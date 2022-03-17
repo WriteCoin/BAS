@@ -40,7 +40,7 @@ function ignore_errors() {
  * callback - функция при cond_func() равном true
  * callback_else - функция "иначе" при cond_func(), равном false
  */
- function BAS_if() {
+function BAS_if() {
   const cond_func = _function_argument('cond_func') || true
   const callback = _function_argument('callback') || function() {}
   const callback_else = _function_argument('callback_else') || function() {}
@@ -126,7 +126,7 @@ function BAS_for() {
  */
 function BAS_break(str) {
   str = str || 'function'
-  _break('function')
+  _break(str)
 }
 
 /**
