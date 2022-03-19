@@ -1,0 +1,1 @@
+function BAS_add_time(value, seconds, minutes, hours, days) { const date = _parse_date(value, "auto"); const offset = date.getTimezoneOffset(); const newDate = new Date( date.getTime() +; seconds * 1000 +; minutes * 1000 * 60 +; hours * 1000 * 60 * 60 +; days * 1000 * 60 * 60 * 24; ); newDate.getTimezoneOffset = function () { return offset; }; return newDate;};

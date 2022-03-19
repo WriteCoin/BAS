@@ -1,0 +1,1 @@
+function BAS_phone_set_debug(enable) { _SMS.setDebug(enable);};

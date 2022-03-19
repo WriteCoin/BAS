@@ -1,0 +1,1 @@
+function BAS_user_play_sound() { native("usernotification", "playsound", "");};

@@ -1,0 +1,1 @@
+function BAS_onLoadJavascript() { const script = _function_argument("script"); const url = _function_argument("url"); const tab = _function_argument("tab"); _set_target({ url: url, tab: tab, }); onloadjavascript(script)!;};

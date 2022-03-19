@@ -1,0 +1,1 @@
+function BAS_xpath_get_count(text, xpath_query) { html_parser_xpath_parse(text); return html_parser_xpath_count(xpath_query);};

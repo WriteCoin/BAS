@@ -1,0 +1,1 @@
+function BAS_read_file_to_array(filepath) { const d = BAS_read_file(filepath, 0, 0, false); return d.length === 0 ? [] : d.split(/\r?\n/);};

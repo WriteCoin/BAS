@@ -1,0 +1,1 @@
+function BAS_image_set_pixel(image_id, x, y, red, green, blue, alpha) { native( "imageprocessing", "setpixel", image_id +; "," +; x +; "," +; y +; "," +; red +; "," +; green +; "," +; blue +; "," +; alpha; );};

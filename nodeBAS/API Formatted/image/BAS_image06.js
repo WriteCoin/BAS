@@ -1,0 +1,1 @@
+function BAS_image_get_pixel(image_id, x, y) { const split = native( "imageprocessing", "getpixel", image_id + "," + x + "," + y; ).split(","); return { R: parseInt(split[0]), G: parseInt(split[1]), B: parseInt(split[2]), A: parseInt(split[3]), };};

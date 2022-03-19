@@ -1,0 +1,1 @@
+function BAS_trim(str, chars, trimSpaces, trimLineBrakes, trimTabs, left, right) { return _trim(str, (trimSpaces ? _STR_WHITESPACE : "") + (trimLineBrakes ? "\\r\\n\\f" : "") + (trimTabs ? "\\t\\v" : "") + chars, left, right);};

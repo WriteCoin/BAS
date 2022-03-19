@@ -1,0 +1,1 @@
+function get_cookies(cookies) { VALUE = cookies; COOKIES = ""; if(VALUE.length > 0) { COOKIES = JSON.parse(VALUE)["cookies"]; if(typeof(COOKIES) == "undefined") COOKIES = ""; else COOKIES = JSON.stringify(COOKIES); }; cookies = COOKIES; return cookies;};

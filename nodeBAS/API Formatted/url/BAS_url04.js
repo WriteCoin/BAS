@@ -1,0 +1,1 @@
+function BAS_change_url(url, params) { VAR_CHANGED_URL = _change_url("URL", {protocol:("Протокол"), username:("Логин"), password:("Пароль"), host:("Хост"), port:("Порт"), pathname:("Путь"), query:("Запрос"), hash:("Фрагмен")}, {normalize: true, base_url: "Базовый URL", rfail: true, clear_query: true}); return _change_url(url, params);};

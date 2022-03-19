@@ -1,0 +1,1 @@
+function BAS_elements_count() { const args = _arguments(); const selector = args.selector;; ;_SELECTOR = selector; get_element_selector(_SELECTOR, true).length()!; VAR_ELEMENT_LENGTH = _result(); _function_return(VAR_ELEMENT_LENGTH);};

@@ -1,0 +1,1 @@
+function BAS_csv_generate(elem1, elem2, elem3, listElem, seps) { return _csv_generate([; _avoid_nil(elem1), _avoid_nil(elem2), _avoid_nil(elem3); ].concat( _to_arr(_avoid_nilb(listElem, [])); ), sep);};

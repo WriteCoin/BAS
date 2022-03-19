@@ -1,0 +1,1 @@
+function BAS_path_join(path1, path2, path3, pathList) { return _path; .join([_avoid_nil(path1), _avoid_nil(path2), _avoid_nil(path3)]); .concat(_to_arr(_avoid_nilb(pathList, [])));};

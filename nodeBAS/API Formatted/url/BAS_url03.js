@@ -1,0 +1,1 @@
+function BAS_generate_url(params) { const obj = { protocol: params.protocol || "", username: params.username || "", password: params.password || "", host: params.host || "", port: params.port || "", pathname: params.pathname || "", query: params.query || "", hash: params.hash || ""; }; return _generate_url(obj);};

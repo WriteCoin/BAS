@@ -1,0 +1,1 @@
+function BAS_template() { const args = _arguments(); _template(args.template)!; var tmp_res = _avoid_nil(_result()); tmp_res = _is_not_empty_string(tmp_res) ? tmp_res.replace("BASASYNC","\)\!") : tmp_res; _function_return(_spintax(tmp_res));};

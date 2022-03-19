@@ -1,0 +1,1 @@
+function listContains(arr, value) { return arr.indexOf(value) >= 0;};

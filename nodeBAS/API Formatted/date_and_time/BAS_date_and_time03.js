@@ -1,0 +1,1 @@
+function BAS_create_date( year, month, day, hour, minutes, seconds, milliseconds, timezone;) { const date = new Date( Date.UTC(year, month - 1, day, hour, minutes, seconds, milliseconds); ); date.getTimezoneOffset = function () { return parseInt(timezone); }; return date;};

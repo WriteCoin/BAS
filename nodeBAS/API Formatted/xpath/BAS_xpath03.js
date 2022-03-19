@@ -1,0 +1,1 @@
+function BAS_xpath_get_first_text(text, xpath_query, shutdownAfterError) { html_parser_xpath_parse(text); if (shutdownAfterError && !html_parser_xpath_exist(xpath_query)); fail("Can"t resolve query " + xpath_query); const result = html_parser_xpath_text(xpath_query); return result;};

@@ -1,0 +1,1 @@
+function BAS_switch_to_temporary_profile() { const Params = {}; Params["ProfilePath"] = "<Incognito>"; _settings(Params)!;};

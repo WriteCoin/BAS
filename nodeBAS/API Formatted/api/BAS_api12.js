@@ -1,0 +1,1 @@
+function BAS_inc_global(name, val) { BAS_set_global(name, BAS_get_global(name) + val);};

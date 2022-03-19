@@ -61,20 +61,19 @@ function BAS_async() {
   const behaviour_inactive = args.behaviour_inactive || 'wait'
   const max_funcs = args.max_funcs || 30
   VAR_THREAD_ID = 0
-  if(VAR_THREAD_ID <= 0)
-  {
-  VAR_THREAD_ID = Math.floor(Math.random() * 1000000) + 1;
+  if(VAR_THREAD_ID <= 0) {
+    VAR_THREAD_ID = Math.floor(Math.random() * 1000000) + 1;
   }
-  if(typeof(VAR_THREAD_LIST) == "undefined")
-  {
-  VAR_THREAD_LIST = [];
+  if(typeof(VAR_THREAD_LIST) == "undefined") {
+    VAR_THREAD_LIST = [];
   }
-  if((VAR_THREAD_LIST).indexOf(VAR_THREAD_ID) < 0)
-  (VAR_THREAD_LIST).push(VAR_THREAD_ID)
+  if((VAR_THREAD_LIST).indexOf(VAR_THREAD_ID) < 0) {
+    (VAR_THREAD_LIST).push(VAR_THREAD_ID)
+  }
   _thread_start(VAR_THREAD_ID, 0 == thread_id, args.func, {}, stop_thread, max_funcs, behaviour_inactive !== "wait")!
   _function_return({
     thread_id: VAR_THREAD_ID,
-    thread_list: VAR_THREAD_LIST
+    thread_list: VAR_THREAD_LIST,
   })
 }
 
@@ -131,6 +130,6 @@ function BAS_thread_get_status(thread_id) {
     result: thread_data.result,
     is_running: thread_data.is_running,
     error: thread_data.error,
-    is_success: thread_data.is_success
+    is_success: thread_data.is_success,
   }
 }

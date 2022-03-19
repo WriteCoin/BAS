@@ -1,0 +1,1 @@
+function listCompare(arr, arrCompare) { return (JSON.stringify(arr.slice().sort()) === JSON.stringify(arrCompare.slice().sort()));};

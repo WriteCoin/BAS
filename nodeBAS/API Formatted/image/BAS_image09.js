@@ -1,0 +1,1 @@
+function BAS_image_resize(image_id, width, height) { native("imageprocessing", "resize", image_id + "," + width + "," + height);};

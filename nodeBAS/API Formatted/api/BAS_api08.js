@@ -1,0 +1,1 @@
+function BAS_set_goto_label() { const label = _function_argument("label"); _set_goto_label(label)!;};

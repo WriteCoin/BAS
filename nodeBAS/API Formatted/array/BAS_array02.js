@@ -1,0 +1,1 @@
+function randomListElement(arr) { const r = Math.floor(Math.random() * arr.length); return arr[r];};

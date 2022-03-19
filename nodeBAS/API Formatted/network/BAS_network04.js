@@ -1,0 +1,1 @@
+function BAS_load_cookies_from_http_client() { _switch_http_client_main(); const cookies = get_cookies(http_client_save_cookies()); restore_cookies(cookies)!;};

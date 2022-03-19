@@ -1,0 +1,1 @@
+function BAS_cvs_parse(str, seps, varList, convert) { seps = seps || ":;,"; convert = convert || false; const csv_res = _csv_parse(str, seps, convert); const result = {}; for (CYCLE_INDEX = 0; CYCLE_INDEX < varList.length; CYCLE_INDEX++) { const i = CYCLE_INDEX; result[varList[i]] = _avoid_nilb(csv_res[i], ""); }; return result;};

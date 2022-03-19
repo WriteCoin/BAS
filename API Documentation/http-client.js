@@ -12,7 +12,7 @@
   socks5://210.10.10.10:1085
   socks:210.10.10.10:1085:username:password
   http:username:password:210.10.10.10:1085
-  {{proxy}} - Получить из ресурса
+  \{\{proxy\}\} - Получить из ресурса
   Пустая строка - Без прокси
  * @param {string} proxy_type Тип Прокси
   Тип прокси
@@ -94,12 +94,16 @@ function BAS_http_client_reset() {
 function BAS_http_client_get() {
   const args = _arguments()
   _switch_http_client_main()
-  if (args.timeout) general_timeout_next(args.timeout)
+  if (args.timeout) {
+    general_timeout_next(args.timeout)
+  }
   const obj = {
     method: args.method,
     headers: args.headers
   }
-  if (no_redirect) http_client_get_no_redirect2(args.url, obj)!
+  if (no_redirect) {
+    http_client_get_no_redirect2(args.url, obj)!
+  }
   else http_client_get2(args.url, obj)!
 }
 
@@ -156,15 +160,21 @@ function BAS_http_client_get() {
 function BAS_http_client_post() {
   const args = _arguments()
   _switch_http_client_main()
-  if (args.timeout) general_timeout_next(args.timeout)
+  if (args.timeout) {
+    general_timeout_next(args.timeout)
+  }
   const obj = {
-    content-type: 'custom/' + args.content_type,
+    content_type: 'custom/' + args.content_type,
     encoding: args.encoding,
     method: args.method,
     headers: args.headers
   }
-  if (!args.no_redirect) http_client_post(args.url, ['data', args.data], obj)!
-  else http_client_post_no_redirect(args.url, ['data', args.data], obj)!
+  if (!args.no_redirect) {
+    http_client_post(args.url, ['data', args.data], obj)!
+  }
+  else {
+    http_client_post_no_redirect(args.url, ['data', args.data], obj)!
+  }
 }
 
 /**
@@ -198,7 +208,9 @@ function BAS_http_client_post() {
 function BAS_http_client_download() {
   const args = _arguments()
   _switch_http_client_main()
-  if (args.timeout) general_timeout_next(args.timeout)
+  if (args.timeout) {
+    general_timeout_next(args.timeout)
+  }
   http_client_download(args.url, args.filepath)!
 }
 

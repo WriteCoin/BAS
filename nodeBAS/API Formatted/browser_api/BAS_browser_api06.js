@@ -1,0 +1,1 @@
+function BAS_render(x, y, width, height) { const x = _function_argument("x"); const y = _function_argument("y"); const width = _function_argument("width"); const height = _function_argument("height"); render(x, y, width, height)!; _function_return(_result());};

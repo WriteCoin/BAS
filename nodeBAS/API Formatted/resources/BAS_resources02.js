@@ -1,0 +1,1 @@
+function BAS_delete_resource(name, instantly) { if (name in _R && _R[name]) { _R[name].die(); _R[name] = null; }; if (instantly) RSync(name);};

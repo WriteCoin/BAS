@@ -1,0 +1,1 @@
+function listCopy(arr) { return arr.slice();};

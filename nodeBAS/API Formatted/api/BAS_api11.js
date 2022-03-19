@@ -1,0 +1,1 @@
+function BAS_get_global(name) { return JSON.parse(P("basglobal", name) || "0");};

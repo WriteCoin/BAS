@@ -1,0 +1,1 @@
+function BAS_cache_get_status() { const match = _function_argument("match") || ""; const callback = _function_argument("callback"); cache_get_status(match, callback)!; _function_return(_result());};

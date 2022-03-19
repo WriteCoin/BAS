@@ -1,0 +1,1 @@
+function BAS_path_normalize(path, removeTrailingSlash) { return _path.normalize(path, removeTrailingSlash);};

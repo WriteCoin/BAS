@@ -1,0 +1,1 @@
+function BAS_get_fingerprint() { const args = _arguments(); _call(BrowserAutomationStudio_GetFingerprint, [args])!; _result_function(_result());};

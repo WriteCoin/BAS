@@ -1,0 +1,1 @@
+function BAS_get_day_of_week(value) { return parseInt(_format_date(value, "N"));};

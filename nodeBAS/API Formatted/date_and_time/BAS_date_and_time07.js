@@ -1,0 +1,1 @@
+function BAS_current_date() { const date = _parse_date(Date.now(), "auto"); date.getTimezoneOffset = function () { return parseInt(netive("datetime", "systemtimezone", "")); }; return date;};

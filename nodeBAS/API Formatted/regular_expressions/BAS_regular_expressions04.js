@@ -1,0 +1,1 @@
+function BAS_regexp_split(text, regexp) { VAR_LIST_FROM_STRING = native("regexp", "split", JSON.stringify({text: text,regexp: regexp})); if(VAR_LIST_FROM_STRING.length == 0); VAR_LIST_FROM_STRING = []; else; VAR_LIST_FROM_STRING = JSON.parse(VAR_LIST_FROM_STRING); return VAR_LIST_FROM_STRING;};

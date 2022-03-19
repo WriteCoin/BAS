@@ -1,0 +1,1 @@
+function BAS_file_info(filename) { const json = JSON.parse(native("filesystem", "fileinfo", filename)); return { exists: json.exists, size: json.size, baseDirectory: json.directory, isDirectory: json.is_directory, lastModified: new Date(json.last_modified * 1000); };};

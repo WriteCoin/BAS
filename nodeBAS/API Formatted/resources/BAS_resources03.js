@@ -1,0 +1,1 @@
+function BAS_resource_add(name, data, onlyAdd, instantly) { RInsert(name, data, onlyAdd); if (instantly) RSync(name);};

@@ -1,0 +1,1 @@
+function BAS_clean(str, charsRemoved, removeTabs, replaceCharsWithSpace, replaceLineBreaksWithSpace, replaceMultipleSpacesWithOnes) { return _clean(str, (removeTabs ? "\\t\\v" : "") + charsRemoved, (replaceLineBreaksWithSpace ? "\\r\\n\\f" : "") + replaceCharsWithSpace, replaceMultipleSpacesWithOnes);};

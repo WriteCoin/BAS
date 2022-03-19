@@ -1,0 +1,1 @@
+function BAS_date_change_timezone(value, timezone) { const date = _parse_date(value, "auto"); const newDate = new Date(date.getTime()); newDate.getTimezoneOffset = function () { return parseInt(timezone); }; return newDate;};

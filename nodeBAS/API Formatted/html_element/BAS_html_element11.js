@@ -1,0 +1,1 @@
+function BAS_popupinfo() { _popupinfo()!; var json = JSON.parse(_result()); VAR_TAB_INDEX = json["index"]; VAR_URL_LIST = json["urls"]; VAR_TOTAL_TABS = json["urls"].length; return { url_list: VAR_URL_LIST, current_tab_index: VAR_TAB_INDEX, total_tabs: VAR_TOTAL_TABS; };};

@@ -1,0 +1,1 @@
+ function get_html_script() { const element = _function_argument("element"); page().script(element)!; _function_return(_result());};

@@ -1,0 +1,1 @@
+function get_browser_screen_settings() { _get_browser_screen_settings()!; const result = JSON.parse(_result()); _function_return({ scrollX: result["ScrollX"], scrollY: result["ScrollY"], cursorX: result["CursorX"], cursorY: result["CursorY"], width: result["Width"], height: result["Height"], }); _result_function();};

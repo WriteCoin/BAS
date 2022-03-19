@@ -1,0 +1,1 @@
+function BAS_difference_between_dates(value1, value2) { return Math.floor( (_parse_date(value1, "auto").getTime() -; _parse_date(value2, "auto").getTime()) /; 1000; );};

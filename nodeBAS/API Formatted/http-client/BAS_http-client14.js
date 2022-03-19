@@ -1,0 +1,1 @@
+function BAS_http_client_restore_cookies_from_browser() { save_cookies()!; _switch_http_client_main(); http_client_restore_cookies(JSON.stringify({cookies:JSON.parse(_result())}));};

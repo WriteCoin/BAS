@@ -1,0 +1,1 @@
+function BAS_http_client_reset() { _switch_http_client_main(); new_http_client();};

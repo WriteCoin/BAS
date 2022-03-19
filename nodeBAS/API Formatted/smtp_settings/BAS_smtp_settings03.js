@@ -1,0 +1,1 @@
+function BAS_smtp_debug_enable(enable) { _SMTP_DEBUG = enable;};

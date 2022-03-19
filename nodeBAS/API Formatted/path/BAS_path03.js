@@ -1,0 +1,1 @@
+function BAS_extname_from_path(path) { return _path.extname(path);};

@@ -1,0 +1,1 @@
+function BAS_wait_element() { const args = _arguments(); const selector = args.selector; const checkVisibility = args.checkVisibility || false; const timeout = args.timeout;; _SELECTOR = selector; if (timeout) { waiter_timeout_next(timeout); }; if (checkVisibility) { wait_element_visible(_SELECTOR)!; } else { wait_element(_SELECTOR)!; };};

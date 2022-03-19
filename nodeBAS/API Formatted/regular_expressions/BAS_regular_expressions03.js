@@ -1,0 +1,1 @@
+function BAS_regexp_is_match(text, regexp) { return Boolean( native( "regexp", "ismatch", JSON.stringify({ text: text, regexp: regexp, }); ) === "true"; );};

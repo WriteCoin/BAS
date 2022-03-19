@@ -1,0 +1,1 @@
+function BAS_path_parse(path) { const parse_res = _path.parse(path); return { root: parse_res.root, directory: parse_res.dir, base_name: parse_res.base, file_extension: parse_res.ext, file_name: parse_res.name, items_list: parse_res.items; };};

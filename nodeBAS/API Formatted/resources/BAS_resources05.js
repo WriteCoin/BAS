@@ -1,0 +1,1 @@
+function BAS_resource_as_list(name) { return RPick(name);};

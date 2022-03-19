@@ -1,0 +1,1 @@
+function BAS_is_load() { const match = _function_argument("match"); const callback = _function_argument("callback"); is_load(match, callback)!; _function_return(_result());};

@@ -1,0 +1,1 @@
+function BAS_remove_file(path) { native("filesystem", "removefile", path);};

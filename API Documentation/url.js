@@ -260,7 +260,7 @@ function BAS_url_parse(url, normalize, base_url, rfail) {
   return {
     protocol: VAR_PARSED_URL_PROTOCOL,
     username: VAR_PARSED_URL_USERNAME,
-    password; VAR_PARSED_URL_PASSWORD,
+    password: VAR_PARSED_URL_PASSWORD,
     host: VAR_PARSED_URL_HOST,
     port: VAR_PARSED_URL_PORT,
     path: VAR_PARSED_URL_PATH,

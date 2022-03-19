@@ -1,0 +1,1 @@
+function BAS_image_sub(image_id, x, y, width, height) { x = x || 0; y = y || 0; width = width || 800; height = height || 800; return native( "imageprocessing", "sub", image_id + "," + x + "," + y + "," + width + "," + height; );};

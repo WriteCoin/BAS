@@ -77,22 +77,24 @@ function BAS_timezone_set_geo_location() {
 
   _call(_get_ip_info, [ip, ip_method, ip_api_key, info_func])!
   IP_INFO = _result()
-  if(!IP_INFO["valid"])
-  fail("Failed to get ip info for " + ip);
+  if (!IP_INFO["valid"]) {
+    fail("Failed to get ip info for " + ip);
+  }
+  
   _if(change_location, function(){
-  geolocation(IP_INFO["latitude"],IP_INFO["longitude"])!
+    geolocation(IP_INFO["latitude"],IP_INFO["longitude"])!
   })!
   _if(change_timezone, function(){
-  _settings({"Timezone":(-IP_INFO["offset"]).toString(),"TimezoneName":IP_INFO["timezone"]})!
+    _settings({"Timezone":(-IP_INFO["offset"]).toString(),"TimezoneName":IP_INFO["timezone"]})!
   })!
   _if(change_ip_web_rtc, function(){
-  _settings({"Webrtc":"replace","WebrtcIps": ip})!
+    _settings({"Webrtc":"replace","WebrtcIps": ip})!
   })!
   _if(change_browser_language, function(){
-  var country = IP_INFO["country"].toUpperCase()
-  var language = native("timezones", "country_to_language", country)
-  header("Accept-Language", language + "-" + country)!
-  _settings({"Fingerprints.Locale":IP_INFO["country"].toLowerCase()})!
+    var country = IP_INFO["country"].toUpperCase()
+    var language = native("timezones", "country_to_language", country)
+    header("Accept-Language", language + "-" + country)!
+    _settings({"Fingerprints.Locale":IP_INFO["country"].toLowerCase()})!
   })!
   sleep(1000)!
 }
@@ -123,13 +125,11 @@ function BAS_set_timezone() {
   const utc_offset = args.utc_offset || ''
   const timezone_name = args.timezone_name || ''
   var UpdatedSettings = {}
-  if(utc_offset.toString().length > 0)
-  {
-  UpdatedSettings["Timezone"] = (-parseInt(utc_offset)).toString()
+  if(utc_offset.toString().length > 0) {
+    UpdatedSettings["Timezone"] = (-parseInt(utc_offset)).toString()
   }
-  if(timezone_name.toString().length > 0)
-  {
-  UpdatedSettings["TimezoneName"] = timezone_name
+  if(timezone_name.toString().length > 0) {
+    UpdatedSettings["TimezoneName"] = timezone_name
   }
   _settings(UpdatedSettings)!
   sleep(1000)!
@@ -172,14 +172,14 @@ function BAS_timezone_set_coordinates() {
     speed: null
   }
   _if(latitude.toString().length > 0 && longitude.toString().length > 0, function(){
-  geolocation(parseFloat(latitude),parseFloat(longitude))!
+    geolocation(parseFloat(latitude),parseFloat(longitude))!
   })!
   geolocation_object({
-  accuracy: geolocation_object.accuracy || 4413,
-  altitude: geolocation_object.altitude || null,
-  altitudeAccuracy: geolocation_object.altitudeAccuracy || null,
-  heading: geolocation_object.heading || null,
-  speed: geolocation_object.speed || null
+    accuracy: geolocation_object.accuracy || 4413,
+    altitude: geolocation_object.altitude || null,
+    altitudeAccuracy: geolocation_object.altitudeAccuracy || null,
+    heading: geolocation_object.heading || null,
+    speed: geolocation_object.speed || null
   })!
   sleep(1000)!
 }

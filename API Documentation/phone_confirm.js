@@ -75,7 +75,7 @@ function BAS_phone_get_number() {
   const args = _arguments()
   _call_function(_SMS.getNumber, {
     service: args.service,
-    apiKey; args.apiKey,
+    apiKey: args.apiKey,
     site: args.site,
     country: args.country,
     operator: args.operator,

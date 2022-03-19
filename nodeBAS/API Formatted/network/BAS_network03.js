@@ -1,0 +1,1 @@
+function BAS_load_cookies() { const cookies = _function_argument("cookies"); cookies = get_cookies(cookies); restore_cookies(cookies)!;};

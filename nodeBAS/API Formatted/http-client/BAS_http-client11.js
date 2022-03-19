@@ -1,0 +1,1 @@
+function BAS_http_client_clear_header() { _switch_http_client_main(); http_client_clear_header();};

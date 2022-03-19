@@ -1,0 +1,1 @@
+function BAS_xpath_get_text_list(text, xpath_query) { html_parser_xpath_parse(text); return html_parser_xpath_text_list(xpath_query);};

@@ -1,0 +1,1 @@
+function BAS_set_global(name, value) { value = JSON.stringify(value); PSet("basglobal", name, value);};

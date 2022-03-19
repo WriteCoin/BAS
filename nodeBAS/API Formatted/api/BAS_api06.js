@@ -1,0 +1,1 @@
+function BAS_break(str) { str = str || "function"; _break(str);};

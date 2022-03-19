@@ -1,0 +1,1 @@
+function BAS_imap_client_messages_length() { const timeout = _function_argument("timeout"); general_timeout_next(timeout); imap_client_pull_messages_length()!; _function_return(imap_client_messages_length());};

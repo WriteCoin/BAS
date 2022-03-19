@@ -1,0 +1,1 @@
+function BAS_write_file_array(filepath, arr, isLn, isBase64, isAppend) { native("filesystem", "writefile", JSON.stringify({ path: filepath, value: arr.join("\r\n") + (isLn ? "\r\n" : ""), base64: false, append: isAppend; }));};;

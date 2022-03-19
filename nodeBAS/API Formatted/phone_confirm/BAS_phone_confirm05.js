@@ -1,0 +1,1 @@
+function BAS_phone_get_numbers_count() { const args = _arguments(); _call_function(_SMS.getNumbersCount, { service: args.service, apiKey: args.apiKey, site: args.site, country: args.country, customSite: args.customSite, customCountry: args.customCountry, serverUrl: args.serverUrl, timeout: args.timeout; })!; _function_return(_result_function());};

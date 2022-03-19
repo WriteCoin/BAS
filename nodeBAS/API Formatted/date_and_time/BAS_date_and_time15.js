@@ -1,0 +1,1 @@
+function BAS_get_hours_from_date(value) { return parseInt(_format_date(value, "h"));};

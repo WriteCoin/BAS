@@ -1,0 +1,1 @@
+function BAS_image_get_size(image_id) { const split = native("imageprocessing", "getsize", image_id).split(","); return { width: parseInt(split[0]), height: parseInt(split[1]), };};

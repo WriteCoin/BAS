@@ -1,0 +1,1 @@
+function BAS_get_image_data(image_id) { return native("imageprocessing", "getdata", image_id);};

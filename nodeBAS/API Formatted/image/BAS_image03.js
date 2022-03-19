@@ -1,0 +1,1 @@
+function BAS_create_image(width, height, red, green, blue, alpha) { width = width || 800; height = height || 800; red = red || 255; green = green || 255; blue = blue || 255; alpha = alpha || 255; return native( "imageprocessing", "create", width + "," + height + "," + red + "," + green + "," + blue + "," + alpha; );};

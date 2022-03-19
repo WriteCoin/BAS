@@ -1,0 +1,1 @@
+function BAS_url_component(str, encode) { return encode ? _encode_url_component(str) : _decode_url_component(str);};

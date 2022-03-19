@@ -1,0 +1,1 @@
+function BAS_join_strings(str1, str2, str3, listStr, sep) { return _join_strings([; _avoid_nil(str1), _avoid_nil(str2), _avoid_nil(str3); ].concat( _to_arr(_avoid_nilb(listStr, [])); ), sep);};

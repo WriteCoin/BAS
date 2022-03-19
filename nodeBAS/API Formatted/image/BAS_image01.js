@@ -1,0 +1,1 @@
+function BAS_load_image(data_base64) { return native("imageprocessing", "load", data_base64);};

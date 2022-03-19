@@ -1,0 +1,1 @@
+function BAS_regexp_scan(text, regexp) { VAR_SCAN_RESULT_LIST = native( "regexp", "scan", JSON.stringify({ text: "str", regexp: "regexp" }); ); if (VAR_SCAN_RESULT_LIST.length == 0) VAR_SCAN_RESULT_LIST = []; else VAR_SCAN_RESULT_LIST = JSON.parse(VAR_SCAN_RESULT_LIST); return VAR_SCAN_RESULT_LIST;};

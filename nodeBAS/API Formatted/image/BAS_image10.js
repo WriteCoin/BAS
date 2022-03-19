@@ -1,0 +1,1 @@
+function BAS_image_insert(target_image_id, source_image_id, x, y) { native( "imageprocessing", "insert", target_image_id + "," + source_image_id + "," + x + "," + y; );};

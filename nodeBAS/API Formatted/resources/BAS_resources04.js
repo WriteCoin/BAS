@@ -1,0 +1,1 @@
+function BAS_get_resource_location(name) { return RInfo(name, "Location");};

@@ -1,0 +1,1 @@
+function BAS_milliseconds_from_date(value) { return _parse_date(value, "auto").getTime();};

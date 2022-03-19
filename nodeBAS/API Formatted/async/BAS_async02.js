@@ -1,0 +1,1 @@
+function BAS_thread_wait() { const args = _arguments(); const timeout = args.timeout || 100000000; waiter_timeout_next(timeout); _thread_wait(args.thread_id);};

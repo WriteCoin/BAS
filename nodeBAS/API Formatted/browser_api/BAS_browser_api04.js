@@ -1,0 +1,1 @@
+function BAS_javascript() { const script = _function_argument("script"); page().script2(script,JSON.stringify(_read_variables([])))!; const _parse_result = JSON.parse(_result()); _write_variables(JSON.parse(_parse_result.variables)); if(!_parse_result.is_success); fail(_parse_result.error);};

@@ -1,0 +1,1 @@
+function BAS_copy_file(path, dest) { native("filesystem", "copyfile", { path: path, dest: dest; });};

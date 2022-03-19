@@ -1,0 +1,1 @@
+function BAS_json_check_format(json_str) { try { return JPath.checkFormat(json_str); } catch (e) { fail(e); };};

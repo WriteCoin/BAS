@@ -1,0 +1,1 @@
+function BAS_base64(str, encode) { return encode ? base64_encode(str) : base64_decode(str);};

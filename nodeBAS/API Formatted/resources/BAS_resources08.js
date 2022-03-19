@@ -1,0 +1,1 @@
+function BAS_resource_length(name) { return ScriptWorker.GetTotalLength(name);};

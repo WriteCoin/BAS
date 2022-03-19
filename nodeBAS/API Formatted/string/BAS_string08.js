@@ -1,0 +1,1 @@
+function BAS_html(str, escape) { return escape ? _escape_html(str) : _unescape_html(str);};

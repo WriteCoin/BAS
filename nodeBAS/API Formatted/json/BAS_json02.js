@@ -1,0 +1,1 @@
+function BAS_json_values(json, json_path_query) { try { return JPath.values(json, json_path_query); } catch (e) { fail(e); };};

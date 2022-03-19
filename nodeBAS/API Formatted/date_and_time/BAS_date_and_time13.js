@@ -1,0 +1,1 @@
+function BAS_get_year_from_date(value) { return parseInt(_format_date(value, "yyyy"));};

@@ -1,0 +1,1 @@
+function BAS_image_find(target_image_id, source_image_id) { const split = native( "imageprocessing", "find", target_image_id + "," + source_image_id; ).split(","); return { found_subimage_x: split[0], found_subimage_y: split[1], threshold: split[2], };};

@@ -1,0 +1,1 @@
+function BAS_cache_get_all(match) { const match = _function_argument("match"); BAS_cache_get_all(match)!; _function_return(JSON.parse(_result()));};

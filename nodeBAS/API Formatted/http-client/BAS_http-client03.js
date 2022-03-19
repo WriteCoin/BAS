@@ -1,0 +1,1 @@
+function BAS_http_client_get() { const args = _arguments(); _switch_http_client_main(); if (args.timeout) general_timeout_next(args.timeout); const obj = { method: args.method, headers: args.headers; }; if (no_redirect) http_client_get_no_redirect2(args.url, obj)!; else http_client_get2(args.url, obj)!;};

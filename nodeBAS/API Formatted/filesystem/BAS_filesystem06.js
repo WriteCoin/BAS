@@ -1,0 +1,1 @@
+function BAS_move_file(path, dest) { native("filesystem", "movefile", { path: path, dest: dest; });};

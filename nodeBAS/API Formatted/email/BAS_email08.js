@@ -1,0 +1,1 @@
+function BAS_imap_client_delete_message(timeout, id) { const timeout = _function_argument("timeout"); const id = _function_argument("id");; if (timeout) general_timeout_next(timeout); imap_custom_query("%base%folder","STORE " + id + " +Flags \\Deleted","")!; imap_custom_query("%base%folder","EXPUNGE","")!;};

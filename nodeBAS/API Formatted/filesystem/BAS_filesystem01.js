@@ -1,0 +1,1 @@
+ function BAS_read_file(filepath, from, to, isBase64) { return native("filesystem", "readfile", JSON.stringify({ value: filepath, base64: isBase64, from: from, to: to; }));};

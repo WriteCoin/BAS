@@ -1,0 +1,1 @@
+function BAS_reload_resource(name) { Reload(name);};

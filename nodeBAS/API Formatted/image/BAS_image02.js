@@ -1,0 +1,1 @@
+function BAS_delete_image(image_id) { native("imageprocessing", "delete", image_id);};

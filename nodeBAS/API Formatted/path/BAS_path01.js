@@ -1,0 +1,1 @@
+function BAS_filename_from_path(path, ext) { return _path.basename(path, ext);};

@@ -1,0 +1,1 @@
+function BAS_phone_change_activation_status() { const args = _arguments(); _call_function(_SMS.setStatus, { number: args.number, status: args.status, deleteInfo: args.deleteInfo, timeout: args.timeout; })!;};

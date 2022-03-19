@@ -1,0 +1,1 @@
+function BAS_list_to_resource(name, list) { RClear(name); RSync(name); for (var i = 0; i < list.length; i++) { RInsert(name, list[i], false); }; RSync(name);};

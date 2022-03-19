@@ -1,0 +1,1 @@
+function BAS_get_day_of_year(value) { return parseInt(_format_date(value, "Z"));};

@@ -33,7 +33,7 @@
     cursorX: result['CursorX'],
     cursorY: result['CursorY'],
     width: result['Width'],
-    height: result['Height']
+    height: result['Height'],
   })
   _result_function()
 }
@@ -46,7 +46,7 @@
  * Пустой параметр сбросит прокси до значения по умолчанию(прямое соединение).
  * 'Настройки безопасности' задают различные настройки браузера в соответствии с новым прокси, например: часовой пояс и месторасположение. Эти сделает ваше приложение менее обнаруживаемым. Проверьте информацию для каждого отдельного параметра, чтобы понять, для чего он нужны. Настройки по умолчанию обеспечат оптимальную работу.
  * Параметры:
- * proxy - Прокси. Строка с информацией о прокси. Она может содержать ip, порт и тип прокси в разных форматах. Эта строка может также содержать логин и пароль, если их нету, данные для аутентификации могут быть заданы с параметрами "Логин прокси" и "Прокси пароль". Примеры: 210.10.10.10:1085, username:password@210.10.10.10:1085, socks5://210.10.10.10:1085, socks:210.10.10.10:1085:username:password, http:username:password:210.10.10.10:1085, {{proxy}} - Получить из ресурса, Пустая строка - Без прокси
+ * proxy - Прокси. Строка с информацией о прокси. Она может содержать ip, порт и тип прокси в разных форматах. Эта строка может также содержать логин и пароль, если их нету, данные для аутентификации могут быть заданы с параметрами "Логин прокси" и "Прокси пароль". Примеры: 210.10.10.10:1085, username:password@210.10.10.10:1085, socks5://210.10.10.10:1085, socks:210.10.10.10:1085:username:password, http:username:password:210.10.10.10:1085, \{\{proxy\}\} - Получить из ресурса, Пустая строка - Без прокси
  * proxy_type - Тип прокси. Поддерживаются прокси типа socks5 и http. Примеры: socks, socks5 - То же, что и socks; http, https - То же, что и http
  * login - Прокси Логи. Может быть пустым. Логин от прокси, переопределяет логин в строке прокси. Полезно, если у вас много прокси с одинаковыми логинами и паролями.
  * password - Пароль Прокси. Может быть пустым. Пароль от прокси, переопределяет пароль в строке прокси. Полезно, если у вас много прокси с одинаковыми логинами и паролями.
@@ -151,7 +151,7 @@ function BAS_onLoadJavascript() {
   const tab = _function_argument('tab')
   _set_target({
     url: url,
-    tab: tab
+    tab: tab,
   })
   onloadjavascript(script)!
 }
@@ -232,8 +232,8 @@ function BAS_solveCaptcha() {
     {const split = http_client_content().split("|");VAR_CAPTCHA_RESULT = split[split.length-1]}
     _switch_http_client_main()
   }, function(){
-  solve_base64("manual",dataBase64)!
-  VAR_CAPTCHA_RESULT = _result()
+    solve_base64("manual",dataBase64)!
+    VAR_CAPTCHA_RESULT = _result()
   })!
   _function_return(VAR_CAPTCHA_RESULT)
 }
@@ -298,7 +298,7 @@ function BAS_solve_coordinates_captcha() {
     serviceName: args.serviceName || "rucaptcha",
     serviceUrl: args.serviceUrl || "",
     serviceKey: args.serviceKey || "",
-    imageData: args.imageData || ""
+    imageData: args.imageData || "",
   })!
 }
 

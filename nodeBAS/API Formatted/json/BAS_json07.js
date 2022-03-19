@@ -1,0 +1,1 @@
+function BAS_json_remove(json, json_path_query) { try { return JPath.remove(json, json_path_query); } catch (e) { fail(e); };};

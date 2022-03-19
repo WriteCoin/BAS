@@ -1,0 +1,1 @@
+function BAS_imap_client_get_message() { const timeout = _function_argument("timeout"); const id = _function_argument("id"); _call_function(BAS_parse_message, { timeout: timeout, id: id; })!; _function_return({ mail_body: VAR_MAIL_BODY; link1: VAR_LINK1, link2: VAR_LINK2, link3: VAR_LINK3; });};

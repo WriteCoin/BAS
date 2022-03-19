@@ -1,0 +1,1 @@
+function BAS_profile_copy(path) { const ProfilePath = _get_profile(); native("filesystem", "copyfile", JSON.stringify({ path: ProfilePath, dest: path; }));};

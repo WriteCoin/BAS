@@ -1,0 +1,1 @@
+function BAS_apply_fingerprint() { const args = _arguments(); _call(BrowserAutomationStudio_ApplyFingerprint, [; args.fingerprint, args.safeUseCanvas, args.safeUseWebGL, args.safeUseAudio, args.safeUseBattery, args.safeUseClientRect, args.safeUsePerfectCanvas, args.emulationDeviceSensors; ])!; sleep(1000)!;};

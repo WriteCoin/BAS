@@ -1,0 +1,1 @@
+function BAS_http_client_download() { const args = _arguments(); _switch_http_client_main(); if (args.timeout) general_timeout_next(args.timeout); http_client_download(args.url, args.filepath)!;};

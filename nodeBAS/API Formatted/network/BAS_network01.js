@@ -1,0 +1,1 @@
+function BAS_save_cookies() { save_cookies()!; _function_return("{\"cookies\":" + _result() + "}");};

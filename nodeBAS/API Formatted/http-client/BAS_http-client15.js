@@ -1,0 +1,1 @@
+function BAS_http_client_set_fail_on_error(fail_on_error) { _switch_http_client_main(); http_client_set_fail_on_error(fail_on_error === "fail");};

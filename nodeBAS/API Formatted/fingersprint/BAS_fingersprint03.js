@@ -1,0 +1,1 @@
+function BAS_fingerprint_performance() { const args = _arguments(); _call(BrowserAutomationStudio_PerformanceFingerprint, args)!;};

@@ -1,0 +1,1 @@
+function BAS_continue(str) { str = str || "function"; _next(str);};

@@ -1,0 +1,1 @@
+function BAS_path_is_absolute(path) { return _path.isAbsolute(path);};

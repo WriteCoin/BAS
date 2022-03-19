@@ -1,0 +1,1 @@
+function BAS_get_system_path() { const name = _function_argument("name"); _call_function(_get_system_path, { name: name; })!; _function_return(_result_function());};
