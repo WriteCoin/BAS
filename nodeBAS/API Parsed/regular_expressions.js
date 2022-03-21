@@ -33,6 +33,8 @@ all_match: string - Найденный текст целиком
 * }
 */
 function BAS_regexp_first(text, regexp) {
+const text = _function_argument('text') || text
+const regexp = _function_argument('regexp') || regexp
 const regexp_result = native(
 "regexp",
 "first",
@@ -51,12 +53,14 @@ if (typeof VAR_GROUP3 == "undefined" || !VAR_GROUP3) VAR_GROUP3 = ""
 if (regexp_result.length == 0) {
 VAR_GROUP1 = VAR_ALL_MATCH
 }
-return {
+const result = {
 all_match: VAR_ALL_MATCH,
 group1: VAR_GROUP1,
 group2: VAR_GROUP2,
 group3: VAR_GROUP3,
 }
+_function_return(result)
+return result
 }
 /**
 * Извлечь все данные
@@ -91,6 +95,8 @@ href="([^"]+)" - Извлечь ссылку из html тега a
 Эта переменная будет содержать список со всеми строками подходящими под регулярное выражение. Если группа с именем 'result' присутствует в регулярном выражении, тогда список будет содержать содержимое групп 'result', а не совпадения целиком. Смотрите описание текущего действия чтобы увидеть примеры.
 */
 function BAS_regexp_scan(text, regexp) {
+const text = _function_argument('text') || text
+const regexp = _function_argument('regexp') || regexp
 VAR_SCAN_RESULT_LIST = native(
 "regexp",
 "scan",
@@ -98,7 +104,9 @@ JSON.stringify({ text: "str", regexp: "regexp" })
 )
 if (VAR_SCAN_RESULT_LIST.length == 0) VAR_SCAN_RESULT_LIST = []
 else VAR_SCAN_RESULT_LIST = JSON.parse(VAR_SCAN_RESULT_LIST)
-return VAR_SCAN_RESULT_LIST
+const result = VAR_SCAN_RESULT_LIST
+_function_return(result)
+return result
 }
 /**
 * Подходит ли строка под регулярное выражение
@@ -131,7 +139,9 @@ href="([^"]+)" - Извлечь ссылку из html тега a
 Эта переменная будет равна true или false в зависимости от того, соответствует ли строка регулярному выражению.
 */
 function BAS_regexp_is_match(text, regexp) {
-return Boolean(
+const text = _function_argument('text') || text
+const regexp = _function_argument('regexp') || regexp
+const result = Boolean(
 native(
 "regexp",
 "ismatch",
@@ -141,6 +151,8 @@ regexp: regexp,
 })
 ) === "true"
 )
+_function_return(result)
+return result
 }
 /**
 * Разделить строку
@@ -174,12 +186,16 @@ href="([^"]+)" - Извлечь ссылку из html тега a
 Эта переменная будет содержать список со всеми частями строки. Смотрите описание текущего действия чтобы увидеть примеры.
 */
 function BAS_regexp_split(text, regexp) {
+const text = _function_argument('text') || text
+const regexp = _function_argument('regexp') || regexp
 VAR_LIST_FROM_STRING = native("regexp", "split", JSON.stringify({text: text,regexp: regexp}))
 if(VAR_LIST_FROM_STRING.length == 0)
 VAR_LIST_FROM_STRING = []
 else
 VAR_LIST_FROM_STRING = JSON.parse(VAR_LIST_FROM_STRING)
-return VAR_LIST_FROM_STRING
+const result = VAR_LIST_FROM_STRING
+_function_return(result)
+return result
 }
 /**
 * Заменить строку
@@ -215,9 +231,14 @@ href="([^"]+)" - Извлечь ссылку из html тега a
 * @returns строка после замены
 */
 function BAS_regexp_replace(text, regexp, replace) {
-return native('regexp', 'replace', JSON.stringify({
+const text = _function_argument('text') || text
+const regexp = _function_argument('regexp') || regexp
+const replace = _function_argument('replace') || replace
+const result = native('regexp', 'replace', JSON.stringify({
 text: text,
 regexp: regexp,
 replace: replace
 }))
+_function_return(result)
+return result
 }

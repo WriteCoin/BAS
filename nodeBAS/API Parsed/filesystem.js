@@ -8,12 +8,18 @@
 * @returns number
 */
 function BAS_read_file(filepath, from, to, isBase64) {
-return native('filesystem', 'readfile', JSON.stringify({
+const filepath = _function_argument('filepath') || filepath
+const from = _function_argument('from') || from
+const to = _function_argument('to') || to
+const isBase64 = _function_argument('isBase64') || isBase64
+const result = native('filesystem', 'readfile', JSON.stringify({
 value: filepath,
 base64: isBase64,
 from: from,
 to: to
 }))
+_function_return(result)
+return result
 }
 /**
 * Запись В Файл
@@ -26,6 +32,11 @@ to: to
 * @param {boolean} isBase64 Данные представлены в формате base64
 */
 function BAS_write_file(filepath, data, isLn, isAppend, isBase64) {
+const filepath = _function_argument('filepath') || filepath
+const data = _function_argument('data') || data
+const isLn = _function_argument('isLn') || isLn
+const isAppend = _function_argument('isAppend') || isAppend
+const isBase64 = _function_argument('isBase64') || isBase64
 native('filesystem', 'writefile', JSON.stringify({
 path: filepath,
 value: data.toString() + '\r' + (isLn ? '\n' : ''),
@@ -46,14 +57,17 @@ append: isAppend
 * }
 */
 function BAS_file_info(filename) {
+const filename = _function_argument('filename') || filename
 const json = JSON.parse(native('filesystem', 'fileinfo', filename))
-return {
+const result = {
 exists: json.exists,
 size: json.size,
 baseDirectory: json.directory,
 isDirectory: json.is_directory,
 lastModified: new Date(json.last_modified * 1000)
 }
+_function_return(result)
+return result
 }
 /**
 * Создать Папку
@@ -61,6 +75,7 @@ lastModified: new Date(json.last_modified * 1000)
 * @param {string} dirname Имя Папки
 */
 function BAS_create_dir(dirname) {
+const dirname = _function_argument('dirname') || dirname
 native('filesystem', 'createdir', firname)
 }
 /**
@@ -69,6 +84,7 @@ native('filesystem', 'createdir', firname)
 * @param {string} path Имя Файла Или Папки
 */
 function BAS_remove_file(path) {
+const path = _function_argument('path') || path
 native('filesystem', 'removefile', path)
 }
 /**
@@ -78,6 +94,8 @@ native('filesystem', 'removefile', path)
 * @param {string} dest Новое Расположение Файла Или Папки
 */
 function BAS_move_file(path, dest) {
+const path = _function_argument('path') || path
+const dest = _function_argument('dest') || dest
 native('filesystem', 'movefile', {
 path: path,
 dest: dest
@@ -90,6 +108,8 @@ dest: dest
 * @param {string} dest Место Назначения Копирования
 */
 function BAS_copy_file(path, dest) {
+const path = _function_argument('path') || path
+const dest = _function_argument('dest') || dest
 native('filesystem', 'copyfile', {
 path: path,
 dest: dest
@@ -107,6 +127,12 @@ dest: dest
 * @returns string
 */
 function BAS_search_files(folder, mask, contains, include_folders, include_files, recursive) {
+const folder = _function_argument('folder') || folder
+const mask = _function_argument('mask') || mask
+const contains = _function_argument('contains') || contains
+const include_folders = _function_argument('include_folders') || include_folders
+const include_files = _function_argument('include_files') || include_files
+const recursive = _function_argument('recursive') || recursive
 const args = _arguments()
 native_async('filesystem', 'search', JSON.stringify({
 folder: args.folder,
@@ -116,7 +142,9 @@ include_folders: args.include_folders,
 include_files: args.include_files,
 recursive: args.recursive
 }))!
-_function_return(JSON.parse(_result()).d)
+const result = JSON.parse(_result()).d
+_function_return(result)
+return result
 }
 /**
 * Читать Файл В Список
@@ -125,8 +153,11 @@ _function_return(JSON.parse(_result()).d)
 * @returns Array
 */
 function BAS_read_file_to_array(filepath) {
+const filepath = _function_argument('filepath') || filepath
 const d = BAS_read_file(filepath, 0, 0, false)
-return d.length === 0 ? [] : d.split(/\r?\n/)
+const result = d.length === 0 ? [] : d.split(/\r?\n/)
+_function_return(result)
+return result
 }
 /**
 * Записать Список В Файл
@@ -137,6 +168,11 @@ return d.length === 0 ? [] : d.split(/\r?\n/)
 * @param {boolean} isAppend Дописывать файл
 */
 function BAS_write_file_array(filepath, arr, isLn, isBase64, isAppend) {
+const filepath = _function_argument('filepath') || filepath
+const arr = _function_argument('arr') || arr
+const isLn = _function_argument('isLn') || isLn
+const isBase64 = _function_argument('isBase64') || isBase64
+const isAppend = _function_argument('isAppend') || isAppend
 native('filesystem', 'writefile', JSON.stringify({
 path: filepath,
 value: arr.join('\r\n') + (isLn ? '\r\n' : ''),

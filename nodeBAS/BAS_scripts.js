@@ -29,6 +29,7 @@ const scripts = [
   "regular_expressions",
   "resources",
   // 'script_statistics.d.ts',
+  "script_statistics",
   "smtp_settings",
   // 'smtp_settings.d.ts',
   "string",

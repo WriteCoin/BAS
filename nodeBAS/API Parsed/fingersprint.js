@@ -100,7 +100,9 @@ false - Получение отпечатка с указанным запрос
 function BAS_get_fingerprint() {
 const args = _arguments()
 _call(BrowserAutomationStudio_GetFingerprint, [args])!
-_result_function(_result())
+const result = _result()
+_function_return(result)
+return result
 }
 /**
 * Применить отпечаток (BAS-функция)

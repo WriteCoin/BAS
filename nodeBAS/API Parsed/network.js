@@ -6,7 +6,10 @@ function BAS_save_cookies() {
 save_cookies()!
 _function_return("{\"cookies\":" + _result() + "}")
 }
+/**
+*/
 function get_cookies(cookies) {
+const cookies = _function_argument('cookies') || cookies
 VALUE = cookies
 COOKIES = ""
 if(VALUE.length > 0) {
@@ -18,6 +21,7 @@ COOKIES = JSON.stringify(COOKIES)
 }
 }
 cookies = COOKIES
+_function_return(cookies)
 return cookies
 }
 /**
@@ -112,5 +116,7 @@ _function_return(_result())
 function BAS_cache_get_all(match) {
 const match = _function_argument('match')
 BAS_cache_get_all(match)!
-_function_return(JSON.parse(_result()))
+const result = JSON.parse(_result())
+_function_return(result)
+return result
 }

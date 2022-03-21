@@ -67,10 +67,12 @@ if((VAR_THREAD_LIST).indexOf(VAR_THREAD_ID) < 0) {
 (VAR_THREAD_LIST).push(VAR_THREAD_ID)
 }
 _thread_start(VAR_THREAD_ID, 0 == thread_id, args.func, {}, stop_thread, max_funcs, behaviour_inactive !== "wait")!
-_function_return({
+const result = {
 thread_id: VAR_THREAD_ID,
 thread_list: VAR_THREAD_LIST,
-})
+}
+_function_return(result)
+return result
 }
 /**
 * Ждать завершение асинхронной функции (BAS-функция)
@@ -118,11 +120,13 @@ ID потока, полученный из действия "Вызов функ
 * }
 */
 function BAS_thread_get_status(thread_id) {
+const thread_id = _function_argument('thread_id') || thread_id
 const thread_data = _thread_get_status(thread_id)
-return {
+const result = {
 result: thread_data.result,
 is_running: thread_data.is_running,
 error: thread_data.error,
 is_success: thread_data.is_success,
 }
+return result
 }

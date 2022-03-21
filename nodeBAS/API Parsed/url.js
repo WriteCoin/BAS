@@ -109,7 +109,10 @@ http://rucaptcha.com/in.php?key=1abc234de56fab7c89012d34e56fa7b8
 &googlekey=6LfZil0UAAAAAAdm1Dpzsw9q0F11-bmervx9g5fE&pageurl=http://mysite.com/page
 */
 function BAS_url_normalize(url, params) {
-return _normalize_url(url, params)
+const url = _function_argument('url') || url
+const params = _function_argument('params') || params
+const result = _normalize_url(url, params)
+return result
 }
 /**
 * Парсить URL
@@ -201,6 +204,10 @@ solving_recaptcha_enterprise
 * }
 */
 function BAS_url_parse(url, normalize, base_url, rfail) {
+const url = _function_argument('url') || url
+const normalize = _function_argument('normalize') || normalize
+const base_url = _function_argument('base_url') || base_url
+const rfail = _function_argument('rfail') || rfail
 const parse_res = new _url(url, {
 normalize: normalize,
 base_url: base_url,
@@ -214,7 +221,7 @@ VAR_PARSED_URL_PORT = _avoid_nil(parse_res["port"]);
 VAR_PARSED_URL_PATH = _avoid_nil(parse_res["pathname"]);
 VAR_PARSED_URL_QUERY = _avoid_nil(parse_res["query"]);
 VAR_PARSED_URL_FRAGMENT = _avoid_nil(parse_res["hash"]);
-return {
+const result = {
 protocol: VAR_PARSED_URL_PROTOCOL,
 username: VAR_PARSED_URL_USERNAME,
 password: VAR_PARSED_URL_PASSWORD,
@@ -224,6 +231,8 @@ path: VAR_PARSED_URL_PATH,
 query: VAR_PARSED_URL_QUERY,
 fragment: VAR_PARSED_URL_FRAGMENT
 }
+_function_return(result)
+return result
 }
 /**
 * Создать URL
@@ -305,6 +314,7 @@ http://rucaptcha.com/in.php?key=1abc234de56fab7c89012d34e56fa7b8
 &googlekey=6LfZil0UAAAAAAdm1Dpzsw9q0F11-bmervx9g5fE&pageurl=http://mysite.com/page
 */
 function BAS_generate_url(params) {
+const params = _function_argument('params') || params
 const obj = {
 protocol: params.protocol || '',
 username: params.username || '',
@@ -315,7 +325,9 @@ pathname: params.pathname || '',
 query: params.query || '',
 hash: params.hash || ''
 }
-return _generate_url(obj)
+const result = _generate_url(obj)
+_function_return(result)
+return result
 }
 /**
 * Изменить URL
@@ -427,8 +439,12 @@ http://rucaptcha.com/in.php?key=1abc234de56fab7c89012d34e56fa7b8
 &googlekey=6LfZil0UAAAAAAdm1Dpzsw9q0F11-bmervx9g5fE&pageurl=http://mysite.com/page
 */
 function BAS_change_url(url, params) {
+const url = _function_argument('url') || url
+const params = _function_argument('params') || params
 VAR_CHANGED_URL = _change_url("URL", {protocol:("Протокол"), username:("Логин"), password:("Пароль"), host:("Хост"), port:("Порт"), pathname:("Путь"), query:("Запрос"), hash:("Фрагмен")}, {normalize: true, base_url: "Базовый URL", rfail: true, clear_query: true});
-return _change_url(url, params)
+const result = _change_url(url, params)
+_function_return(result)
+return result
 }
 /**
 * Парсить User-Agent
@@ -516,6 +532,7 @@ arm[64]
 * }
 */
 function BAS_parse_user_agent(user_agent) {
+const user_agent = _function_argument('user_agent') || user_agent
 const parse_res = new _ua(user_agent);
 VAR_PARSED_UA_PLATFORM_TYPE = _avoid_nil(parse_res["platform"]["type"]);
 VAR_PARSED_UA_BROWSER_NAME = _avoid_nil(parse_res["browser"]["name"]);
@@ -529,7 +546,7 @@ VAR_PARSED_UA_DEVICE_VENDOR = _avoid_nil(parse_res["device"]["vendor"]);
 VAR_PARSED_UA_DEVICE_MODEL = _avoid_nil(parse_res["device"]["model"]);
 VAR_PARSED_UA_DEVICE_TYPE = _avoid_nil(parse_res["device"]["type"]);
 VAR_PARSED_UA_CPU_ARCHITECTURE = _avoid_nil(parse_res["cpu"]["architecture"]);
-return {
+const result = {
 platform_type: VAR_PARSED_UA_PLATFORM_TYPE,
 browser_name: VAR_PARSED_UA_BROWSER_NAME,
 browser_version: VAR_PARSED_UA_BROWSER_VERSION,
@@ -543,6 +560,8 @@ device_model: VAR_PARSED_UA_DEVICE_MODEL,
 device_type: VAR_PARSED_UA_DEVICE_TYPE,
 cpu_architecture: VAR_PARSED_UA_CPU_ARCHITECTURE
 }
+_function_return(result)
+return result
 }
 /**
 * Punycode кодировать/декодировать
@@ -561,7 +580,11 @@ https://xn--80aswg.xn--p1ai/index.html - Закодированная строк
 * @returns закодированная строка в случае использования режима encode и результат декодирования при использовании режима decode.
 */
 function BAS_url_punycode(str, encode) {
-return encode ? _punycode.urlToASCII(str) : _punycode.urlToUnicode(str)
+const str = _function_argument('str') || str
+const encode = _function_argument('encode') || encode
+const result = encode ? _punycode.urlToASCII(str) : _punycode.urlToUnicode(str)
+_function_return(result)
+return result
 }
 /**
 * Url компонент кодировать/декодировать
@@ -580,5 +603,9 @@ return encode ? _punycode.urlToASCII(str) : _punycode.urlToUnicode(str)
 * @returns закодированная строка в случае использования режима encode и результат декодирования при использовании режима decode.
 */
 function BAS_url_component(str, encode) {
-return encode ? _encode_url_component(str) : _decode_url_component(str)
+const str = _function_argument('str') || str
+const encode = _function_argument('encode') || encode
+const result = encode ? _encode_url_component(str) : _decode_url_component(str)
+_function_return(result)
+return result
 }

@@ -31,10 +31,10 @@ https - То же, что и http
 */
 function BAS_http_client_set_proxy(proxy, proxy_type, login, password) {
 const args = _arguments()
-const proxy = args.proxy || ""
-const proxy_type = args.proxy_type || "http"
-const login = args.login || ""
-const password = args.password || ""
+const proxy = args.proxy || (proxy || "")
+const proxy_type = args.proxy_type || (proxy_type || "http")
+const login = args.login || (login || "")
+const password = args.password || (password || "")
 const hash = proxy_set_hash(proxy, proxy_type, login, password)
 _switch_http_client_main()
 http_client_set_proxy(
@@ -99,8 +99,9 @@ headers: args.headers
 }
 if (no_redirect) {
 http_client_get_no_redirect2(args.url, obj)!
+} else {
+http_client_get2(args.url, obj)!
 }
-else http_client_get2(args.url, obj)!
 }
 /**
 * Post запрос (BAS-функция)
@@ -166,8 +167,7 @@ headers: args.headers
 }
 if (!args.no_redirect) {
 http_client_post(args.url, ['data', args.data], obj)!
-}
-else {
+} else {
 http_client_post_no_redirect(args.url, ['data', args.data], obj)!
 }
 }
@@ -229,8 +229,11 @@ return http_client_url()
 * @returns код страницы без заголовков
 */
 function BAS_http_client_encoded_content(encoding) {
+const encoding = _function_argument('encoding') || encoding
 _switch_http_client_main()
-return http_client_encoded_content(encoding)
+const result = http_client_encoded_content(encoding)
+_function_return(result)
+return result
 }
 /**
 * Стаутс ответа
@@ -245,7 +248,9 @@ return http_client_encoded_content(encoding)
 */
 function BAS_http_client_status() {
 _switch_http_client_main()
-return http_client_status()
+const result = http_client_status()
+_function_return(result)
+return result
 }
 /**
 * Получить заголовок
@@ -261,8 +266,11 @@ cOnTeNt-tYpE - Также получает заголовок 'Content-Type'.
 * @returns значение заголовка
 */
 function BAS_http_client_header(header) {
+const header = _function_argument('header') || header
 _switch_http_client_main()
-return http_client_header(header)
+const result = http_client_header(header)
+_function_return(result)
+return result
 }
 /**
 * HTTP-Клиент Установить Заголовок
@@ -280,6 +288,8 @@ Referer - Установить referer.
 Значение заголовка запроса. Это может быть произвольная строка.
 */
 function BAS_http_client_set_header(header_name, header_value) {
+const header_name = _function_argument('header_name') || header_name
+const header_value = _function_argument('header_value') || header_value
 _switch_http_client_main()
 http_client_set_header(header_name, header_value)
 }
@@ -314,7 +324,9 @@ http_client_clear_header()
 */
 function BAS_http_client_save_cookies() {
 _switch_http_client_main()
-return http_client_save_cookies()
+const result = http_client_save_cookies()
+_function_return(result)
+return result
 }
 /**
 * HTTP-Клиент Загрузить cookies
@@ -373,7 +385,9 @@ http_client_set_fail_on_error(fail_on_error === 'fail')
 */
 function BAS_http_client_was_error() {
 _switch_http_client_main()
-return http_client_was_error()
+const result = http_client_was_error()
+_function_return(result)
+return result
 }
 /**
 * Получить текст ошибки
@@ -382,7 +396,9 @@ return http_client_was_error()
 */
 function BAS_http_client_error_string() {
 _switch_http_client_main()
-return http_client_error_string()
+const result = http_client_error_string()
+_function_return(result)
+return result
 }
 /**
 * Xpath получить xml
@@ -406,8 +422,12 @@ return http_client_error_string()
 * @returns xml первого элемента, который соответствует xpath запросу
 */
 function BAS_http_client_xpath_xml(query, do_not_fail) {
+const query = _function_argument('query') || query
+const do_not_fail = _function_argument('do_not_fail') || do_not_fail
 _switch_http_client_main()
-return http_client_xpath_xml(query, do_not_fail)
+const result = http_client_xpath_xml(query, do_not_fail)
+_function_return(result)
+return result
 }
 /**
 * Xpath получить каждый xml
@@ -432,8 +452,12 @@ return http_client_xpath_xml(query, do_not_fail)
 * @returns Список, который состоит из xml каждого найденного элемента
 */
 function BAS_http_client_xpath_xml_list(query, do_not_fail) {
+const query = _function_argument('query') || query
+const do_not_fail = _function_argument('do_not_fail') || do_not_fail
 _switch_http_client_main()
-return http_client_xpath_xml_list(query, do_not_fail)
+const result = http_client_xpath_xml_list(query, do_not_fail)
+_function_return(result)
+return result
 }
 /**
 * Xpath получить текст
@@ -458,8 +482,12 @@ return http_client_xpath_xml_list(query, do_not_fail)
 * @returns Текст первого элемента, который соответствует xpath запросу
 */
 function BAS_http_client_xpath_text(query, do_not_fail) {
+const query = _function_argument('query') || query
+const do_not_fail = _function_argument('do_not_fail') || do_not_fail
 _switch_http_client_main()
-return http_client_xpath_text(query, do_not_fail)
+const result = http_client_xpath_text(query, do_not_fail)
+_function_return(result)
+return result
 }
 /**
 * Xpath получить каждый текст
@@ -484,8 +512,12 @@ return http_client_xpath_text(query, do_not_fail)
 * @returns Список, который состоит из текста каждого найденного элемента
 */
 function BAS_http_client_xpath_text_list(query, do_not_fail) {
+const query = _function_argument('query') || query
+const do_not_fail = _function_argument('do_not_fail') || do_not_fail
 _switch_http_client_main()
-return http_client_xpath_text_list(query, do_not_fail)
+const result = http_client_xpath_text_list(query, do_not_fail)
+_function_return(result)
+return result
 }
 /**
 * Xpath получить количество элементов
@@ -510,8 +542,12 @@ return http_client_xpath_text_list(query, do_not_fail)
 3 - Есть три элемента, которые соответствуют запросу.
 */
 function BAS_http_client_xpath_count(query, do_not_fail) {
+const query = _function_argument('query') || query
+const do_not_fail = _function_argument('do_not_fail') || do_not_fail
 _switch_http_client_main()
-return http_client_xpath_count(query, do_not_fail)
+const result = http_client_xpath_count(query, do_not_fail)
+_function_return(result)
+return result
 }
 /**
 * Xpath проверить существование
@@ -535,6 +571,9 @@ true - Существует по крайней мере один элемент
 false - Нет элементов, которые соответствуют запросу.
 */
 function BAS_http_client_xpath_exists(query) {
+const query = _function_argument('query') || query
 _switch_http_client_main()
-return http_client_xpath_exist(query)
+const result = http_client_xpath_exist(query)
+_function_return(result)
+return result
 }

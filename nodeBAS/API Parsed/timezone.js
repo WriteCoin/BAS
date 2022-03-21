@@ -259,7 +259,7 @@ VAR_IPINFO_LONGITUDE = json["longitude"]
 VAR_IPINFO_TIMEZONE = json["timezone"]
 VAR_IPINFO_OFFSET = json["offset"]
 VAR_IPINFO_DST_OFFSET = json["dstoffset"]
-_function_return({
+const result = {
 valid: VAR_IPINFO_VALID,
 country: VAR_IPINFO_COUNTRY,
 city: VAR_IPINFO_CITY,
@@ -268,5 +268,7 @@ longitude: VAR_IPINFO_LONGITUDE,
 timezone: VAR_IPINFO_TIMEZONE,
 offset: VAR_IPINFO_OFFSET,
 dst_offset: VAR_IPINFO_DST_OFFSET
-})
+}
+_function_return(result)
+return result
 }

@@ -2,6 +2,10 @@
 *
 */
 function proxy_set_hash(proxy, proxy_type, login, password) {
+const proxy = _function_argument('proxy') || proxy
+const proxy_type = _function_argument('proxy_type') || proxy_type
+const login = _function_argument('login') || login
+const password = _function_argument('password') || password
 const hash = proxy_parse(proxy)
 if (proxy_type !== 'auto') {
 hash.IsHttp = proxy_type === 'http'
@@ -39,10 +43,10 @@ return hash
 */
 function BAS_imap_client_set_proxy(proxy, proxy_type, login, password) {
 const args = _arguments()
-const proxy = args.proxy || ''
-const proxy_type = args.proxy_type || 'http'
-const login = args.login || ''
-const password = args.password || ''
+const proxy = args.proxy || (proxy || '')
+const proxy_type = args.proxy_type || (proxy_type || 'http')
+const login = args.login || (login || '')
+const password = args.password || (password || '')
 const hash = proxy_set_hash(proxy, proxy_type, login, password)
 imap_client_set_proxy(hash.server, hash.Port, hash.IsHttp, hash.name, hash.password)
 }
@@ -59,6 +63,9 @@ general_timeout_next(timeout)
 imap_client_pull_messages_length()!
 _function_return(imap_client_messages_length())
 }
+/**
+*
+*/
 function BAS_parse_message() {
 const timeout = _function_argument('timeout')
 const id = _function_argument('id')
@@ -124,11 +131,12 @@ VAR_LINK3 = ""
 */
 function BAS_imap_client_search(timeout, sender, subject, body, to, callback) {
 const args = _arguments()
-const timeout = args.timeout
-const sender = args.sender || ''
-const subject = args.subject || ''
-const body = args.body || ''
-const to = args.to || ''
+const timeout = args.timeout || timeout
+const sender = args.sender || (sender || '')
+const subject = args.subject || (subject || '')
+const body = args.body || (body || '')
+const to = args.to || (to || '')
+const callback = args.callback || callback
 if (timeout) {
 general_timeout_next(timeout)
 }
@@ -136,7 +144,7 @@ if (!args.callback) {
 imap_client_search(sender, subject, body, to)!
 }
 else {
-imap_client_search(sender, subject, body, to, args.callback)!
+imap_client_search(sender, subject, body, to, callback)!
 }
 VAR_MAIL_BODY = imap_client_search_result()
 if (VAR_MAIL_BODY.length > 0) {
@@ -192,11 +200,11 @@ link3: VAR_LINK3
 */
 function BAS_imap_client_search_all(sender, subject, body, to, callback) {
 const args = _arguments()
-const sender = args.sender || ''
-const subject = args.subject || ''
-const body = args.body || ''
-const to = args.to || ''
-const callback = args.callback
+const sender = args.sender || (sender || '')
+const subject = args.subject || (subject || '')
+const body = args.body || (body || '')
+const to = args.to || (to || '')
+const callback = args.callback || callback
 if (args.timeout) {
 general_timeout_next(args.timeout)
 }
@@ -206,7 +214,9 @@ imap_client_search(sender, subject, body, to)!
 else {
 imap_client_search(sender, subject, body, to, callback)!
 }
-_function_return(imap_client_search_result())
+const result = imap_client_search_result()
+_function_return(result)
+return result
 }
 /**
 * Получить сообщение (BAS-функция)
@@ -257,8 +267,8 @@ link3: VAR_LINK3
 * 7571 - Извлечь сообщение с идентификатором 7571
 */
 function BAS_imap_client_delete_message(timeout, id) {
-const timeout = _function_argument('timeout')
-const id = _function_argument('id')
+const timeout = _function_argument('timeout') || timeout
+const id = _function_argument('id') || id
 if (timeout) {
 general_timeout_next(timeout)
 }

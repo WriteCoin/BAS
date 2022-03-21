@@ -4,8 +4,10 @@
 * @returns последний элемент массива
 */
 function lastListElement(arr) {
-if (arr.length > 0) return arr[arr.length - 1]
-else return null
+const arr = _function_argument('arr') || arr
+const result = (arr.length > 0) ? arr[arr.length - 1] : null
+_function_return(result)
+return result
 }
 /**
 * Случайный элемент
@@ -13,8 +15,11 @@ else return null
 * @returns случайный элемент из указанного массива
 */
 function randomListElement(arr) {
+const arr = _function_argument('arr') || arr
 const r = Math.floor(Math.random() * arr.length)
-return arr[r]
+const result = arr[r]
+_function_return(result)
+return result
 }
 /**
 * Установить элемент
@@ -24,7 +29,11 @@ return arr[r]
 * @returns Элемент массива по указанному индексу.
 */
 function setListElement(arr, index, value) {
+const arr = _function_argument('arr') || arr
+const index = _function_argument('index') || index
+const value = _function_argument('value') || value
 arr[index < 0 ? arr.length + index : index] = value
+_function_return(arr)
 return arr
 }
 /**
@@ -34,9 +43,13 @@ return arr
 * @returns Массив со удаленными элементами, имеющими заданное значение
 */
 function deleteListValue(arr, value) {
-return arr.filter(function (e) {
+const arr = _function_argument('arr') || arr
+const value = _function_argument('value') || value
+const result = arr.filter(function (e) {
 return e !== value
 })
+_function_return(result)
+return result
 }
 /**
 * Содержит
@@ -46,7 +59,11 @@ return e !== value
 * @returns boolean
 */
 function listContains(arr, value) {
-return arr.indexOf(value) >= 0
+const arr = _function_argument('arr') || arr
+const value = _function_argument('value') || value
+const result = arr.indexOf(value) >= 0
+_function_return(result)
+return result
 }
 /**
 * Подсписок
@@ -56,7 +73,12 @@ return arr.indexOf(value) >= 0
 * @returns Вложенный массив, состоящий из определенного количества элементов оригинального массива
 */
 function subList(arr, index, len) {
-return arr.slice().splice(index, len)
+const arr = _function_argument('arr') || arr
+const index = _function_argument('index') || index
+const len = _function_argument('len') || len
+const result = arr.slice().splice(index, len)
+_function_return(result)
+return result
 }
 /**
 * Удалить Дубликаты
@@ -65,10 +87,13 @@ return arr.slice().splice(index, len)
 * @returns Array
 */
 function listRemoveDuplicates(arr) {
+const arr = _function_argument('arr') || arr
 const seen = {}
-return arr.filter(function (item) {
+const result = arr.filter(function (item) {
 return seen.hasOwnProperty(item) ? false : (seen[item] = true)
 })
+_function_return(result)
+return result
 }
 /**
 * Копировать Список
@@ -77,7 +102,10 @@ return seen.hasOwnProperty(item) ? false : (seen[item] = true)
 * @returns Array
 */
 function listCopy(arr) {
-return arr.slice()
+const arr = _function_argument('arr') || arr
+const result = arr.slice()
+_function_return(result)
+return result
 }
 /**
 * Перемешать Список
@@ -86,6 +114,7 @@ return arr.slice()
 * @returns Array
 */
 function listShuffle(arr) {
+const arr = _function_argument('arr') || arr
 var j, x, i
 for (i = arr.length; i; i--) {
 j = Math.floor(Math.random() * i)
@@ -93,6 +122,7 @@ x = arr[i - 1]
 arr[i - 1] = arr[j]
 arr[j] = x
 }
+_function_return(arr)
 return arr
 }
 /**
@@ -103,7 +133,11 @@ return arr
 * @returns Array
 */
 function listMerge(source, target) {
-return source.concat(target.slice())
+const source = _function_argument('source') || source
+const target = _function_argument('target') || target
+const result = source.concat(target.slice())
+_function_return(result)
+return result
 }
 /**
 * Сравнить Списки
@@ -113,5 +147,9 @@ return source.concat(target.slice())
 * @returns boolean
 */
 function listCompare(arr, arrCompare) {
-return (JSON.stringify(arr.slice().sort()) === JSON.stringify(arrCompare.slice().sort()))
+const arr = _function_argument('arr') || arr
+const arrCompare = _function_argument('arrCompare')
+const result = (JSON.stringify(arr.slice().sort()) === JSON.stringify(arrCompare.slice().sort()))
+_function_return(result)
+return result
 }

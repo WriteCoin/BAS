@@ -30,8 +30,12 @@ $..* - Все возможные элементы.
 * @returns Результат парсинга (Первое подходящее значение)
 */
 function BAS_json_value(json, json_path_query) {
+const json = _function_argument('json') || json
+const json_path_query = _function_argument('json_path_query') || json_path_query
 try {
-return JPath.value(json, json_path_query)
+const result = JPath.value(json, json_path_query)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -70,8 +74,12 @@ $..* - Все возможные элементы.
 * @returns результат парсинга (Все значения или список, состоящий из одного значения).
 */
 function BAS_json_values(json, json_path_query) {
+const json = _function_argument('json') || json
+const json_path_query = _function_argument('json_path_query') || json_path_query
 try {
-return JPath.values(json, json_path_query)
+const result = JPath.values(json, json_path_query)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -105,8 +113,12 @@ $..* - Все возможные элементы.
 * @returns результат парсинга (Первый подходящий ключ).
 */
 function BAS_json_key(json, json_path_query) {
+const json = _function_argument('json') || json
+const json_path_query = _function_argument('json_path_query') || json_path_query
 try {
-return JPath.key(json, json_path_query)
+const result = JPath.key(json, json_path_query)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -142,8 +154,12 @@ $..* - Все возможные элементы.
 * @returns результат парсинга (Все ключи или список, состоящий из одного ключа).
 */
 function BAS_json_keys(json, json_path_query) {
+const json = _function_argument('json') || json
+const json_path_query = _function_argument('json_path_query') || json_path_query
 try {
-return JPath.keys(json, json_path_query)
+const result = JPath.keys(json, json_path_query)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -181,8 +197,12 @@ $..* - Все возможные элементы.
 6 - Есть шесть элементов, удовлетворяющих запросу.
 */
 function BAS_json_count(json, json_path_query) {
+const json = _function_argument('json') || json
+const json_path_query = _function_argument('json_path_query') || json_path_query
 try {
-return JPath.count(json, json_path_query)
+const result = JPath.count(json, json_path_query)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -218,8 +238,13 @@ $..* - Все возможные элементы.
 * @returns результат изменения (Модифицированный объект или строка).
 */
 function BAS_json_change(json, json_path_query, value) {
+const json = _function_argument('json') || json
+const json_path_query = _function_argument('json_path_query') || json_path_query
+const value = _function_argument('value') || value
 try {
-return JPath.change(json, json_path_query, value)
+const result = JPath.change(json, json_path_query, value)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -253,8 +278,12 @@ $..* - Все возможные элементы.
 * @returns результат удаления (Модифицированный объект или строка).
 */
 function BAS_json_remove(json, json_path_query) {
+const json = _function_argument('json') || json
+const json_path_query = _function_argument('json_path_query') || json_path_query
 try {
-return JPath.remove(json, json_path_query)
+const result = JPath.remove(json, json_path_query)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -271,8 +300,11 @@ fail(e)
 * @returns результат проверки формата (true или false).
 */
 function BAS_json_check_format(json_str) {
+const json_str = _function_argument('json_str') || json_str
 try {
-return JPath.checkFormat(json_str)
+const result = JPath.checkFormat(json_str)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }
@@ -295,8 +327,12 @@ JSON строка или объект для изменения формата. 
 * @returns результат изменения формата (объект или строка).
 */
 function BAS_json_change_format(json_str, new_format) {
+const json_str = _function_argument('json_str') || json_str
+const new_format = _function_argument('new_format') || new_format
 try {
-return JPath.changeFormat(json_str, new_format)
+const result = JPath.changeFormat(json_str, new_format)
+_function_return(result)
+return result
 } catch (e) {
 fail(e)
 }

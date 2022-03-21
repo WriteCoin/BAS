@@ -37,7 +37,11 @@ engine - Путь: D:/test/archive/engine.js, Удаляемое расшире�
 foo - Путь: C:/foo.php, Удаляемое расширение файла: .php
 */
 function BAS_filename_from_path(path, ext) {
-return _path.basename(path, ext)
+const path = _function_argument('path') || path
+const ext = _function_argument('ext') || ext
+const result = _path.basename(path, ext)
+_function_return(result)
+return result
 }
 /**
 * Получить папку из пути
@@ -59,7 +63,10 @@ D:/modules/res/panels - Путь: D:/modules/res/panels/panel3.jpg
 C:/Users/Admin/Desktop/projects - Путь: C:/Users/Admin/Desktop/projects/project.xml
 */
 function BAS_dirname_from_path(path) {
-return _path.dirname(path)
+const path = _function_argument('path') || path
+const result = _path.dirname(path)
+_function_return(result)
+return result
 }
 /**
 * Получить расширение файла
@@ -84,7 +91,10 @@ C:/Users/Admin/Desktop/site/index.html
 Пустая строка - Путь: /foo/bar/baz/asdf/quux
 */
 function BAS_extname_from_path(path) {
-return _path.extname(path)
+const path = _function_argument('path') || path
+const result = _path.extname(path)
+_function_return(result)
+return result
 }
 /**
 * Является ли абсолютным путем
@@ -105,7 +115,10 @@ true - Путь является абсолютным.
 false - Путь не является абсолютным.
 */
 function BAS_path_is_absolute(path) {
-return _path.isAbsolute(path)
+const path = _function_argument('path') || path
+const result = _path.isAbsolute(path)
+_function_return(result)
+return result
 }
 /**
 * Объединить пути
@@ -148,9 +161,15 @@ D:/test/Archive/manifest.json
 /baz/tost/file.txt
 */
 function BAS_path_join(path1, path2, path3, pathList) {
-return _path
+const path1 = _function_argument('path1') || path1
+const path2 = _function_argument('path2') || path2
+const path3 = _function_argument('path3') || path3
+const pathList = _function_argument('pathList') || pathList
+const result = _path
 .join([_avoid_nil(path1), _avoid_nil(path2), _avoid_nil(path3)])
 .concat(_to_arr(_avoid_nilb(pathList, [])))
+_function_return(result)
+return result
 }
 /**
 * Нормализовать путь
@@ -181,7 +200,11 @@ C:/temp/foo/bar - Путь: C:////temp\\/\/\/foo/bar
 /foo/bar/baz/asdf - Путь: /foo/bar//baz/asdf/quux/..
 */
 function BAS_path_normalize(path, removeTrailingSlash) {
-return _path.normalize(path, removeTrailingSlash)
+const path = _function_argument('path') || path
+const removeTrailingSlash = _function_argument('removeTrailingSlash') || removeTrailingSlash
+const result = _path.normalize(path, removeTrailingSlash)
+_function_return(result)
+return result
 }
 /**
 * Парсить путь
@@ -238,8 +261,9 @@ quux - Путь: /foo/bar/baz/asdf/quux
 * }
 */
 function BAS_path_parse(path) {
+const path = _function_argument('path') || path
 const parse_res = _path.parse(path)
-return {
+const result = {
 root: parse_res.root,
 directory: parse_res.dir,
 base_name: parse_res.base,
@@ -247,6 +271,8 @@ file_extension: parse_res.ext,
 file_name: parse_res.name,
 items_list: parse_res.items
 }
+_function_return(result)
+return result
 }
 /**
 * Получить системный путь (BAS-функция)

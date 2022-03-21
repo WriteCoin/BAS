@@ -15,7 +15,10 @@ VAR_FILE_CONTENT - Переменная, которая содержит рез�
 * @returns строка в формате base64 в случае использования режима encode и результат декодирования при использовании режима decode.
 */
 function BAS_base64(str, encode) {
-return encode ? base64_encode(str) : base64_decode(str)
+const str = _function_argument('str') || str
+const encode = _function_argument('encode') || encode
+const result = encode ? base64_encode(str) : base64_decode(str)
+return result
 }
 /**
 * Шаблон (BAS-функция)
@@ -55,7 +58,9 @@ const args = _arguments()
 _template(args.template)!
 var tmp_res = _avoid_nil(_result());
 tmp_res = _is_not_empty_string(tmp_res) ? tmp_res.replace("BASASYNC","\)\!") : tmp_res;
-_function_return(_spintax(tmp_res))
+const result = _spintax(tmp_res)
+_function_return(result)
+return result
 }
 /**
 * Объединить строки
@@ -112,13 +117,20 @@ Text test string
 TestTest
 */
 function BAS_join_strings(str1, str2, str3, listStr, sep) {
-return _join_strings([
+const str1 = _function_argument('str1') || str1
+const str2 = _function_argument('str2') || str2
+const str3 = _function_argument('str3') || str3
+const listStr = _function_argument('listStr') || listStr
+const sep = _function_argument('sep') || sep
+const result = _join_strings([
 _avoid_nil(str1),
 _avoid_nil(str2),
 _avoid_nil(str3)
 ].concat(
 _to_arr(_avoid_nilb(listStr, []))
 ), sep)
+_function_return(result)
+return result
 }
 /**
 * Парсить CSV строку
@@ -146,10 +158,15 @@ id,name,login
 * @returns Список переменных, разделенных запятыми
 */
 function BAS_csv_parse(str, seps, convert) {
+const str = _function_argument('str') || str
+const seps = _function_argument('seps') || seps
+const convert = _function_argument('convert') || convert
 const csv_res = _csv_parse(str, seps, convert)
-return csv_res.map(function(elem) {
+const result = csv_res.map(function(elem) {
 return _avoid_nilb(elem, '')
 })
+_function_return(result)
+return result
 }
 /**
 * Создать CSV строку
@@ -207,13 +224,20 @@ id,name,login
 Просто пример текста;Test text;string
 */
 function BAS_csv_generate(elem1, elem2, elem3, listElem, seps) {
-return _csv_generate([
+const elem1 = _function_argument('elem1') || elem1
+const elem2 = _function_argument('elem2') || elem2
+const elem3 = _function_argument('elem3') || elem3
+const listElem = _function_argument('listElem') || listElem
+const seps = _function_argument('seps') || seps
+const result = _csv_generate([
 _avoid_nil(elem1),
 _avoid_nil(elem2),
 _avoid_nil(elem3)
 ].concat(
 _to_arr(_avoid_nilb(listElem, []))
 ), sep)
+_function_return(result)
+return result
 }
 /**
 * Подровнять
@@ -247,7 +271,16 @@ Test text
 string
 */
 function BAS_trim(str, chars, trimSpaces, trimLineBrakes, trimTabs, left, right) {
-return _trim(str, (trimSpaces ? _STR_WHITESPACE : "") + (trimLineBrakes ? "\\r\\n\\f" : "") + (trimTabs ? "\\t\\v" : "") + chars, left, right)
+const str = _function_argument('str') || str
+const chars = _function_argument('chars') || chars
+const trimSpaces = _function_argument('trimSpaces') || trimSpaces
+const trimLineBrakes = _function_argument('trimLineBrakes') || trimLineBrakes
+const trimTabs = _function_argument('trimTabs') || trimTabs
+const left = _function_argument('left') || left
+const right = _function_argument('right') || right
+const result = _trim(str, (trimSpaces ? _STR_WHITESPACE : "") + (trimLineBrakes ? "\\r\\n\\f" : "") + (trimTabs ? "\\t\\v" : "") + chars, left, right)
+_function_return(result)
+return result
 }
 /**
 * Очистить
@@ -285,7 +318,15 @@ Test text
 string
 */
 function BAS_clean(str, charsRemoved, removeTabs, replaceCharsWithSpace, replaceLineBreaksWithSpace, replaceMultipleSpacesWithOnes) {
-return _clean(str, (removeTabs ? "\\t\\v" : "") + charsRemoved, (replaceLineBreaksWithSpace ? "\\r\\n\\f" : "") + replaceCharsWithSpace, replaceMultipleSpacesWithOnes)
+const str = _function_argument('str') || str
+const charsRemoved = _function_argument('charsRemoved') || charsRemoved
+const removeTabs = _function_argument('removeTabs') || removeTabs
+const replaceCharsWithSpace = _function_argument('replaceCharsWithSpace') || replaceCharsWithSpace
+const replaceLineBreaksWithSpace = _function_argument('replaceLineBreaksWithSpace') || replaceLineBreaksWithSpace
+const replaceMultipleSpacesWithOnes = _function_argument('replaceMultipleSpacesWithOnes') || replaceMultipleSpacesWithOnes
+const result = _clean(str, (removeTabs ? "\\t\\v" : "") + charsRemoved, (replaceLineBreaksWithSpace ? "\\r\\n\\f" : "") + replaceCharsWithSpace, replaceMultipleSpacesWithOnes)
+_function_return(result)
+return result
 }
 /**
 * Специальные HTML символы кодировать/декодировать
@@ -302,5 +343,9 @@ return _clean(str, (removeTabs ? "\\t\\v" : "") + charsRemoved, (replaceLineBrea
 * @returns закодированная строка в случае использования режима encode и результат декодирования при использовании режима decode.
 */
 function BAS_html(str, escape) {
-return escape ? _escape_html(str) : _unescape_html(str)
+const str = _function_argument('str') || str
+const escape = _function_argument('escape') || escape
+const result = escape ? _escape_html(str) : _unescape_html(str)
+_function_return(result)
+return result
 }

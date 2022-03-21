@@ -48,8 +48,10 @@ VAR_PROCESS_STANDART_OUTPUT = _result()
 }
 sleep(1000)!
 native("filesystem", "removefile", RANDOM_FILE)
-_function_return({
+const result = {
 process_standart_output: VAR_PROCESS_STANDART_OUTPUT,
 process_error_output: VAR_PROCESS_ERROR_OUTPUT
-})
+}
+_function_return(result)
+return result
 }

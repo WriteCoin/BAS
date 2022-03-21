@@ -383,5 +383,6 @@ true - Включить отладку
 false - Отключить отладку
 */
 function BAS_phone_set_debug(enable) {
+const enable = _function_argument('enable') || enable
 _SMS.setDebug(enable)
 }

@@ -42,7 +42,6 @@ IDDLE_EMULATION_CURRENT_ITEM = IDDLE_EMULATION_DISTRIBUTION[Math.floor(Math.rand
 if(_iterator() == 1 && IDDLE_EMULATION_DISTRIBUTION.indexOf(2)>=0)
 IDDLE_EMULATION_CURRENT_ITEM = 2
 _if(IDDLE_EMULATION_CURRENT_ITEM == 1, function(){
-//scroll
 IDDLE_EMULATION_CURRENT_DIRECTION = (rand(1,2) == 2) ? "<MOUSESCROLLUP>" : "<MOUSESCROLLDOWN>"
 if(!IDDLE_CURSOR_POSITION_WAS_SCROLL)
 IDDLE_EMULATION_CURRENT_DIRECTION = "<MOUSESCROLLDOWN>"
@@ -56,7 +55,6 @@ sleep(rand(300,1000))!
 })!
 })!
 _if(IDDLE_EMULATION_CURRENT_ITEM == 2, function(){
-//long move
 page().script("document.documentElement.scrollLeft")!
 IDDLE_CURSOR_POSITION_SCROLL_X = parseInt(_result())
 page().script("document.documentElement.scrollTop")!
@@ -66,7 +64,6 @@ IDDLE_CURSOR_POSITION_Y = rand(1,IDDLE_CURSOR_POSITION_HEIGHT)
 move(IDDLE_CURSOR_POSITION_SCROLL_X + IDDLE_CURSOR_POSITION_X,IDDLE_CURSOR_POSITION_SCROLL_Y + IDDLE_CURSOR_POSITION_Y)!
 })!
 _if(IDDLE_EMULATION_CURRENT_ITEM == 3, function(){
-//short move
 if(IDDLE_CURSOR_POSITION_X < 0 || IDDLE_CURSOR_POSITION_Y < 0)
 _break()
 page().script("document.documentElement.scrollLeft")!
@@ -94,7 +91,6 @@ sleep(rand(10,300))!
 })!
 })!
 _if(IDDLE_EMULATION_CURRENT_ITEM == 4, function(){
-//sleep
 sleep(rand(500,5000))!
 })!
 })!

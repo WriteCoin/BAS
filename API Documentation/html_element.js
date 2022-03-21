@@ -58,10 +58,11 @@ function BAS_mouse_move_and_click_element() {
     _call(_random_point, {})!
     _if(_result().length > 0, function(){
     move( mouseSettingsObj )!
-    if !(!noWait && stopThread) 
-      get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
-    else
-      get_element_selector(_SELECTOR, false).clarify(X,Y)!
+    if (!(!noWait && stopThread)) {
+        get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
+    } else {
+        get_element_selector(_SELECTOR, false).clarify(X,Y)!
+    }
     _call(_clarify, mouseSettingsObj )!
     if (typeClick === '<MOUSELEFT>' && !isCtrlClick)
       mouse(X,Y)!
@@ -173,7 +174,7 @@ function BAS_mouse_move_over_element() {
   _call(_random_point, {})!
   _if(_result().length > 0, function(){
     move( mouseSettingsObj )!
-    if !(!noWait && stopThread) {
+    if (!(!noWait && stopThread)) {
       get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
     } else {
       get_element_selector(_SELECTOR, false).clarify(X,Y)!
@@ -378,7 +379,7 @@ function BAS_input_text() {
     _call(_random_point, {})!
     _if(_result().length > 0, function(){
     move( mouseSettingsObj )!
-    if !(!noWait && stopThread) {
+    if (!(!noWait && stopThread)) {
       get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
     } else {
       get_element_selector(_SELECTOR, false).clarify(X,Y)!
@@ -455,12 +456,14 @@ function BAS_get_xml() {
     waiter_timeout_next(timeout)
   }
   wait_element(_SELECTOR)!
-  if !(!noWait && stopThread) {
+  if (!(!noWait && stopThread)) {
     get_element_selector(_SELECTOR, false).xml()!
   } else {
     get_element_selector(_SELECTOR, false).nowait().xml()!
   }
-  _function_return(_result())
+  const result = _result()
+  _function_return(result)
+  return result
 }
 
 /**
@@ -514,11 +517,13 @@ function BAS_popupinfo() {
   VAR_TAB_INDEX = json["index"]
   VAR_URL_LIST = json["urls"]
   VAR_TOTAL_TABS = json["urls"].length
-  return {
+  const result = {
     url_list: VAR_URL_LIST,
     current_tab_index: VAR_TAB_INDEX,
     total_tabs: VAR_TOTAL_TABS
   }
+  _function_return(result)
+  return result
 }
 
 /**
@@ -550,6 +555,7 @@ function BAS_element_is_exists() {
     })!
   }
   _function_return(VAR_IS_EXISTS)
+  return VAR_IS_EXISTS
 }
 
 /**
@@ -576,12 +582,14 @@ function BAS_element_get_text() {
     waiter_timeout_next(timeout)
   }
   wait_element(_SELECTOR)!
-  if !(!noWait && stopThread) {
+  if (!(!noWait && stopThread)) {
     get_element_selector(_SELECTOR, false).text()!
   } else {
     get_element_selector(_SELECTOR, false).nowait().text()!
   }
-  _function_return(_result())
+  const result = _result()
+  _function_return(result)
+  return result
 }
 
 /**
@@ -622,6 +630,7 @@ function BAS_element_screenshot() {
     VAR_SCREENSHOT_BASE64 = _result()
     _function_return(VAR_SCREENSHOT_BASE64)
   })!
+  return VAR_SCREENSHOT_BASE64
 }
 
 /**
@@ -751,6 +760,7 @@ function BAS_element_solve_captcha() {
       _function_return(VAR_CAPTCHA_RESULT)
     })!
   })!
+  return VAR_CAPTCHA_RESULT
 }
 
 /**
@@ -833,7 +843,7 @@ function BAS_element_solve_captcha_clicks() {
       wait_element(_SELECTOR)!
     },
     path: function() {
-      if !(!noWait && stopThread) {
+      if (!(!noWait && stopThread)) {
         return get_element_selector(_SELECTOR, false).nowait()
       } else {
         return get_element_selector(_SELECTOR, false)
@@ -890,7 +900,7 @@ function BAS_element_focus() {
     waiter_timeout_next(timeout)
   }
   wait_element(_SELECTOR)!
-  if !(!noWait && stopThread) {
+  if (!(!noWait && stopThread)) {
     get_element_selector(_SELECTOR, false).focus()!
   } else {
     get_element_selector(_SELECTOR, false).nowait().focus()!
@@ -930,7 +940,7 @@ function BAS_element_get_coordinates() {
   }
   wait_element(_SELECTOR)!
   const script = "(function(){var rect = self.getBoundingClientRect();return (rect.left + positionx).toString() + '|' + (rect.top + positiony).toString() + '|' + (rect.right - rect.left).toString() + '|' + (rect.bottom - rect.top).toString()})();"
-  if !(!nowait && stopThread) {
+  if (!(!nowait && stopThread)) {
     get_element_selector(_SELECTOR, false).script(script)!
   } else {
     get_element_selector(_SELECTOR, false).nowait().script(script)!
@@ -942,12 +952,14 @@ function BAS_element_get_coordinates() {
     VAR_Y = parseInt(split[1])
     VAR_WIDTH = parseInt(split[2])
     VAR_HEIGHT = parseInt(split[3])
-    _function_return({
+    const result = {
       x: VAR_X,
       y: VAR_Y,
       width: VAR_WIDTH,
       height: VAR_HEIGHT
-    })
+    }
+    _function_return(result)
+    return result
   }
 }
 
@@ -972,6 +984,7 @@ function BAS_elements_count() {
   get_element_selector(_SELECTOR, true).length()!
   VAR_ELEMENT_LENGTH = _result()
   _function_return(VAR_ELEMENT_LENGTH)
+  return VAR_ELEMENT_LENGTH
 }
 
 /**
@@ -1004,13 +1017,14 @@ function BAS_get_element_style() {
   }
   wait_element(_SELECTOR)!
   const script = 'window.getComputedStyle(self)[' + JSON.stringify("color") + ']'
-  if !(!noWait && stopThread) {
+  if (!(!noWait && stopThread)) {
     get_element_selector(_SELECTOR, false).script(script)!
   } else {
     get_element_selector(_SELECTOR, false).nowait().script(script)!
   }
   VAR_SAVED_STYLE = _result()
   _function_return(VAR_SAVED_STYLE)
+  return VAR_SAVED_STYLE
 }
 
 /**
@@ -1055,7 +1069,7 @@ function BAS_element_drag_start() {
   _call(_random_point, {})!
   _if(_result().length > 0, function(){
     move( mouseSettingsObj )!
-    if !(!noWait && stopThread) {
+    if (!(!noWait && stopThread)) {
       get_element_selector(_SELECTOR, false).clarify(X,Y)!
     } else {
       get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
@@ -1107,7 +1121,7 @@ function BAS_element_drag_finish() {
   _call(_random_point, {})!
   _if(_result().length > 0, function(){
     move( mouseSettingsObj )!
-    if !(!noWait && stopThread) {
+    if (!(!noWait && stopThread)) {
       get_element_selector(_SELECTOR, false).clarify(X,Y)!
     } else {
       get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
@@ -1217,13 +1231,14 @@ function BAS_element_get_url() {
   }
   wait_element(_SELECTOR)!
   const script = "(function(){var link = self;while(link && link.tagName.toLowerCase() != 'a'){link = link.parentNode};if(link && link.hasAttribute('href')){return link.getAttribute('href')} else {return ''};}());"
-  if !(!noWait && stopThread) {
+  if (!(!noWait && stopThread)) {
     get_element_selector(_SELECTOR, false).script(script)!
   } else {
     get_element_selector(_SELECTOR, false).nowait().script(script)!
   }
    VAR_LINK_URL = _result()
    _function_return(VAR_LINK_URL)
+   return VAR_LINK_URL
 }
 
 /**
@@ -1256,13 +1271,14 @@ function BAS_element_get_attribute() {
     waiter_timeout_next(timeout)
   }
   wait_element(_SELECTOR)!
-  if !(!noWait && stopThread) {
+  if (!(!noWait && stopThread)) {
     get_element_selector(_SELECTOR, false).attr(attributeName)!
   } else {
     get_element_selector(_SELECTOR, false).nowait().attr(attributeName)!
   }
   VAR_SAVED_ATTRIBUTE = _result()
   _function_return(VAR_SAVED_ATTRIBUTE)
+  return VAR_SAVED_ATTRIBUTE
 }
 
 /**
@@ -1293,7 +1309,7 @@ function BAS_element_set_attribute() {
     waiter_timeout_next(timeout)
   }
   wait_element(_SELECTOR)!
-  if !(!noWait && stopThread) {
+  if (!(!noWait && stopThread)) {
     get_element_selector(_SELECTOR, false).set_attr(attributeName, attributeValue)!
   } else {
     get_element_selector(_SELECTOR, false).nowait().set_attr(attributeName, attributeValue)!
@@ -1332,7 +1348,7 @@ function BAS_combobox_set_value() {
   _call(_random_point, {})!
   _if(_result().length > 0 && _SELECT_INDEX >= 0, function(){
     move({})!
-    if !(!noWait && stopThread) {
+    if (!(!noWait && stopThread)) {
       get_element_selector(_SELECTOR, false).clarify(X,Y)!
     } else {
       get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
@@ -1378,7 +1394,7 @@ function BAS_combobox_set_index() {
   _call(_random_point, {})!
   _if(_result().length > 0 && _SELECT_INDEX >= 0, function(){
     move({})!
-    if !(!noWait && stopThread) {
+    if (!(!noWait && stopThread)) {
       get_element_selector(_SELECTOR, false).clarify(X,Y)!
     } else {
       get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
@@ -1424,7 +1440,7 @@ function BAS_combobox_get_random_element() {
   _call(_random_point, {})!
   _if(_result().length > 0 && _SELECT_INDEX >= 0, function(){
     move({})!
-    if !(!noWait && stopThread) {
+    if (!(!noWait && stopThread)) {
       get_element_selector(_SELECTOR, false).clarify(X,Y)!
     } else {
       get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!

@@ -23,10 +23,14 @@
 * @returns xml первого элемента, который соответствует xpath запросу.
 */
 function BAS_xpath_get_first_xml(text, xpath_query, shutdownAfterError) {
+const text = _function_argument('text') || text
+const xpath_query = _function_argument('xpath_query') || xpath_query
+const shutdownAfterError = _function_argument('shutdownAfterError') || shutdownAfterError
 html_parser_xpath_parse(text)
 if (shutdownAfterError && !html_parser_xpath_exist(xpath_query))
 fail("Can't resolve query " + xpath_query)
 const result = html_parser_xpath_xml(xpath_query)
+_function_return(result)
 return result
 }
 /**
@@ -54,8 +58,12 @@ return result
 * @returns список, который состоит из xml каждого найденного элемента.
 */
 function BAS_xpath_get_xml_list(text, xpath_query) {
+const text = _function_argument('text') || text
+const xpath_query = _function_argument('xpath_query') || xpath_query
 html_parser_xpath_parse(text)
-return html_parser_xpath_xml_list(xpath_query)
+const result = html_parser_xpath_xml_list(xpath_query)
+_function_return(result)
+return result
 }
 /**
 * Xpath получить текст
@@ -83,10 +91,14 @@ return html_parser_xpath_xml_list(xpath_query)
 * @returns текст первого элемента, который соответствует xpath запросу.
 */
 function BAS_xpath_get_first_text(text, xpath_query, shutdownAfterError) {
+const text = _function_argument('text') || text
+const xpath_query = _function_argument('xpath_query') || xpath_query
+const shutdownAfterError = _function_argument('shutdownAfterError') || shutdownAfterError
 html_parser_xpath_parse(text)
 if (shutdownAfterError && !html_parser_xpath_exist(xpath_query))
 fail("Can't resolve query " + xpath_query)
 const result = html_parser_xpath_text(xpath_query)
+_function_return(result)
 return result
 }
 /**
@@ -114,8 +126,12 @@ return result
 * @returns список, который состоит из текста каждого найденного элемента.
 */
 function BAS_xpath_get_text_list(text, xpath_query) {
+const text = _function_argument('text') || text
+const xpath_query = _function_argument('xpath_query') || xpath_query
 html_parser_xpath_parse(text)
-return html_parser_xpath_text_list(xpath_query)
+const result = html_parser_xpath_text_list(xpath_query)
+_function_return(result)
+return result
 }
 /**
 * Xpath получить количество элементов
@@ -142,8 +158,12 @@ return html_parser_xpath_text_list(xpath_query)
 3 - Есть три элемента, которые соответствуют запросу.
 */
 function BAS_xpath_get_count(text, xpath_query) {
+const text = _function_argument('text') || text
+const xpath_query = _function_argument('xpath_query') || xpath_query
 html_parser_xpath_parse(text)
-return html_parser_xpath_count(xpath_query)
+const result = html_parser_xpath_count(xpath_query)
+_function_return(result)
+return result
 }
 /**
 * Xpath проверить существование
@@ -170,6 +190,10 @@ true - Существует по крайней мере один элемент
 false - Нет элементов, которые соответствуют запросу.
 */
 function BAS_xpath_exists(text, xpath_query) {
+const text = _function_argument('text') || text
+const xpath_query = _function_argument('xpath_query') || xpath_query
 html_parser_xpath_parse(text)
-return html_parser_xpath_exist(xpath_query)
+const result = html_parser_xpath_exist(xpath_query)
+_function_return(result)
+return result
 }

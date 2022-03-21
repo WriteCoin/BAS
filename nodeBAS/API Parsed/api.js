@@ -1,4 +1,12 @@
 /**
+*
+*/
+function BAS_log() {
+const message = _function_argument('message')
+log(message)
+}
+/**
+* Игнорировать ошибки (BAS-функция)
 * Игнорировать ошибки при выполнении одного или нескольких действий и продолжить выполнение скрипта дальше.
 * Вы можете использовать переменную VAR_WAS_ERROR чтобы проверить, были ли ошибки во время последнего блока "Игнорировать Ошибки".
 * В переменной VAR_LAST_ERROR содержится текст ошибки
@@ -34,6 +42,7 @@ error_callback(err)!
 })!
 }
 /**
+* If (BAS-функция)
 * Проверить заданное условие, если оно истинно, выполнить определенную последовательность действий, если оно ложно выполнить другую последовательность действий, наконец продолжить выполнение скрипта.
 * cond_func - функция, возвращающая условие для проверки
 * callback - функция при cond_func() равном true
@@ -49,6 +58,7 @@ _if(!_cycle_params().if_else, callback_else)!
 delete _cycle_params().if_else
 }
 /**
+* While (BAS-функция)
 * Выполнять заданный список действий пока какое-то условие является истинным.
 * Эмуляция while.
 * cond_func - функция условия подстановки в while
@@ -70,7 +80,7 @@ callback(VAR_CYCLE_INDEX)!
 })!
 }
 /**
-* Цикл For
+* Цикл For (BAS-функция)
 * Выполнить определенный список действий заданное число раз.
 * a и b - нижняя и верхняя границы цикла
 * callback - функция действий
@@ -120,7 +130,7 @@ callback(VAR_CYCLE_INDEX, VAR_FOREACH_DATA)!
 * @param {string} str Строка function для циклов
 */
 function BAS_break(str) {
-str = str || 'function'
+str = _function_argument('str') || 'function'
 _break(str)
 }
 /**
@@ -129,7 +139,7 @@ _break(str)
 * @param {string} str Строка function для циклов
 */
 function BAS_continue(str) {
-str = str || 'function'
+str = _function_argument('str') || 'function'
 _next(str)
 }
 /**
@@ -146,6 +156,8 @@ _next(str)
 * @param {number | string | boolean} value значение
 */
 function BAS_set_global(name, value) {
+name = _function_argument('name')
+value = _function_argument('value')
 value = JSON.stringify(value)
 PSet("basglobal", name, value)
 }
@@ -155,7 +167,10 @@ PSet("basglobal", name, value)
 * @returns значение переменной
 */
 function BAS_get_global(name) {
-return JSON.parse(P("basglobal", name) || "0")
+name = _function_argument('name')
+const result = JSON.parse(P("basglobal", name) || "0")
+_function_return(result)
+return result
 }
 /**
 * Увеличить глобальную переменную
@@ -168,6 +183,8 @@ return JSON.parse(P("basglobal", name) || "0")
 Параметр "На сколько увеличить переменную" также может быть равным нулю, это только преобразует тип переменной в чисельний.
 */
 function BAS_inc_global(name, val) {
+name = _function_argument('name')
+val = _function_argument('val')
 BAS_set_global(name, BAS_get_global(name) + val)
 }
 /**
@@ -185,14 +202,17 @@ BAS_set_global(name, BAS_get_global(name) + val)
 * @returns Объект с результатами
 */
 function BAS_cvs_parse(str, seps, varList, convert) {
-seps = seps || ":;,"
-convert = convert || false
+str = _function_argument('str')
+seps = _function_argument('seps') || ":;,"
+varList = _function_argument('varList')
+convert = _function_argument('convert') || false
 const csv_res = _csv_parse(str, seps, convert)
 const result = {}
 for (CYCLE_INDEX = 0; CYCLE_INDEX < varList.length; CYCLE_INDEX++) {
 const i = CYCLE_INDEX
 result[varList[i]] = _avoid_nilb(csv_res[i], "")
 }
+_function_return(result)
 return result
 }
 /**
@@ -203,5 +223,9 @@ return result
 * @returns Случайное число в указанном диапазоне
 */
 function BAS_random(a, b) {
-return Math.floor(Math.random() * b - a + 1) + a
+const a = _function_argument('a') || a
+const b = _function_argument('b') || b
+const result = Math.floor(Math.random() * b - a + 1) + a
+_function_return(result)
+return result
 }

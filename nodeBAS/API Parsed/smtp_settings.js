@@ -7,6 +7,10 @@
 * @param {string} password Пароль Прокси. Может быть пустым.
 */
 function BAS_smtp_client_set_proxy(server, port, name, password) {
+const server = _function_argument('server') || server
+const port = _function_argument('port') || port
+const name = _function_argument('name') || name
+const password = _function_argument('password') || password
 const hash = proxy_parse(server)
 if (port !== "auto") {
 hash.IsHttp = port === "http"
@@ -73,5 +77,6 @@ fail(json["code"] + ": " + json["error"])
 * @param {boolean} enable Включить отладку
 */
 function BAS_smtp_debug_enable(enable) {
+const enable = _function_argument('enable') || enable
 _SMTP_DEBUG = enable
 }

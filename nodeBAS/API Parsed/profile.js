@@ -86,6 +86,7 @@ c:/path/to/profile
 c:\path\to\profile
 */
 function BAS_profile_copy(path) {
+const path = _function_argument('path') || path
 const ProfilePath = _get_profile()
 native("filesystem", "copyfile", JSON.stringify({
 path: ProfilePath,
@@ -142,9 +143,11 @@ function BAS_current_profile_info() {
 const profile_id = _get_profile()
 const has_proxy = _get_profile().length > 0 && JSON.parse(native("filesystem", "fileinfo", _get_profile() + "/proxy.txt"))["exists"]
 const has_fingerprint = _get_profile().length > 0 && JSON.parse(native("filesystem", "fileinfo", _get_profile() + "/fingerprint.json"))["exists"]
-return {
+const result = {
 profile_id: profile_id,
 has_proxy: has_proxy,
 has_fingerprint: has_fingerprint
 }
+_function_return(result)
+return result
 }

@@ -6,7 +6,10 @@
 * @returns Date
 */
 function BAS_parse_milliseconds(value) {
-return _parse_date(value, "auto")
+const value = _function_argument('value') || value
+const result = _parse_date(value, "auto")
+_function_return(result)
+return result
 }
 /**
 * Дату в Миллисекунды
@@ -16,7 +19,10 @@ return _parse_date(value, "auto")
 * @returns number
 */
 function BAS_milliseconds_from_date(value) {
-return _parse_date(value, "auto").getTime()
+const value = _function_argument('value') || value
+const result = _parse_date(value, "auto").getTime()
+_function_return(result)
+return result
 }
 /**
 * Создать Дату
@@ -41,12 +47,21 @@ seconds,
 milliseconds,
 timezone
 ) {
+const year = _function_argument('year') || year
+const month = _function_argument('month') || month
+const day = _function_argument('day') || day
+const hour = _function_argument('hour') || hour
+const minutes = _function_argument('minutes') || minutes
+const seconds = _function_argument('seconds') || seconds
+const milliseconds = _function_argument('milliseconds') || milliseconds
+const timezone = _function_argument('timezone') || timezone
 const date = new Date(
 Date.UTC(year, month - 1, day, hour, minutes, seconds, milliseconds)
 )
 date.getTimezoneOffset = function () {
 return parseInt(timezone)
 }
+_function_return(date)
 return date
 }
 /**
@@ -73,6 +88,14 @@ minutes,
 seconds,
 milliseconds
 ) {
+const value = _function_argument('value') || value
+const year = _function_argument('year') || year
+const month = _function_argument('month') || month
+const day = _function_argument('day') || day
+const hour = _function_argument('hour') || hour
+const minutes = _function_argument('minutes') || minutes
+const seconds = _function_argument('seconds') || seconds
+const milliseconds = _function_argument('milliseconds') || milliseconds
 const date = _parse_date(value, "auto")
 const offset = date.getTimezoneOffset()
 const newDate = new Date(date.getTime())
@@ -86,6 +109,7 @@ if (hour !== -1) newDate.setHours(hour)
 if (minutes !== -1) newDate.setMinutes(minutes)
 if (seconds !== -1) newDate.setSeconds(seconds)
 if (milliseconds !== -1) newDate.setMilliseconds(milliseconds)
+_function_return(newDate)
 return newDate
 }
 /**
@@ -99,6 +123,11 @@ return newDate
 * @returns Date
 */
 function BAS_add_time(value, seconds, minutes, hours, days) {
+const value = _function_argument('value') || value
+const seconds = _function_argument('seconds') || seconds
+const minutes = _function_argument('minutes') || minutes
+const hours = _function_argument('hours') || hours
+const days = _function_argument('days') || days
 const date = _parse_date(value, "auto")
 const offset = date.getTimezoneOffset()
 const newDate = new Date(
@@ -111,6 +140,7 @@ days * 1000 * 60 * 60 * 24
 newDate.getTimezoneOffset = function () {
 return offset
 }
+_function_return(newDate)
 return newDate
 }
 /**
@@ -121,11 +151,15 @@ return newDate
 * @returns number
 */
 function BAS_difference_between_dates(value1, value2) {
-return Math.floor(
+const value1 = _function_argument('value1') || value1
+const value2 = _function_argument('value2') || value2
+const result = Math.floor(
 (_parse_date(value1, "auto").getTime() -
 _parse_date(value2, "auto").getTime()) /
 1000
 )
+_function_return(result)
+return result
 }
 /**
 * Дата Сейчас
@@ -137,6 +171,7 @@ const date = _parse_date(Date.now(), "auto")
 date.getTimezoneOffset = function () {
 return parseInt(netive("datetime", "systemtimezone", ""))
 }
+_function_return(date)
 return date
 }
 /**
@@ -147,11 +182,14 @@ return date
 * @returns Date
 */
 function BAS_date_change_timezone(value, timezone) {
+const value = _function_argument('value') || value
+const timezone = _function_argument('timezone') || timezone
 const date = _parse_date(value, "auto")
 const newDate = new Date(date.getTime())
 newDate.getTimezoneOffset = function () {
 return parseInt(timezone)
 }
+_function_return(newDate)
 return newDate
 }
 /**
@@ -161,7 +199,10 @@ return newDate
 * @returns Date
 */
 function BAS_date_get_timezone(value) {
-return _parse_date(value, "auto").getTimezoneOffset()
+const value = _function_argument('value') || value
+const result = _parse_date(value, "auto").getTimezoneOffset()
+_function_return(result)
+return result
 }
 /**
 * День Месяца
@@ -170,7 +211,10 @@ return _parse_date(value, "auto").getTimezoneOffset()
 * @returns День месяца. От 1 до 31.
 */
 function BAS_get_day_of_month(value) {
-return parseInt(_format_date(value, "d"))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, "d"))
+_function_return(result)
+return result
 }
 /**
 * День Недели
@@ -179,7 +223,10 @@ return parseInt(_format_date(value, "d"))
 * @returns День недели. От 1 до 7.
 */
 function BAS_get_day_of_week(value) {
-return parseInt(_format_date(value, "N"))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, "N"))
+_function_return(result)
+return result
 }
 /**
 * День гОда
@@ -188,7 +235,10 @@ return parseInt(_format_date(value, "N"))
 * @returns День года. От 1 до 366.
 */
 function BAS_get_day_of_year(value) {
-return parseInt(_format_date(value, "Z"))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, "Z"))
+_function_return(result)
+return result
 }
 /**
 * Получить Год Из Даты
@@ -197,7 +247,10 @@ return parseInt(_format_date(value, "Z"))
 * @returns Год
 */
 function BAS_get_year_from_date(value) {
-return parseInt(_format_date(value, 'yyyy'))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, 'yyyy'))
+_function_return(result)
+return result
 }
 /**
 * Получить Месяц Из Даты
@@ -206,7 +259,10 @@ return parseInt(_format_date(value, 'yyyy'))
 * @returns Месяц
 */
 function BAS_get_month_from_date(value) {
-return parseInt(_format_date(value, 'M'))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, 'M'))
+_function_return(result)
+return result
 }
 /**
 * Получить Часы Из Даты
@@ -215,7 +271,10 @@ return parseInt(_format_date(value, 'M'))
 * @returns Часы
 */
 function BAS_get_hours_from_date(value) {
-return parseInt(_format_date(value, 'h'))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, 'h'))
+_function_return(result)
+return result
 }
 /**
 * Получить Минуты Из Даты
@@ -224,7 +283,10 @@ return parseInt(_format_date(value, 'h'))
 * @returns Минуты
 */
 function BAS_get_minutes_from_date(value) {
-return parseInt(_format_date(value, 'm'))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, 'm'))
+_function_return(result)
+return result
 }
 /**
 * Получить Секунды Из Даты
@@ -233,7 +295,10 @@ return parseInt(_format_date(value, 'm'))
 * @returns Секунды
 */
 function BAS_get_seconds_from_date(value) {
-return parseInt(_format_date(value, 's'))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, 's'))
+_function_return(result)
+return result
 }
 /**
 * Получить Миллисекунды Из Даты
@@ -242,5 +307,8 @@ return parseInt(_format_date(value, 's'))
 * @returns Миллисекунды
 */
 function BAS_get_milliseconds_from_date(value) {
-return parseInt(_format_date(value, 'z'))
+const value = _function_argument('value') || value
+const result = parseInt(_format_date(value, 'z'))
+_function_return(result)
+return result
 }

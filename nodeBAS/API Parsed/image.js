@@ -5,7 +5,10 @@
 * @returns id изображения
 */
 function BAS_load_image(data_base64) {
-return native("imageprocessing", "load", data_base64)
+const data_base64 = _function_argument('data_base64') || data_base64
+const result = native("imageprocessing", "load", data_base64)
+_function_return(result)
+return result
 }
 /**
 * Закончить работу с изображением
@@ -13,6 +16,7 @@ return native("imageprocessing", "load", data_base64)
 * @param {string} image_id Id изображения
 */
 function BAS_delete_image(image_id) {
+const image_id = _function_argument('image_id') || image_id
 native("imageprocessing", "delete", image_id)
 }
 /**
@@ -27,17 +31,25 @@ native("imageprocessing", "delete", image_id)
 * @returns Id изображения
 */
 function BAS_create_image(width, height, red, green, blue, alpha) {
+const width = _function_argument('width') || width
+const height = _function_argument('height') || height
+const red = _function_argument('red') || red
+const green = _function_argument('green') || green
+const blue = _function_argument('blue') || blue
+const alpha = _function_argument('alpha') || alpha
 width = width || 800
 height = height || 800
 red = red || 255
 green = green || 255
 blue = blue || 255
 alpha = alpha || 255
-return native(
+const result = native(
 "imageprocessing",
 "create",
 width + "," + height + "," + red + "," + green + "," + blue + "," + alpha
 )
+_function_return(result)
+return result
 }
 /**
 * Изменить формат изображения
@@ -46,6 +58,8 @@ width + "," + height + "," + red + "," + green + "," + blue + "," + alpha
 * @param {string} format 'png' | 'jpeg'. Формат изображения
 */
 function BAS_convert_image(image_id, format) {
+const image_id = _function_argument('image_id') || image_id
+const format = _function_argument('format') || format
 native("imageprocessing", "convert", image_id + "," + format)
 }
 /**
@@ -55,7 +69,10 @@ native("imageprocessing", "convert", image_id + "," + format)
 * @returns Данные изображения
 */
 function BAS_get_image_data(image_id) {
-return native("imageprocessing", "getdata", image_id)
+const image_id = _function_argument('image_id') || image_id
+const result = native("imageprocessing", "getdata", image_id)
+_function_return(result)
+return result
 }
 /**
 * Получить цвет пикселя
@@ -71,17 +88,22 @@ return native("imageprocessing", "getdata", image_id)
 * }
 */
 function BAS_image_get_pixel(image_id, x, y) {
+const image_id = _function_argument('image_id') || image_id
+const x = _function_argument('x') || x
+const y = _function_argument('y') || y
 const split = native(
 "imageprocessing",
 "getpixel",
 image_id + "," + x + "," + y
 ).split(",")
-return {
+const result = {
 R: parseInt(split[0]),
 G: parseInt(split[1]),
 B: parseInt(split[2]),
 A: parseInt(split[3]),
 }
+_function_return(result)
+return result
 }
 /**
 * Установить цвет пикселя
@@ -95,6 +117,13 @@ A: parseInt(split[3]),
 * @param {number} alpha Цвет прозрачный. От 0 до 255
 */
 function BAS_image_set_pixel(image_id, x, y, red, green, blue, alpha) {
+const image_id = _function_argument('image_id') || image_id
+const x = _function_argument('x') || x
+const y = _function_argument('y') || y
+const red = _function_argument('red') || red
+const green = _function_argument('green') || green
+const blue = _function_argument('blue') || blue
+const alpha = _function_argument('alpha') || alpha
 native(
 "imageprocessing",
 "setpixel",
@@ -123,11 +152,14 @@ alpha
 * }
 */
 function BAS_image_get_size(image_id) {
+const image_id = _function_argument('image_id') || image_id
 const split = native("imageprocessing", "getsize", image_id).split(",")
-return {
+const result = {
 width: parseInt(split[0]),
 height: parseInt(split[1]),
 }
+_function_return(result)
+return result
 }
 /**
 * Изменить размер.
@@ -137,6 +169,9 @@ height: parseInt(split[1]),
 * @param {number} height Высота
 */
 function BAS_image_resize(image_id, width, height) {
+const image_id = _function_argument('image_id') || image_id
+const width = _function_argument('width') || width
+const height = _function_argument('height') || height
 native("imageprocessing", "resize", image_id + "," + width + "," + height)
 }
 /**
@@ -148,6 +183,10 @@ native("imageprocessing", "resize", image_id + "," + width + "," + height)
 * @param {number} y Y
 */
 function BAS_image_insert(target_image_id, source_image_id, x, y) {
+const target_image_id = _function_argument('target_image_id') || target_image_id
+const source_image_id = _function_argument('source_image_id') || source_image_id
+const x = _function_argument('x') || x
+const y = _function_argument('y') || y
 native(
 "imageprocessing",
 "insert",
@@ -166,16 +205,20 @@ target_image_id + "," + source_image_id + "," + x + "," + y
 * }
 */
 function BAS_image_find(target_image_id, source_image_id) {
+const target_image_id = _function_argument('target_image_id') || target_image_id
+const source_image_id = _function_argument('source_image_id') || source_image_id
 const split = native(
 "imageprocessing",
 "find",
 target_image_id + "," + source_image_id
 ).split(",")
-return {
+const result = {
 found_subimage_x: split[0],
 found_subimage_y: split[1],
 threshold: split[2],
 }
+_function_return(result)
+return result
 }
 /**
 * Заполнить прямоугольник цветом
@@ -201,6 +244,15 @@ green,
 blue,
 alpha
 ) {
+const image_id = _function_argument('image_id') || image_id
+const x = _function_argument('x') || x
+const y = _function_argument('y') || y
+const width = _function_argument('width') || width
+const height = _function_argument('height') || height
+const red = _function_argument('red') || red
+const green = _function_argument('green') || green
+const blue = _function_argument('blue') || blue
+const alpha = _function_argument('alpha') || alpha
 x = x || 0
 y = y || 0
 width = width || 100
@@ -242,15 +294,21 @@ alpha
 * @returns Id изображения
 */
 function BAS_image_sub(image_id, x, y, width, height) {
+const image_id = _function_argument('image_id') || image_id
+const x = _function_argument('x') || x
+const y = _function_argument('y') || y
+const width = _function_argument('width') || width
+const height = _function_argument('height') || height
 x = x || 0
 y = y || 0
 width = width || 800
 height = height || 800
-return native(
+const result = native(
 "imageprocessing",
 "sub",
 image_id + "," + x + "," + y + "," + width + "," + height
 )
+return result
 }
 /**
 * Добавить текст
@@ -272,6 +330,9 @@ image_id + "," + x + "," + y + "," + width + "," + height
 * }
 */
 function BAS_image_text(image_id, text, params) {
+const image_id = _function_argument('image_id') || image_id
+const text = _function_argument('text') || text
+const params = _function_argument('params') || params
 const x = params.x || 0
 const y = params.y || 0
 const width = params.width || 800

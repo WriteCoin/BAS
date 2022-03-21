@@ -35,6 +35,13 @@ interval,
 greedy,
 dont_give_up
 ) {
+const name = _function_argument('name') || name
+const successes = _function_argument('successes') || successes
+const fails = _function_argument('fails') || fails
+const simultaneous = _function_argument('simultaneous') || simultaneous
+const interval = _function_argument('interval') || interval
+const greedy = _function_argument('greedy') || greedy
+const dont_give_up = _function_argument('dont_give_up') || dont_give_up
 RCreate(name, successes, fails, simultaneous, interval, greedy, dont_give_up)
 }
 /**
@@ -49,6 +56,8 @@ RCreate(name, successes, fails, simultaneous, interval, greedy, dont_give_up)
 * @param {boolean} instantly Удалить из файла/базы мгновенно
 */
 function BAS_delete_resource(name, instantly) {
+const name = _function_argument('name') || name
+const instantly = _function_argument('instantly') || instantly
 if (name in _R && _R[name]) {
 _R[name].die()
 _R[name] = null
@@ -73,6 +82,10 @@ if (instantly) RSync(name)
 * @param {boolean} instantly Добавить в файл/базу мгновенно
 */
 function BAS_resource_add(name, data, onlyAdd, instantly) {
+const name = _function_argument('name') || name
+const data = _function_argument('data') || data
+const onlyAdd = _function_argument('onlyAdd') || onlyAdd
+const instantly = _function_argument('instantly') || instantly
 RInsert(name, data, onlyAdd)
 if (instantly) RSync(name)
 }
@@ -88,7 +101,10 @@ if (instantly) RSync(name)
 * @returns Строка, в которой будет находиться расположение ресурса. Расположение ресурса - путь к файлу для ресурса с типом 'Из файла', url для ресурса с типом 'Из ссылки' и путь к папке для типа ресурса 'Файлы из папки'.
 */
 function BAS_get_resource_location(name) {
-return RInfo(name, "Location")
+const name = _function_argument('name') || name
+const result = RInfo(name, "Location")
+_function_return(result)
+return result
 }
 /**
 * Ресурс В Список
@@ -105,7 +121,10 @@ return RInfo(name, "Location")
 ["line1","line2","line3"]
 */
 function BAS_resource_as_list(name) {
-return RPick(name)
+const name = _function_argument('name') || name
+const result = RPick(name)
+_function_return(result)
+return result
 }
 /**
 * Список В Ресурс
@@ -124,6 +143,8 @@ return RPick(name)
 ["line1","line2","line3"] - Задать новые данные для ресурса.
 */
 function BAS_list_to_resource(name, list) {
+const name = _function_argument('name') || name
+const list = _function_argument('list') || list
 RClear(name)
 RSync(name)
 for (var i = 0; i < list.length; i++) {
@@ -141,6 +162,7 @@ RSync(name)
 Имя ресурса, который будет перезагружен
 */
 function BAS_reload_resource(name) {
+const name = _function_argument('name') || name
 Reload(name)
 }
 /**
@@ -151,5 +173,8 @@ Reload(name)
 * @returns количество элементов в выбранном ресурсе
 */
 function BAS_resource_length(name) {
-return ScriptWorker.GetTotalLength(name)
+const name = _function_argument('name') || name
+const result = ScriptWorker.GetTotalLength(name)
+_function_return(result)
+return result
 }
