@@ -203,7 +203,9 @@ const nodeGenFiles = (functions, dir) => {
         // console.log()
         const paramsFixed = params === "" ? "params" : params
         const assemblyFunc = `\t${comment}\nconst ${funcName} = async (${paramsFixed}) => await ${paramFuncName}("${funcName}", ${
-          paramsFixed === "params" ? paramsFixed : `{ ${paramsFixed} }`
+          paramsFixed === "params"
+            ? `${paramsFixed} || {}`
+            : `{ ${paramsFixed} }`
         })\n\n${
           index === arr.length - 1
             ? `${
@@ -237,26 +239,31 @@ const nodeGenRequire = (functions, filepath, apiDir) => {
   const exists = fs.existsSync(filepath)
   const fileScript = exists ? fs.readFileSync(filepath, "utf8") : ""
 
-  const requires = Object.entries(functions).reduce((acc, entry, index) => {
+  let accRequires = ""
+  let accFuncs = ""
+  Object.entries(functions).reduce((acc, entry, index) => {
     const script = entry[0]
     const funcs = entry[1]
 
     const path = replaceSlash(Path.resolve(apiDir + "/" + script))
 
     const nameAsyncFunc = getAsyncFuncName(script)
+    const assemblyRequires = `const ${nameAsyncFunc} = require("${path}")\n`
     const assemblyFuncs =
       Object.keys(funcs).reduce((acc, funcName, index, arr) => {
         return (
           acc + "\t" + funcName + (index !== arr.length - 1 ? "," : "") + "\n"
         )
-      }, `const ${nameAsyncFunc} = require("${path}")\nconst {\n`) +
-      `} = ${nameAsyncFunc}(BAS_FUNCTION)\n`
-    return acc + assemblyFuncs
+      }, `const {\n`) + `} = ${nameAsyncFunc}(BAS_FUNCTION)\n`
+    accRequires = accRequires + assemblyRequires
+    accFuncs = accFuncs + assemblyFuncs
+    return acc
   }, "")
 
-  // console.log(requires)
+  // console.log(accRequires)
+  // console.log(accFuncs)
 
-  fs.writeFileSync(filepath, requires + fileScript)
+  fs.writeFileSync(filepath, accRequires + accFuncs + fileScript)
 }
 
 const functions = getFunctions(scripts, "./API Parsed")

@@ -31,7 +31,7 @@ process_standart_output: string - Стандартный вывод процес
 process_error_output: string - Вывод процесса с ошибками
 }
 */
-const BAS_process_run = async (params) => await f("BAS_process_run", params)
+const BAS_process_run = async (params) => await f("BAS_process_run", params || {})
 
 return {	BAS_process_run,
 }

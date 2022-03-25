@@ -16,7 +16,7 @@ c:\path\to\profile
 @param {boolean} always_upload_proxy Всегда загружать прокси из папки с профилем
 В случае, если папка профиля уже существует и имеет данные прокси, эта настройка говорит BAS применять прокси использованный для данного профиля последним.
 */
-const BAS_create_or_switch_permanent_profile = async (params) => await f("BAS_create_or_switch_permanent_profile", params)
+const BAS_create_or_switch_permanent_profile = async (params) => await f("BAS_create_or_switch_permanent_profile", params || {})
 
 	/**
 * Переключиться на временный профиль (BAS-функция)
@@ -24,7 +24,7 @@ const BAS_create_or_switch_permanent_profile = async (params) => await f("BAS_cr
 * Для переключения профиля требуется перезапуск браузера, поэтому это действие может перезапустить браузер, если он уже открыт. Перезапуск браузера также сбросит все настройки.
 * В случае использования временного профиля будет создан новый временный профиль.
 */
-const BAS_switch_to_temporary_profile = async (params) => await f("BAS_switch_to_temporary_profile", params)
+const BAS_switch_to_temporary_profile = async (params) => await f("BAS_switch_to_temporary_profile", params || {})
 
 	/**
 * Копировать профиль в другую папку
@@ -51,7 +51,7 @@ c:/path/to/profile
 c:\path\to\profile
 Пустая строка - Удалить текущий профиль
 */
-const BAS_delete_profile = async (params) => await f("BAS_delete_profile", params)
+const BAS_delete_profile = async (params) => await f("BAS_delete_profile", params || {})
 
 	/**
 * Получить информацию о текущем профиле
@@ -67,7 +67,7 @@ has_fingerprint: boolean - Содержит отпечаток
 Булевое значение(true или false), содежит ли текущий профиль отпечаток. Его можно применить автоматически с помощью действия 'Создать или переключиться на постоянный профиль'.
 * }
 */
-const BAS_current_profile_info = async (params) => await f("BAS_current_profile_info", params)
+const BAS_current_profile_info = async (params) => await f("BAS_current_profile_info", params || {})
 
 return {	BAS_create_or_switch_permanent_profile,
 	BAS_switch_to_temporary_profile,

@@ -13,7 +13,7 @@
  * @param {Object} settings =>
  *  @param {boolean} disableMouseEmulation = false Отключить эмуляцию мыши.
  *  @param {boolean} isCtrlClick = false Зажать клавишу ctrl. Открыть ссылку в новой вкладке.
- *  @param {string} typeClick = '<MOUSELEFT>' '<MOUSELEFT>' | '<MOUSERIGHT>' | '<MOUSEDOUBLE>' Тип клика
+ *  @param {string} typeClick = '<MOUSELEFT>' | '<MOUSERIGHT>' | '<MOUSEDOUBLE>' Тип клика
  *  @param {Object} mouse =>
  *    @param {number} speed = 100 Скорость
       Скорость движения мыши как число с плавающей запятой, если вы меняете этот параметр, не забудьте изменить притяжение и отклонение пропорционально.

@@ -58,7 +58,7 @@ longitude: 8.6843,
 latitude: 50.1188
 } - Пример JSON, который должна возвращать функция.
 */
-const BAS_timezone_set_geo_location = async (params) => await f("BAS_timezone_set_geo_location", params)
+const BAS_timezone_set_geo_location = async (params) => await f("BAS_timezone_set_geo_location", params || {})
 
 	/**
 * Установить часовой пояс (BAS-функция)
@@ -80,7 +80,7 @@ const BAS_timezone_set_geo_location = async (params) => await f("BAS_timezone_se
 Пустая строка - Не задавать название часового пояса
 Europe/Berlin
 */
-const BAS_set_timezone = async (params) => await f("BAS_set_timezone", params)
+const BAS_set_timezone = async (params) => await f("BAS_set_timezone", params || {})
 
 	/**
 * Установить координаты (BAS-функция)
@@ -104,7 +104,7 @@ const BAS_set_timezone = async (params) => await f("BAS_set_timezone", params)
 @param {Object} geolocation_object Объект геолокации
 Это поле содержит свойства возвращаемого объекта геолокации. Изменяя этот объект, вы можете настроить, например, свойство accuracy или другие. Этот объект не должен включать latitude и longitude, они задаются через отдельные настройки.
 */
-const BAS_timezone_set_coordinates = async (params) => await f("BAS_timezone_set_coordinates", params)
+const BAS_timezone_set_coordinates = async (params) => await f("BAS_timezone_set_coordinates", params || {})
 
 	/**
 * Сведения об ип (BAS-функция)
@@ -180,7 +180,7 @@ dst_offset: number - Смещение летнего времени
 Смещение для летнего времени.
 * }
 */
-const BAS_timezone_get_ip_info = async (params) => await f("BAS_timezone_get_ip_info", params)
+const BAS_timezone_get_ip_info = async (params) => await f("BAS_timezone_get_ip_info", params || {})
 
 return {	BAS_timezone_set_geo_location,
 	BAS_set_timezone,

@@ -1,4 +1,21 @@
 /**
+* SMTP Настройки
+* Настроить доступ к SMTP серверу для отправки электронной почты.
+* @param host Адрес SMTP сервера
+* @param port Порт
+* @param login Имя пользователя. Может быть пустым
+* @param pass Пароль. Может быть пустым
+* @param encrypt Шифрование
+*/
+function BAS_smtp_client_set_config() {
+const host = _function_argument('host')
+const port = _function_argument('port')
+const login = _function_argument('login')
+const pass = _function_argument('pass')
+const encrypt = _function_argument('encrypt') || 'ssl'
+smtp_client_set_config(host, port, login, pass, encrypt)
+}
+/**
 * SMTP Прокси
 * По умолчанию SMTP клиент работает без прокси, это действие устанавливает прокси для SMTP клиента.
 * @param {string} server Прокси

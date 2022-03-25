@@ -1,4 +1,16 @@
 /**
+ * Текущий Url (BAS-функция)
+ * Получить текущий url из адресной строки браузера.
+ * @returns текущий url браузера
+ */
+function BAS_url() {
+  url()!
+  const result = _result()
+  _function_return(result)
+  return result
+}
+
+/**
  * Нормализовать URL
  * Нормализовать URL.
  * Это действие вернет строку, содержащую URL, нормализованную в соответствии с указанными параметрами. Подробнее о нормализации URL можно узнать в Wiki https://ru.wikipedia.org/wiki/%D0%9D%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_URL.

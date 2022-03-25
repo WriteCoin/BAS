@@ -1,4 +1,45 @@
 /**
+* Настроить
+* Настроить доступ к серверу imap для чтения электронной почты.
+* Это действие нужно вызвать один раз перед любым другим действием, которое работает с чтением писем.
+* Вам нужно заполнить imap сервер, ваше имя пользователя и пароль. Их обычно можно найти, выполнив поиск imap настроек для вашего почтового хостинга, например: 'Настройки gmail imap'
+* Для большинства почтовых хостингов вам также необходимо разрешить доступ imap в настройках учетной записи. Вот настройки для gmail.
+* Gmail также требует, чтобы разрешить доступ небезопасным приложениям для работы с BAS.
+* Логин и пароль почти всегда совпадают с вашим логином и паролем для почтового ящика. Логин может включать или не включать почтовый домен, убедитесь в этом на странице настроек imap для вашей электронной почты.
+* Mail.ru не позволяет искать письма в почтовом ящике.
+* Почтовый ящик может содержать несколько папок, и вы можете искать письма из определенной папки, изменяя параметр 'Имя папки'. По умолчанию он установлен в 'INBOX', эта папка содержит абсолютно все сообщения. Каждый почтовый хостинг предоставляет свои собственные имена по умолчанию для разных папок. Например, имя по умолчанию для папки удаленных писем в gmail - '[Gmail]/Trash', для папки спама - '[Gmail]/Spam'. Вы также можете создавать свои собственные папки и использовать их в этом действии.
+* @param host Imap сервер. Можно получить, поискав настройки imap для вашего почтового хостинга, например: 'Настройки gmail imap'
+* Примеры:
+* imap.gmail.com - gmail.com
+* imap.mail.yahoo.com - yahoo.com
+* imap-mail.outlook.com - outlook.com
+* imap.yandex.ru - yandex.ru
+* imap.mail.ru - mail.ru
+* @param username Имя пользователя. Может быть пустым. Имя пользователя, оно почти всегда совпадает с адресом электронной почты.
+* Примеры:
+* test@gmail.com
+* test - Логин может также не включать почтовый домен. Смотрите настройки imap для вашей почты.
+* @param password Пароль. Может быть пустым. Пароль, он почти всегда совпадает с паролем электронной почты
+* @param port Порт imap сервера. Почти всегда это значение должно быть равно 993. Если 993 не работает, попробуйте найти настройки imap для своего почтового хостинга, например 'Настройки gmail imap'
+* Примеры:
+* 993 - Порт по умолчанию для сервера imap
+* @param encryption 'ssl' | 'none' Шифрование
+* @param inbox Имя папки. Почтовый ящик может содержать несколько папок, и вы можете искать письма из определенной папки, изменяя этот параметр. По умолчанию он установлен в 'INBOX', эта папка содержит абсолютно все сообщения. Каждый почтовый хостинг предоставляет свои собственные имена по умолчанию для разных папок. Например, имя по умолчанию для папки удаленных писем в gmail - '[Gmail]/Trash', для папки спама - '[Gmail]/Spam'. Вы также можете создавать свои собственные папки и использовать их в этом действии.
+* Примеры:
+* INBOX - Доступ ко всем сообщениям
+* [Gmail]/Trash - Корзина, только для gmail
+* [Gmail]/Spam - Спам-папка, только для gmail
+*/
+function BAS_imap_client_set_config() {
+const host = _function_argument('host')
+const username = _function_argument('username') || ''
+const password = _function_argument('password') || ''
+const port = _function_argument('port') || 993
+const encryption = _function_argument('encryption') || 'ssl'
+const inbox = _function_argument('inbox')
+imap_client_set_config(host, username, password, port, encryption, inbox)
+}
+/**
 *
 */
 function proxy_set_hash(proxy, proxy_type, login, password) {
@@ -57,18 +98,20 @@ imap_client_set_proxy(hash.server, hash.Port, hash.IsHttp, hash.name, hash.passw
 * @param {number} timeout Максимальное время выполнения задания
 * @returns Целочисленное значение с количеством писем
 */
-function BAS_imap_client_messages_length() {
-const timeout = _function_argument('timeout')
+function BAS_imap_client_messages_length(timeout) {
+const timeout = _function_argument('timeout') || timeout
 general_timeout_next(timeout)
 imap_client_pull_messages_length()!
-_function_return(imap_client_messages_length())
+const result = imap_client_messages_length()
+_function_return(result)
+return result
 }
 /**
 *
 */
-function BAS_parse_message() {
-const timeout = _function_argument('timeout')
-const id = _function_argument('id')
+function BAS_parse_message(id, timeout) {
+const id = _function_argument('id') || id
+const timeout = _function_argument('timeout') || timeout
 if (timeout) {
 general_timeout_next(timeout)
 }
@@ -136,7 +179,7 @@ const sender = args.sender || (sender || '')
 const subject = args.subject || (subject || '')
 const body = args.body || (body || '')
 const to = args.to || (to || '')
-const callback = args.callback || callback
+const callback = args.callback || (callback || function() {})
 if (timeout) {
 general_timeout_next(timeout)
 }
@@ -158,13 +201,15 @@ _call_function(BAS_parse_message, {
 timeout: timeout,
 id: VAR_MAIL_BODY
 })!
-_function_return({
+const result = {
 mail_body: imap_client_message(),
 mail_id: VAR_MAIL_ID,
 link1: VAR_LINK1,
 link2: VAR_LINK2,
 link3: VAR_LINK3
-})
+}
+_function_return(result)
+return result
 }
 /**
 * Найти все письма (BAS-функция)
@@ -204,7 +249,7 @@ const sender = args.sender || (sender || '')
 const subject = args.subject || (subject || '')
 const body = args.body || (body || '')
 const to = args.to || (to || '')
-const callback = args.callback || callback
+const callback = args.callback || (callback || function() {})
 if (args.timeout) {
 general_timeout_next(args.timeout)
 }
@@ -242,19 +287,21 @@ return result
 *
 * link1, link2, link3 - Переменные со ссылками. Ссылки будут автоматически извлечены из текста письма и помещены в переменные VAR_LINK1, VAR_LINK2 и VAR_LINK3. Вы можете назвать переменные по-другому или добавить новые, чтобы извлечь больше ссылок.
 */
-function BAS_imap_client_get_message() {
-const timeout = _function_argument('timeout')
-const id = _function_argument('id')
+function BAS_imap_client_get_message(id, timeout) {
+const id = _function_argument('id') || id
+const timeout = _function_argument('timeout') || timeout
 _call_function(BAS_parse_message, {
 timeout: timeout,
 id: id
 })!
-_function_return({
+const result = {
 mail_body: VAR_MAIL_BODY,
 link1: VAR_LINK1,
 link2: VAR_LINK2,
 link3: VAR_LINK3
-})
+}
+_function_return(result)
+return result
 }
 /**
 * Удалить сообщение (BAS-функция)

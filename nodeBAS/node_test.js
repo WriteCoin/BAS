@@ -1,17 +1,13 @@
-const func = () => {
-  const a = 1
-  const b = 2
-  const c = 3
-  return { a, b, c }
+const func = (params) => {
 }
 // const a = 1
 // const b = 2
 // const c = 3
 // const obj = { a, b, c }
 
-const { a } = func()
+const obj = func(1, 2)
 
-console.log(a)
+console.log(obj)
 
 // const result = await BAS_FUNCTION("BAS_random", {
 //   a: 1,

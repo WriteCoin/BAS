@@ -281,7 +281,7 @@ http://rucaptcha.com/in.php?key=1abc234de56fab7c89012d34e56fa7b8
 &min_score=0.3
 &googlekey=6LfZil0UAAAAAAdm1Dpzsw9q0F11-bmervx9g5fE&pageurl=http://mysite.com/page
 */
-const BAS_generate_url = async (params) => await f("BAS_generate_url", params)
+const BAS_generate_url = async (params) => await f("BAS_generate_url", params || {})
 
 	/**
 * Изменить URL

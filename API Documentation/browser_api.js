@@ -1,4 +1,16 @@
 /**
+ * Закрыть вкладку (BAS-функция)
+ * Закрыть вкладку с указанным индексом.
+ * @param {number} index Номер Вкладки
+ * @param {Function} callback Функция
+ */
+function BAS_popup_close(index, callback) {
+  const index = _function_argument('index') || index
+  const callback = _function_argument('callback') || function() {}
+  popupclose(index)!
+}
+
+/**
  * Код страницы
  * Получение кода страницы и сохранение его в переменной. Это действие сохраняет текущий код со всеми изменениями, а не тот, который сервер вернул изначально.
  * Вы можете парсить его с помощью регулярных выражений или xpath.

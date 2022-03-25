@@ -1,5 +1,39 @@
 const get_email_functions = (f) => {
 	/**
+* Настроить
+* Настроить доступ к серверу imap для чтения электронной почты.
+* Это действие нужно вызвать один раз перед любым другим действием, которое работает с чтением писем.
+* Вам нужно заполнить imap сервер, ваше имя пользователя и пароль. Их обычно можно найти, выполнив поиск imap настроек для вашего почтового хостинга, например: 'Настройки gmail imap'
+* Для большинства почтовых хостингов вам также необходимо разрешить доступ imap в настройках учетной записи. Вот настройки для gmail.
+* Gmail также требует, чтобы разрешить доступ небезопасным приложениям для работы с BAS.
+* Логин и пароль почти всегда совпадают с вашим логином и паролем для почтового ящика. Логин может включать или не включать почтовый домен, убедитесь в этом на странице настроек imap для вашей электронной почты.
+* Mail.ru не позволяет искать письма в почтовом ящике.
+* Почтовый ящик может содержать несколько папок, и вы можете искать письма из определенной папки, изменяя параметр 'Имя папки'. По умолчанию он установлен в 'INBOX', эта папка содержит абсолютно все сообщения. Каждый почтовый хостинг предоставляет свои собственные имена по умолчанию для разных папок. Например, имя по умолчанию для папки удаленных писем в gmail - '[Gmail]/Trash', для папки спама - '[Gmail]/Spam'. Вы также можете создавать свои собственные папки и использовать их в этом действии.
+* @param host Imap сервер. Можно получить, поискав настройки imap для вашего почтового хостинга, например: 'Настройки gmail imap'
+* Примеры:
+* imap.gmail.com - gmail.com
+* imap.mail.yahoo.com - yahoo.com
+* imap-mail.outlook.com - outlook.com
+* imap.yandex.ru - yandex.ru
+* imap.mail.ru - mail.ru
+* @param username Имя пользователя. Может быть пустым. Имя пользователя, оно почти всегда совпадает с адресом электронной почты.
+* Примеры:
+* test@gmail.com
+* test - Логин может также не включать почтовый домен. Смотрите настройки imap для вашей почты.
+* @param password Пароль. Может быть пустым. Пароль, он почти всегда совпадает с паролем электронной почты
+* @param port Порт imap сервера. Почти всегда это значение должно быть равно 993. Если 993 не работает, попробуйте найти настройки imap для своего почтового хостинга, например 'Настройки gmail imap'
+* Примеры:
+* 993 - Порт по умолчанию для сервера imap
+* @param encryption 'ssl' | 'none' Шифрование
+* @param inbox Имя папки. Почтовый ящик может содержать несколько папок, и вы можете искать письма из определенной папки, изменяя этот параметр. По умолчанию он установлен в 'INBOX', эта папка содержит абсолютно все сообщения. Каждый почтовый хостинг предоставляет свои собственные имена по умолчанию для разных папок. Например, имя по умолчанию для папки удаленных писем в gmail - '[Gmail]/Trash', для папки спама - '[Gmail]/Spam'. Вы также можете создавать свои собственные папки и использовать их в этом действии.
+* Примеры:
+* INBOX - Доступ ко всем сообщениям
+* [Gmail]/Trash - Корзина, только для gmail
+* [Gmail]/Spam - Спам-папка, только для gmail
+*/
+const BAS_imap_client_set_config = async (params) => await f("BAS_imap_client_set_config", params || {})
+
+	/**
 *
 */
 const proxy_set_hash = async (proxy, proxy_type, login, password) => await f("proxy_set_hash", { proxy, proxy_type, login, password })
@@ -38,12 +72,12 @@ const BAS_imap_client_set_proxy = async (proxy, proxy_type, login, password) => 
 * @param {number} timeout Максимальное время выполнения задания
 * @returns Целочисленное значение с количеством писем
 */
-const BAS_imap_client_messages_length = async (params) => await f("BAS_imap_client_messages_length", params)
+const BAS_imap_client_messages_length = async (timeout) => await f("BAS_imap_client_messages_length", { timeout })
 
 	/**
 *
 */
-const BAS_parse_message = async (params) => await f("BAS_parse_message", params)
+const BAS_parse_message = async (id, timeout) => await f("BAS_parse_message", { id, timeout })
 
 	/**
 * Найти Письмо (BAS-функция)
@@ -146,7 +180,7 @@ const BAS_imap_client_search_all = async (sender, subject, body, to, callback) =
 *
 * link1, link2, link3 - Переменные со ссылками. Ссылки будут автоматически извлечены из текста письма и помещены в переменные VAR_LINK1, VAR_LINK2 и VAR_LINK3. Вы можете назвать переменные по-другому или добавить новые, чтобы извлечь больше ссылок.
 */
-const BAS_imap_client_get_message = async (params) => await f("BAS_imap_client_get_message", params)
+const BAS_imap_client_get_message = async (id, timeout) => await f("BAS_imap_client_get_message", { id, timeout })
 
 	/**
 * Удалить сообщение (BAS-функция)
@@ -160,7 +194,8 @@ const BAS_imap_client_get_message = async (params) => await f("BAS_imap_client_g
 */
 const BAS_imap_client_delete_message = async (timeout, id) => await f("BAS_imap_client_delete_message", { timeout, id })
 
-return {	proxy_set_hash,
+return {	BAS_imap_client_set_config,
+	proxy_set_hash,
 	BAS_imap_client_set_proxy,
 	BAS_imap_client_messages_length,
 	BAS_parse_message,

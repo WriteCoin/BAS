@@ -1,5 +1,23 @@
 const get_date_and_time_functions = (f) => {
 	/**
+* Строку В Дату
+* Преобразовать строку в дату и время используя заданный формат
+* @param value Строка с датой и временем
+* @param format 'auto' | 'yyyy-MM-dd' | 'hh:mm:ss' | 'yyyy-MM-ddThh:mm:ss'
+* Формат даты и времени
+*/
+const BAS_parse_date = async (value, format) => await f("BAS_parse_date", { value, format })
+
+	/**
+* Дату В Строку
+* Преобразовать дату и время в строку используя заданный формат.
+* @param value Дата и время либо строка
+* @param format 'yyyy-MM-dd' | 'hh:mm:ss' | 'yyyy-MM-ddThh:mm:ss'
+* Формат даты и времени
+*/
+const BAS_format_date = async (value, format) => await f("BAS_format_date", { value, format })
+
+	/**
 * Миллисекунды В Дату
 * Преобразовать количество миллисекунд с начала эпохи в дату.
 * Количество миллисекунд при таком преобразовании отсчитывается с 1 января 1970 года, 00:00:00 UTC.
@@ -110,7 +128,7 @@ const BAS_difference_between_dates = async (value1, value2) => await f("BAS_diff
 * Получить текущую дату и время
 * @returns Date
 */
-const BAS_current_date = async (params) => await f("BAS_current_date", params)
+const BAS_current_date = async (params) => await f("BAS_current_date", params || {})
 
 	/**
 * Изменить Часовой Пояс Даты
@@ -146,7 +164,7 @@ const BAS_get_day_of_month = async (value) => await f("BAS_get_day_of_month", { 
 const BAS_get_day_of_week = async (value) => await f("BAS_get_day_of_week", { value })
 
 	/**
-* День гОда
+* День Года
 * Получить день года из указанной даты.
 * @param {Date | string} value Дата и время либо строка
 * @returns День года. От 1 до 366.
@@ -201,7 +219,9 @@ const BAS_get_seconds_from_date = async (value) => await f("BAS_get_seconds_from
 */
 const BAS_get_milliseconds_from_date = async (value) => await f("BAS_get_milliseconds_from_date", { value })
 
-return {	BAS_parse_milliseconds,
+return {	BAS_parse_date,
+	BAS_format_date,
+	BAS_parse_milliseconds,
 	BAS_milliseconds_from_date,
 	BAS_create_date,
 	BAS_change_date,

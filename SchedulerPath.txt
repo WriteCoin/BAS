@@ -1,4 +1,0 @@
-C:\Users\WriteCoin\AppData\Local\TaskScheduler
-
-SchedulerGui.exe
-

@@ -1,5 +1,13 @@
 const get_html_element_functions = (f) => {
 	/**
+* Переключиться на вкладку (async)
+* Переключиться на вкладку с указанным индексом.
+* @param index Номер Вкладки
+* @param callback Функция
+*/
+const BAS_popupselect = async (index, callback) => await f("BAS_popupselect", { index, callback })
+
+	/**
 * Двигать Мышь И Кликнуть На Элемент (BAS-функция)
 * Ссылка на вики: https://wiki.bablosoft.com/doku.php?id=ru:how_to_click_on_buttons_and_links
 * Навести курсор и кликнуть на данный элемент.
@@ -28,7 +36,7 @@ const get_html_element_functions = (f) => {
 @param {number} timeout Максимальное время выполнения задания (мс)
 *
 */
-const BAS_mouse_move_and_click_element = async (params) => await f("BAS_mouse_move_and_click_element", params)
+const BAS_mouse_move_and_click_element = async (params) => await f("BAS_mouse_move_and_click_element", params || {})
 
 	/**
 * Кликнуть На Элемент (BAS-функция)
@@ -46,7 +54,7 @@ const BAS_mouse_move_and_click_element = async (params) => await f("BAS_mouse_mo
 * @param {boolean} wait_full_load = false Ждать полной загрузки страницы после этого действия
 * @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_click_element = async (params) => await f("BAS_click_element", params)
+const BAS_click_element = async (params) => await f("BAS_click_element", params || {})
 
 	/**
 * Двигать Мышь Над Элементом (BAS-функция)
@@ -68,7 +76,7 @@ const BAS_click_element = async (params) => await f("BAS_click_element", params)
 Значение плавающей точки, которое устанавливает силу отклонения курсора от линии между начальной и конечной точками. Это можно представить как ветер, который отклоняет курсор от этой линии.
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_mouse_move_over_element = async (params) => await f("BAS_mouse_move_over_element", params)
+const BAS_mouse_move_over_element = async (params) => await f("BAS_mouse_move_over_element", params || {})
 
 	/**
 * Двигать Мышь И Кликнуть (BAS-функция)
@@ -96,7 +104,7 @@ const BAS_mouse_move_over_element = async (params) => await f("BAS_mouse_move_ov
 @param {boolean} wait_full_load Ждать полной загрузки страницы после этого действия
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_mouse_move_and_click = async (params) => await f("BAS_mouse_move_and_click", params)
+const BAS_mouse_move_and_click = async (params) => await f("BAS_mouse_move_and_click", params || {})
 
 	/**
 * Кликнуть (BAS-функция)
@@ -113,7 +121,7 @@ const BAS_mouse_move_and_click = async (params) => await f("BAS_mouse_move_and_c
 @param {boolean} wait_full_load = false Ждать полной загрузки страницы после этого действия
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_click = async (params) => await f("BAS_click", params)
+const BAS_click = async (params) => await f("BAS_click", params || {})
 
 	/**
 * Двигать Мышь (BAS-функция)
@@ -135,7 +143,7 @@ const BAS_click = async (params) => await f("BAS_click", params)
 @param {number} deviation = 2.5 Отклонение
 Значение плавающей точки, которое устанавливает силу отклонения курсора от линии между начальной и конечной точками. Это можно представить как ветер, который отклоняет курсор от этой линии.
 */
-const BAS_mouse_move = async (params) => await f("BAS_mouse_move", params)
+const BAS_mouse_move = async (params) => await f("BAS_mouse_move", params || {})
 
 	/**
 * Ввод текста (BAS-функция)
@@ -174,7 +182,7 @@ hello world! - Ввести hello world!
 @param {boolean} wait_full_load = false Ждать полной загрузки страницы после этого действия
 @param {number} timeout Максимальное время выполнения задания (мс).
 */
-const BAS_input_text = async (params) => await f("BAS_input_text", params)
+const BAS_input_text = async (params) => await f("BAS_input_text", params || {})
 
 	/**
 * Очистить Поле (BAS-функция)
@@ -197,7 +205,7 @@ const BAS_input_text = async (params) => await f("BAS_input_text", params)
 @param {boolean} wait_full_load = false Ждать полной загрузки страницы после этого действия
 @param {number} timeout Максимальное время выполнения задания (мс).
 */
-const BAS_clear_field = async (params) => await f("BAS_clear_field", params)
+const BAS_clear_field = async (params) => await f("BAS_clear_field", params || {})
 
 	/**
 * Получить Код Элемента (BAS-функция)
@@ -210,7 +218,7 @@ const BAS_clear_field = async (params) => await f("BAS_clear_field", params)
 * @return string
 html код выбранного элемента в виде строки
 */
-const BAS_get_xml = async (params) => await f("BAS_get_xml", params)
+const BAS_get_xml = async (params) => await f("BAS_get_xml", params || {})
 
 	/**
 * Добавить вкладку (BAS-функция)
@@ -233,7 +241,7 @@ https://google.com - Страница загружается при нажати
 @param {boolean} is_instant false Не ждать полной загрузки страницы после этого действия
 @param {nubmer} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_add_tab = async (params) => await f("BAS_add_tab", params)
+const BAS_add_tab = async (params) => await f("BAS_add_tab", params || {})
 
 	/**
 * Получить информацию о вкладках (BAS-функция)
@@ -249,7 +257,7 @@ const BAS_add_tab = async (params) => await f("BAS_add_tab", params)
 Общее количество вкладок.
 * }
 */
-const BAS_popupinfo = async (params) => await f("BAS_popupinfo", params)
+const BAS_popupinfo = async (params) => await f("BAS_popupinfo", params || {})
 
 	/**
 * Проверить Существование (BAS-функция)
@@ -265,7 +273,7 @@ const BAS_popupinfo = async (params) => await f("BAS_popupinfo", params)
 true - Элемент найден
 false - Элемент не найден
 */
-const BAS_element_is_exists = async (params) => await f("BAS_element_is_exists", params)
+const BAS_element_is_exists = async (params) => await f("BAS_element_is_exists", params || {})
 
 	/**
 * Получить Текст (BAS-функция)
@@ -279,7 +287,7 @@ const BAS_element_is_exists = async (params) => await f("BAS_element_is_exists",
 * @param {number} timeout Максимальное время выполнения задания (мс)
 * @return текст выбранного элемента
 */
-const BAS_element_get_text = async (params) => await f("BAS_element_get_text", params)
+const BAS_element_get_text = async (params) => await f("BAS_element_get_text", params || {})
 
 	/**
 * Скриншот (BAS-функция)
@@ -292,7 +300,7 @@ const BAS_element_get_text = async (params) => await f("BAS_element_get_text", p
 * @param {number} timeout Максимальное время выполнения задания (мс)
 * @return данные изображения в кодировке base64, вы можете использовать ее как captcha или сохранить в файл.
 */
-const BAS_element_screenshot = async (params) => await f("BAS_element_screenshot", params)
+const BAS_element_screenshot = async (params) => await f("BAS_element_screenshot", params || {})
 
 	/**
 * Решить Капчу (BAS-функция)
@@ -319,7 +327,7 @@ const BAS_element_screenshot = async (params) => await f("BAS_element_screenshot
 * @param {number} timeout Максимальное время выполнения задания (мс)
 * @return Строка с результатом решения капчи
 */
-const BAS_element_solve_captcha = async (params) => await f("BAS_element_solve_captcha", params)
+const BAS_element_solve_captcha = async (params) => await f("BAS_element_solve_captcha", params || {})
 
 	/**
 * Решить капчу кликами (BAS-функция)
@@ -369,7 +377,7 @@ http://127.0.0.3:8080 - Использовать кастомный URL серв
 @param {boolean} noWait = false Не ждать появления элемента
 @param {boolean} stopThread Остановить поток, елси элемент не найден
 */
-const BAS_element_solve_captcha_clicks = async (params) => await f("BAS_element_solve_captcha_clicks", params)
+const BAS_element_solve_captcha_clicks = async (params) => await f("BAS_element_solve_captcha_clicks", params || {})
 
 	/**
 * Ждать Появления Элемента (BAS-функция)
@@ -380,7 +388,7 @@ const BAS_element_solve_captcha_clicks = async (params) => await f("BAS_element_
 * @param {boolean} checkVisibility Проверять, виден ли элемент на экране
 * @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_wait_element = async (params) => await f("BAS_wait_element", params)
+const BAS_wait_element = async (params) => await f("BAS_wait_element", params || {})
 
 	/**
 * Прокрутка К Элементу (BAS-функция)
@@ -392,7 +400,7 @@ const BAS_wait_element = async (params) => await f("BAS_wait_element", params)
 * @param {boolean} stopThread Остановить поток, если элемент не найден
 * @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_element_focus = async (params) => await f("BAS_element_focus", params)
+const BAS_element_focus = async (params) => await f("BAS_element_focus", params || {})
 
 	/**
 * Получить координаты (BAS-функция)
@@ -414,7 +422,7 @@ const BAS_element_focus = async (params) => await f("BAS_element_focus", params)
 Целое значение, высота элемента.
 * }
 */
-const BAS_element_get_coordinates = async (params) => await f("BAS_element_get_coordinates", params)
+const BAS_element_get_coordinates = async (params) => await f("BAS_element_get_coordinates", params || {})
 
 	/**
 * Получить Количество Элементов (BAS-функция)
@@ -429,7 +437,7 @@ const BAS_element_get_coordinates = async (params) => await f("BAS_element_get_c
 * @param {stirng} selector Селектор элемента
 * @returns количество элементов, соответствующих селектору.
 */
-const BAS_elements_count = async (params) => await f("BAS_elements_count", params)
+const BAS_elements_count = async (params) => await f("BAS_elements_count", params || {})
 
 	/**
 * Получить Стиль Элемента (BAS-функция)
@@ -447,7 +455,7 @@ width - Получить ширину
 @param {number} timeout Максимальное время выполнения задания (мс)
 @returns Значение стиля в виде строки.
 */
-const BAS_get_element_style = async (params) => await f("BAS_get_element_style", params)
+const BAS_get_element_style = async (params) => await f("BAS_get_element_style", params || {})
 
 	/**
 * Начать Перетаскивание На Элементе (BAS-функция)
@@ -470,7 +478,7 @@ const BAS_get_element_style = async (params) => await f("BAS_get_element_style",
 * }
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_element_drag_start = async (params) => await f("BAS_element_drag_start", params)
+const BAS_element_drag_start = async (params) => await f("BAS_element_drag_start", params || {})
 
 	/**
 * Закончить Перетаскивание На Элементе (BAS-функция)
@@ -493,7 +501,7 @@ const BAS_element_drag_start = async (params) => await f("BAS_element_drag_start
 * }
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_element_drag_finish = async (params) => await f("BAS_element_drag_finish", params)
+const BAS_element_drag_finish = async (params) => await f("BAS_element_drag_finish", params || {})
 
 	/**
 * Начать Перетаскивание (BAS-функция)
@@ -517,7 +525,7 @@ const BAS_element_drag_finish = async (params) => await f("BAS_element_drag_fini
 Значение плавающей точки, которое устанавливает силу отклонения курсора от линии между начальной и конечной точками. Это можно представить как ветер, который отклоняет курсор от этой линии.
 * }
 */
-const BAS_coords_drag_start = async (params) => await f("BAS_coords_drag_start", params)
+const BAS_coords_drag_start = async (params) => await f("BAS_coords_drag_start", params || {})
 
 	/**
 * Закончить Перетаскивание (BAS-функция)
@@ -540,7 +548,7 @@ const BAS_coords_drag_start = async (params) => await f("BAS_coords_drag_start",
 Значение плавающей точки, которое устанавливает силу отклонения курсора от линии между начальной и конечной точками. Это можно представить как ветер, который отклоняет курсор от этой линии.
 * }
 */
-const BAS_coords_drag_finish = async (params) => await f("BAS_coords_drag_finish", params)
+const BAS_coords_drag_finish = async (params) => await f("BAS_coords_drag_finish", params || {})
 
 	/**
 * Получить адрес ссылки (BAS-функция)
@@ -555,7 +563,7 @@ const BAS_coords_drag_finish = async (params) => await f("BAS_coords_drag_finish
 * @param {number} timeout Максимальное время выполнения задания
 * @returns адрес ближайшей ссылки после выполнения
 */
-const BAS_element_get_url = async (params) => await f("BAS_element_get_url", params)
+const BAS_element_get_url = async (params) => await f("BAS_element_get_url", params || {})
 
 	/**
 * Получить Атрибут Элемента (BAS-функция)
@@ -574,7 +582,7 @@ style - Получить стили элемента
 @param {number} timeout Максимальное время выполнения задания (мс)
 @returns значение атрибута элемента как строка
 */
-const BAS_element_get_attribute = async (params) => await f("BAS_element_get_attribute", params)
+const BAS_element_get_attribute = async (params) => await f("BAS_element_get_attribute", params || {})
 
 	/**
 * Установить Атрибут Элемента (BAS-функция)
@@ -590,7 +598,7 @@ const BAS_element_get_attribute = async (params) => await f("BAS_element_get_att
 @param {boolean} stopThread = true Остановить поток, если элемент не найден
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_element_set_attribute = async (params) => await f("BAS_element_set_attribute", params)
+const BAS_element_set_attribute = async (params) => await f("BAS_element_set_attribute", params || {})
 
 	/**
 * Установить Значение Комбобокса (BAS-функция)
@@ -606,7 +614,7 @@ const BAS_element_set_attribute = async (params) => await f("BAS_element_set_att
 @param {boolean} stopThread = true Остановить поток, если элемент не найден
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_combobox_set_value = async (params) => await f("BAS_combobox_set_value", params)
+const BAS_combobox_set_value = async (params) => await f("BAS_combobox_set_value", params || {})
 
 	/**
 * Установить Индекс Комбобокса (BAS-функция)
@@ -621,7 +629,7 @@ const BAS_combobox_set_value = async (params) => await f("BAS_combobox_set_value
 @param {boolean} stopThread = true Остановить поток, если элемент не найден
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_combobox_set_index = async (params) => await f("BAS_combobox_set_index", params)
+const BAS_combobox_set_index = async (params) => await f("BAS_combobox_set_index", params || {})
 
 	/**
 * Выбрать Случайный Элемент Из Комбобокса (BAS-функция)
@@ -635,9 +643,10 @@ const BAS_combobox_set_index = async (params) => await f("BAS_combobox_set_index
 @param {boolean} stopThread = true Остановить поток, если элемент не найден
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_combobox_get_random_element = async (params) => await f("BAS_combobox_get_random_element", params)
+const BAS_combobox_get_random_element = async (params) => await f("BAS_combobox_get_random_element", params || {})
 
-return {	BAS_mouse_move_and_click_element,
+return {	BAS_popupselect,
+	BAS_mouse_move_and_click_element,
 	BAS_click_element,
 	BAS_mouse_move_over_element,
 	BAS_mouse_move_and_click,

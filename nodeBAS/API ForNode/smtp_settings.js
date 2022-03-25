@@ -1,5 +1,16 @@
 const get_smtp_settings_functions = (f) => {
 	/**
+* SMTP Настройки
+* Настроить доступ к SMTP серверу для отправки электронной почты.
+* @param host Адрес SMTP сервера
+* @param port Порт
+* @param login Имя пользователя. Может быть пустым
+* @param pass Пароль. Может быть пустым
+* @param encrypt Шифрование
+*/
+const BAS_smtp_client_set_config = async (params) => await f("BAS_smtp_client_set_config", params || {})
+
+	/**
 * SMTP Прокси
 * По умолчанию SMTP клиент работает без прокси, это действие устанавливает прокси для SMTP клиента.
 * @param {string} server Прокси
@@ -20,7 +31,7 @@ const BAS_smtp_client_set_proxy = async (server, port, name, password) => await 
 * @param {boolean} is_html Отправить как HTML
 * @param {string} attachments Прикрепляемые файлы. Может быть пустым.
 */
-const BAS_send_email = async (params) => await f("BAS_send_email", params)
+const BAS_send_email = async (params) => await f("BAS_send_email", params || {})
 
 	/**
 * Включить отладку
@@ -29,7 +40,8 @@ const BAS_send_email = async (params) => await f("BAS_send_email", params)
 */
 const BAS_smtp_debug_enable = async (enable) => await f("BAS_smtp_debug_enable", { enable })
 
-return {	BAS_smtp_client_set_proxy,
+return {	BAS_smtp_client_set_config,
+	BAS_smtp_client_set_proxy,
 	BAS_send_email,
 	BAS_smtp_debug_enable,
 }

@@ -118,7 +118,9 @@ number: args.number,
 interval: args.interval,
 timeout: args.timeout
 })!
-_function_return(_result_function())
+const result = _result_function()
+_function_return(result)
+return result
 }
 /**
 * Изменение статуса активации (BAS-функция)
@@ -202,7 +204,9 @@ apiKey: args.apiKey,
 serverUrl: args.serverUrl,
 timeout: args.timeout
 })!
-_function_return(_result_function())
+const result = _result_function()
+_function_return(result)
+return result
 }
 /**
 * Получить количество доступных номеров (BAS-функция)
@@ -272,7 +276,9 @@ customCountry: args.customCountry,
 serverUrl: args.serverUrl,
 timeout: args.timeout
 })!
-_function_return(_result_function())
+const result = _result_function()
+_function_return(result)
+return result
 }
 /**
 * Получить список сайтов (BAS-функция)
@@ -319,7 +325,9 @@ apiKey: args.apiKey,
 serverUrl: args.serverUrl,
 timeout: args.timeout
 })!
-_function_return(_result_function())
+const result = _result_function()
+_function_return(result)
+return result
 }
 /**
 * Получить список стран (BAS-функция)

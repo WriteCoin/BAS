@@ -98,7 +98,7 @@ true - Поиск отпечатка с указанным запросом Perf
 false - Получение отпечатка с указанным запросом PerfectCanvas будет происходить в реальном времени с одной из машин, которая в данный момент находится online.
 *
 */
-const BAS_get_fingerprint = async (params) => await f("BAS_get_fingerprint", params)
+const BAS_get_fingerprint = async (params) => await f("BAS_get_fingerprint", params || {})
 
 	/**
 * Применить отпечаток (BAS-функция)
@@ -129,7 +129,7 @@ const BAS_get_fingerprint = async (params) => await f("BAS_get_fingerprint", par
 * args.emulationDeviceSensors: boolean - Эмуляция датчиков устройства
 Chrome поддерживает считывание данных из датчиков устройства, таких как акселерометр, гироскоп или другие. Данные с этих устройств доступны только на мобильных платформах. После установки данной настройки, данные для этих устройств будут сгенерированы и заменены автоматически. Включите эту опцию для более точной эмуляции мобильных отпечатков.
 */
-const BAS_apply_fingerprint = async (params) => await f("BAS_apply_fingerprint", params)
+const BAS_apply_fingerprint = async (params) => await f("BAS_apply_fingerprint", params || {})
 
 	/**
 * Отпечаток производительности (BAS-функция)
@@ -169,7 +169,7 @@ const BAS_apply_fingerprint = async (params) => await f("BAS_apply_fingerprint",
 false - Значение по умолчанию, разрешить высокую точность.
 true - Отключить высокую точность.
 */
-const BAS_fingerprint_performance = async (params) => await f("BAS_fingerprint_performance", params)
+const BAS_fingerprint_performance = async (params) => await f("BAS_fingerprint_performance", params || {})
 
 return {	BAS_get_fingerprint,
 	BAS_apply_fingerprint,

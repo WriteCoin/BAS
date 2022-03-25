@@ -38,7 +38,7 @@ const BAS_http_client_set_proxy = async (proxy, proxy_type, login, password) => 
 * Используйте действие 'HTTP-Клиент Загрузить cookies' с пустым значением, если вы хотите сбросить только файлы cookies.
 * Это действие влияет на состояние http клиента и все настройки, такие как: прокси, заголовки, текст последнего ответа от сервера, статус ответа, cookies и т. д.
 */
-const BAS_http_client_reset = async (params) => await f("BAS_http_client_reset", params)
+const BAS_http_client_reset = async (params) => await f("BAS_http_client_reset", params || {})
 
 	/**
 * Get запрос (BAS-функция)
@@ -72,7 +72,7 @@ https://www.google.com/search?q=%D0%BA%D0%BE%D1%82%D1%8B - Url с запросо
 * @param {boolean} no_redirect Следовать переадресациям
 * @param {number} timeout Максимальное время выполнения задания
 */
-const BAS_http_client_get = async (params) => await f("BAS_http_client_get", params)
+const BAS_http_client_get = async (params) => await f("BAS_http_client_get", params || {})
 
 	/**
 * Post запрос (BAS-функция)
@@ -124,7 +124,7 @@ WINDOWS-1251 - Используется на некоторых российск
 * @param {boolean} no_redirect Следовать переадресациям
 * @param {number} timeout Максимальное время выполнения задания
 */
-const BAS_http_client_post = async (params) => await f("BAS_http_client_post", params)
+const BAS_http_client_post = async (params) => await f("BAS_http_client_post", params || {})
 
 	/**
 * Скачать (BAS-функция)
@@ -154,7 +154,7 @@ c:/downloads/pic.png
 c:\downloads\pic.png
 * @param {number} timeout Максимальное время выполнения задания
 */
-const BAS_http_client_download = async (params) => await f("BAS_http_client_download", params)
+const BAS_http_client_download = async (params) => await f("BAS_http_client_download", params || {})
 
 	/**
 * Текущий Url
@@ -162,7 +162,7 @@ const BAS_http_client_download = async (params) => await f("BAS_http_client_down
 * Url может отличаться от последнего url, используемого в действии 'GET' или 'POST', если были перенаправления.
 * @returns текущий url для http-клиента
 */
-const BAS_http_client_url = async (params) => await f("BAS_http_client_url", params)
+const BAS_http_client_url = async (params) => await f("BAS_http_client_url", params || {})
 
 	/**
 * Содержание ответа
@@ -188,7 +188,7 @@ const BAS_http_client_encoded_content = async (encoding) => await f("BAS_http_cl
 302 - Целевая страница находится под другим адресом.
 404 - Страница не найдена
 */
-const BAS_http_client_status = async (params) => await f("BAS_http_client_status", params)
+const BAS_http_client_status = async (params) => await f("BAS_http_client_status", params || {})
 
 	/**
 * Получить заголовок
@@ -226,7 +226,7 @@ const BAS_http_client_set_header = async (header_name, header_value) => await f(
 * Очистить заголовки
 * Очистите все заголовки запросов, которые были установлены с помощью действия 'HTTP-Клиент Установить Заголовок'.
 */
-const BAS_http_client_clear_header = async (params) => await f("BAS_http_client_clear_header", params)
+const BAS_http_client_clear_header = async (params) => await f("BAS_http_client_clear_header", params || {})
 
 	/**
 * HTTP-Клиент Сохранить cookies
@@ -249,7 +249,7 @@ const BAS_http_client_clear_header = async (params) => await f("BAS_http_client_
 * Переменная VAR_COOKIES будет содержать список cookies, и так как это список, то его также можно обработать с помощью действий из модуля 'Список'.
 * @returns строка в формате json со списоком всех cookies для всех доменов. Формат Json описан ниже.
 */
-const BAS_http_client_save_cookies = async (params) => await f("BAS_http_client_save_cookies", params)
+const BAS_http_client_save_cookies = async (params) => await f("BAS_http_client_save_cookies", params || {})
 
 	/**
 * HTTP-Клиент Загрузить cookies
@@ -284,7 +284,7 @@ const BAS_http_client_restore_cookies = async (cookies) => await f("BAS_http_cli
 * Большинство сайтов использует cookies для хранения пользовательских данных, таких как авторизация пользователя. Это означает, что, сохраняя cookies после авторизации на каком-либо сайте и восстанавливая их позже, вы можете реализовать автовход на этом сайте.
 * Если процедура авторизации на сайте сложная, то она может быть выполнена с помощью браузера, а все остальное с помощью http клиента. Для этого после авторизации через браузер, cookies c помощью этого действия могут быть переданы в http клиент.
 */
-const BAS_http_client_restore_cookies_from_browser = async (params) => await f("BAS_http_client_restore_cookies_from_browser", params)
+const BAS_http_client_restore_cookies_from_browser = async (params) => await f("BAS_http_client_restore_cookies_from_browser", params || {})
 
 	/**
 * Завершать работу после ошибки
@@ -299,14 +299,14 @@ const BAS_http_client_set_fail_on_error = async (fail_on_error) => await f("BAS_
 * Это действие устарело, рекомендуется вместо него использовать 'Игнорировать ошибки'.
 * @returns boolean
 */
-const BAS_http_client_was_error = async (params) => await f("BAS_http_client_was_error", params)
+const BAS_http_client_was_error = async (params) => await f("BAS_http_client_was_error", params || {})
 
 	/**
 * Получить текст ошибки
 * Это действие устарело, рекомендуется вместо него использовать 'Игнорировать ошибки'.
 * @returns string
 */
-const BAS_http_client_error_string = async (params) => await f("BAS_http_client_error_string", params)
+const BAS_http_client_error_string = async (params) => await f("BAS_http_client_error_string", params || {})
 
 	/**
 * Xpath получить xml

@@ -9,7 +9,7 @@ const get_telegram_functions = (f) => {
 * @param {boolean} addMessageThread Добавить в начало сообщения номер потока
 * @param {boolean} addMessageTime Добавить в начало сообщения время [hh:mm:ss]
 */
-const BAS_telegram_send_message = async (params) => await f("BAS_telegram_send_message", params)
+const BAS_telegram_send_message = async (params) => await f("BAS_telegram_send_message", params || {})
 
 return {	BAS_telegram_send_message,
 }

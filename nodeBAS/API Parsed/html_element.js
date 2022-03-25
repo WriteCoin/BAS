@@ -1,4 +1,15 @@
 /**
+* Переключиться на вкладку (async)
+* Переключиться на вкладку с указанным индексом.
+* @param index Номер Вкладки
+* @param callback Функция
+*/
+function BAS_popupselect(index, callback) {
+const index = _function_argument('index') || index
+const callback = _function_argument('callback') || (callback || function() {})
+popupselect(index, callback)!
+}
+/**
 * Двигать Мышь И Кликнуть На Элемент (BAS-функция)
 * Ссылка на вики: https://wiki.bablosoft.com/doku.php?id=ru:how_to_click_on_buttons_and_links
 * Навести курсор и кликнуть на данный элемент.
@@ -30,19 +41,19 @@
 function BAS_mouse_move_and_click_element() {
 const args = _arguments()
 const selector = args.selector || ""
-const disableMouseEmulation = args.disableMouseEmulation || false
-const isCtrlClick = args.isCtrlClick || false
-const typeClick = args.typeClick || '<MOUSELEFT>'
-const mouseSettings = args.mouse
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const mouseSettingsObj = mouseSettings ? {
+disableMouseEmulation = args.disableMouseEmulation || false
+isCtrlClick = args.isCtrlClick || false
+typeClick = args.typeClick || '<MOUSELEFT>'
+mouseSettings = args.mouse
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+mouseSettingsObj = mouseSettings ? {
 speed: mouseSettings.speed || 100,
 gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
 } : {}
-const wait_full_load = args.wait_full_load || false
-const timeout = args.timeout
+wait_full_load = args.wait_full_load || false
+timeout = args.timeout
 _SELECTOR = selector
 if (noWait)
 waiter_timeout_next(1000)
@@ -93,11 +104,11 @@ wait_async_load()!
 function BAS_click_element() {
 const args = _arguments()
 const selector = args.selector || ''
-const disableMouseEmulation = args.disableMouseEmulation || false
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const wait_full_load = args.wait_full_load || false
-const timeout = args.timeout
+disableMouseEmulation = args.disableMouseEmulation || false
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+wait_full_load = args.wait_full_load || false
+timeout = args.timeout
 _SELECTOR = selector
 if (noWait) {
 waiter_timeout_next(1000)
@@ -155,23 +166,27 @@ gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
 } : {}
 const timeout = args.timeout
+VAR_NO_WAIT = noWait
+VAR_STOP_THREAD = stopThread
+VAR_MOUSE_SETTINGS_OBJ = mouseSettingsObj
+VAR_TIMEOUT = timeout
 _SELECTOR = selector
-if (noWait || timeout) {
-waiter_timeout_next(noWait ? 1000 : timeout)
+if (VAR_NO_WAIT || VAR_TIMEOUT) {
+waiter_timeout_next(VAR_NO_WAIT ? 1000 : VAR_TIMEOUT)
 }
-if (!stopThread) {
+if (!VAR_STOP_THREAD) {
 waiter_nofail_next()
 }
 wait_element_visible(_SELECTOR)!
 _call(_random_point, {})!
 _if(_result().length > 0, function(){
-move( mouseSettingsObj )!
-if (!(!noWait && stopThread)) {
+move( VAR_MOUSE_SETTINGS_OBJ )!
+if (!(!VAR_NO_WAIT && VAR_STOP_THREAD)) {
 get_element_selector(_SELECTOR, false).nowait().clarify(X,Y)!
 } else {
 get_element_selector(_SELECTOR, false).clarify(X,Y)!
 }
-_call(_clarify, mouseSettingsObj )!
+_call(_clarify, VAR_MOUSE_SETTINGS_OBJ )!
 })!
 }
 /**
@@ -202,13 +217,13 @@ _call(_clarify, mouseSettingsObj )!
 */
 function BAS_mouse_move_and_click() {
 const args = _arguments()
-const x = args.x
-const y = args.y
-const isCtrlClick = args.isCtrlClick || false
-const typeClick = args.typeClick || '<MOUSELEFT>'
-const mouseSettings = args.mouse
-const wait_full_load = args.wait_full_load || false
-const timeout = args.timeout
+x = args.x
+y = args.y
+isCtrlClick = args.isCtrlClick || false
+typeClick = args.typeClick || '<MOUSELEFT>'
+mouseSettings = args.mouse
+wait_full_load = args.wait_full_load || false
+timeout = args.timeout
 if (mouseSettings) {
 move(x, y, {
 speed: mouseSettings.speed || 100,
@@ -248,10 +263,10 @@ wait_async_load()!
 */
 function BAS_click() {
 const args = _arguments()
-const x = args.x
-const y = args.y
-const wait_full_load = args.wait_full_load || false
-const timeout = args.timeout
+x = args.x
+y = args.y
+wait_full_load = args.wait_full_load || false
+timeout = args.timeout
 mouse(x, y)!
 if (wait_full_load) {
 if (timeout) {
@@ -282,10 +297,10 @@ wait_async_load()!
 */
 function BAS_mouse_move() {
 const args = _arguments()
-const x = args.x
-const y = args.y
-const mouseSettings = args.mouse
-const mouseSettingsObj = mouseSettings ? {
+x = args.x
+y = args.y
+mouseSettings = args.mouse
+mouseSettingsObj = mouseSettings ? {
 speed: mouseSettings.speed || 100,
 gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
@@ -332,19 +347,19 @@ hello world! - Ввести hello world!
 function BAS_input_text() {
 const args = _arguments()
 const selector = args.selector || ''
-const text = args.text
-const interval = args.interval || 100
-const disableEmulation = args.disableEmulation || false
-const mouseSettings = args.mouse
-const mouseSettingsObj = mouseSettings ? {
+text = args.text
+interval = args.interval || 100
+disableEmulation = args.disableEmulation || false
+mouseSettings = args.mouse
+mouseSettingsObj = mouseSettings ? {
 speed: mouseSettings.speed || 100,
 gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
 } : {}
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const wait_full_load = args.wait_full_load || false
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+wait_full_load = args.wait_full_load || false
+timeout = args.timeout
 _SELECTOR = selector
 if (noWait)
 waiter_timeout_next(1000)
@@ -423,9 +438,9 @@ html код выбранного элемента в виде строки
 function BAS_get_xml() {
 const args = _arguments()
 const selector = args.selector || ''
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -463,11 +478,15 @@ https://google.com - Страница загружается при нажати
 */
 function BAS_add_tab() {
 const args = _arguments()
+const url = args.url || ''
+const is_silent = args.is_silent
 const referrer = args.referrer || ''
+const is_instant = args.is_instant
+const callback = args.callback || function() {}
 if (args.timeout) {
 general_timeout_next(args.timeout)
 }
-_popupcreate2(args.is_silent, args.url, referrer, args.is_instant, args.callback)!
+_popupcreate2(is_silent, url, referrer, is_instant, callback)!
 }
 /**
 * Получить информацию о вкладках (BAS-функция)
@@ -514,7 +533,7 @@ false - Элемент не найден
 function BAS_element_is_exists() {
 const args = _arguments()
 const selector = args.selector || ''
-const checkVisibility = args.checkVisibility || false
+checkVisibility = args.checkVisibility || false
 _SELECTOR = selector
 get_element_selector(_SELECTOR, false).nowait().exist()!
 VAR_IS_EXISTS = _result() == 1
@@ -542,9 +561,9 @@ return VAR_IS_EXISTS
 function BAS_element_get_text() {
 const args = _arguments()
 const selector = args.selector || ''
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -573,9 +592,9 @@ return result
 function BAS_element_screenshot() {
 const args = _arguments()
 const selector = args.selector || ''
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(5000)
@@ -626,12 +645,12 @@ return VAR_SCREENSHOT_BASE64
 function BAS_element_solve_captcha() {
 const args = _arguments()
 const selector = args.selector || ''
-const method = args.method || 'manual'
-const key = args.key
-const serverUrl = args.serverUrl
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+method = args.method || 'manual'
+key = args.key
+serverUrl = args.serverUrl
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 solver_properties_clear(method)
 BAS_SolveRecaptcha_Serverurl = serverUrl
 if(BAS_SolveRecaptcha_Serverurl.length > 0 && BAS_SolveRecaptcha_Serverurl.substr(BAS_SolveRecaptcha_Serverurl.length - 1) != "/")
@@ -826,8 +845,8 @@ return get_element_selector(_SELECTOR, false)
 function BAS_wait_element() {
 const args = _arguments()
 const selector = args.selector
-const checkVisibility = args.checkVisibility || false
-const timeout = args.timeout
+checkVisibility = args.checkVisibility || false
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -851,9 +870,9 @@ wait_element(_SELECTOR)!
 function BAS_element_focus() {
 const args = _arguments()
 const selector = args.selector
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -888,9 +907,9 @@ get_element_selector(_SELECTOR, false).nowait().focus()!
 function BAS_element_get_coordinates() {
 const args = _arguments()
 const selector = args.selector
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -960,10 +979,10 @@ width - Получить ширину
 function BAS_get_element_style() {
 const args = _arguments()
 const selector = args.selector
-const style = args.style
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+style = args.style
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1003,15 +1022,15 @@ return VAR_SAVED_STYLE
 function BAS_element_drag_start() {
 const args = _arguments()
 const selector = args.selector
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const mouseSettings = args.mouse
-const mouseSettingsObj = mouseSettings ? {
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+mouseSettings = args.mouse
+mouseSettingsObj = mouseSettings ? {
 speed: mouseSettings.speed || 100,
 gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
 } : {}
-const timeout = args.timeout
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1053,15 +1072,15 @@ mouse_down(X,Y)!
 function BAS_element_drag_finish() {
 const args = _arguments()
 const selector = args.selector
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const mouseSettings = args.mouse
-const mouseSettingsObj = mouseSettings ? {
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+mouseSettings = args.mouse
+mouseSettingsObj = mouseSettings ? {
 speed: mouseSettings.speed || 100,
 gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
 } : {}
-const timeout = args.timeout
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1103,10 +1122,10 @@ mouse_up(X,Y)!
 */
 function BAS_coords_drag_start() {
 const args = _arguments()
-const x = args.x
-const y = args.y
-const mouseSettings = args.mouse
-const mouseSettingsObj = mouseSettings ? {
+x = args.x
+y = args.y
+mouseSettings = args.mouse
+mouseSettingsObj = mouseSettings ? {
 speed: mouseSettings.speed || 100,
 gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
@@ -1137,10 +1156,10 @@ mouse_down(x, y)!
 */
 function BAS_coords_drag_finish() {
 const args = _arguments()
-const x = args.x
-const y = args.y
-const mouseSettings = args.mouse
-const mouseSettingsObj = mouseSettings ? {
+x = args.x
+y = args.y
+mouseSettings = args.mouse
+mouseSettingsObj = mouseSettings ? {
 speed: mouseSettings.speed || 100,
 gravity: mouseSettings.gravity || 6,
 deviation: mouseSettings.deviation || 2.5
@@ -1165,9 +1184,9 @@ move(x, y, move_settings)!
 function BAS_element_get_url() {
 const args = _arguments()
 const selector = args.selector
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1203,10 +1222,10 @@ style - Получить стили элемента
 function BAS_element_get_attribute() {
 const args = _arguments()
 const selector = args.selector
-const attributeName = args.attributeName
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+attributeName = args.attributeName
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1238,11 +1257,11 @@ return VAR_SAVED_ATTRIBUTE
 function BAS_element_set_attribute() {
 const args = _arguments()
 const selector = args.selector
-const attributeName = args.attributeName
-const attributeValue = args.attributeValue
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+attributeName = args.attributeName
+attributeValue = args.attributeValue
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1271,10 +1290,10 @@ get_element_selector(_SELECTOR, false).nowait().set_attr(attributeName, attribut
 function BAS_combobox_set_value() {
 const args = _arguments()
 const selector = args.selector
-const value = args.value
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+value = args.value
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1316,10 +1335,10 @@ sleep(rand(1000,1200))!
 function BAS_combobox_set_index() {
 const args = _arguments()
 const selector = args.selector
-const index = args.index
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+index = args.index
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)
@@ -1358,9 +1377,9 @@ sleep(rand(1000,1200))!
 function BAS_combobox_get_random_element() {
 const args = _arguments()
 const selector = args.selector
-const noWait = args.noWait || false
-const stopThread = args.stopThread || true
-const timeout = args.timeout
+noWait = args.noWait || false
+stopThread = args.stopThread || true
+timeout = args.timeout
 _SELECTOR = selector
 if (timeout) {
 waiter_timeout_next(timeout)

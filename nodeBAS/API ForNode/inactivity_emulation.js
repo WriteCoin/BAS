@@ -25,7 +25,7 @@ const get_inactivity_emulation_functions = (f) => {
 [1,4,4] - Выполнять прокрутку страницы и сон. Сон будет выполняться в 2 раза чаще, чем прокрутка.
 [1,3,4,4] - Выполнять прокрутку страницы, сон и движения мыши на коротком состоянии. Сон будет выполняться в 2 раза чаще, чем прокрутка. Прокрутка и короткие движения мыши будут иметь одинаковую частоту появления
 */
-const BAS_inactivity_emulation = async (params) => await f("BAS_inactivity_emulation", params)
+const BAS_inactivity_emulation = async (params) => await f("BAS_inactivity_emulation", params || {})
 
 return {	BAS_inactivity_emulation,
 }

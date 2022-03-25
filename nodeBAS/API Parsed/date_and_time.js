@@ -1,4 +1,32 @@
 /**
+* Строку В Дату
+* Преобразовать строку в дату и время используя заданный формат
+* @param value Строка с датой и временем
+* @param format 'auto' | 'yyyy-MM-dd' | 'hh:mm:ss' | 'yyyy-MM-ddThh:mm:ss'
+* Формат даты и времени
+*/
+function BAS_parse_date(value, format) {
+const value = _function_argument('value')
+const format = _function_argument('format')
+const result = _parse_date(value, format)
+_function_return(result)
+return result
+}
+/**
+* Дату В Строку
+* Преобразовать дату и время в строку используя заданный формат.
+* @param value Дата и время либо строка
+* @param format 'yyyy-MM-dd' | 'hh:mm:ss' | 'yyyy-MM-ddThh:mm:ss'
+* Формат даты и времени
+*/
+function BAS_format_date(value, format) {
+const value = _function_argument('value')
+const format = _function_argument('format')
+const result = _format_date(value, format)
+_function_return(result)
+return result
+}
+/**
 * Миллисекунды В Дату
 * Преобразовать количество миллисекунд с начала эпохи в дату.
 * Количество миллисекунд при таком преобразовании отсчитывается с 1 января 1970 года, 00:00:00 UTC.
@@ -229,7 +257,7 @@ _function_return(result)
 return result
 }
 /**
-* День гОда
+* День Года
 * Получить день года из указанной даты.
 * @param {Date | string} value Дата и время либо строка
 * @returns День года. От 1 до 366.

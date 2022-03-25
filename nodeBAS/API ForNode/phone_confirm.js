@@ -63,7 +63,7 @@ http://127.0.0.1:8888
 17039688838
 380048698566
 */
-const BAS_phone_get_number = async (params) => await f("BAS_phone_get_number", params)
+const BAS_phone_get_number = async (params) => await f("BAS_phone_get_number", params || {})
 
 	/**
 * Получить код активации (BAS-функция)
@@ -99,7 +99,7 @@ const BAS_phone_get_number = async (params) => await f("BAS_phone_get_number", p
 558925
 Код активации: 75588 - Сервису не удалось получить код из SMS, возвращено полное сообщение
 */
-const BAS_phnoe_get_activation_code = async (params) => await f("BAS_phnoe_get_activation_code", params)
+const BAS_phnoe_get_activation_code = async (params) => await f("BAS_phnoe_get_activation_code", params || {})
 
 	/**
 * Изменение статуса активации (BAS-функция)
@@ -133,7 +133,7 @@ const BAS_phnoe_get_activation_code = async (params) => await f("BAS_phnoe_get_a
 @param {boolean} deleteInfo Удалять информацию о номере при статусе -1, 6 или 8.
 @param {number} timeout Максимальное время выполнения задания (мс)
 */
-const BAS_phone_change_activation_status = async (params) => await f("BAS_phone_change_activation_status", params)
+const BAS_phone_change_activation_status = async (params) => await f("BAS_phone_change_activation_status", params || {})
 
 	/**
 * Получить баланс (BAS-функция)
@@ -168,7 +168,7 @@ http://127.0.0.1:8888
 1596
 null - Не удалось получить баланс
 */
-const BAS_phone_get_balance = async (params) => await f("BAS_phone_get_balance", params)
+const BAS_phone_get_balance = async (params) => await f("BAS_phone_get_balance", params || {})
 
 	/**
 * Получить количество доступных номеров (BAS-функция)
@@ -226,7 +226,7 @@ http://127.0.0.1:8888
 1596
 0 - Указанный сервисе на данный момент не имеет номеров с указанными параметрами
 */
-const BAS_phone_get_numbers_count = async (params) => await f("BAS_phone_get_numbers_count", params)
+const BAS_phone_get_numbers_count = async (params) => await f("BAS_phone_get_numbers_count", params || {})
 
 	/**
 * Получить список сайтов (BAS-функция)
@@ -265,7 +265,7 @@ http://127.0.0.1:8888
 Примеры :
 [{"id":"aol","name":"Aol.com"},{"id":"gmail","name":"Google"}]
 */
-const BAS_phone_get_sites = async (params) => await f("BAS_phone_get_sites", params)
+const BAS_phone_get_sites = async (params) => await f("BAS_phone_get_sites", params || {})
 
 	/**
 * Получить список стран (BAS-функция)
@@ -308,7 +308,7 @@ http://127.0.0.1:8888
 Примеры :
 [{"id":"0","name":"Россия","name_en":"Russia"},{"id":"1","name":"Украина","name_en":"Ukraine"}]
 */
-const BAS_phone_get_countries = async (params) => await f("BAS_phone_get_countries", params)
+const BAS_phone_get_countries = async (params) => await f("BAS_phone_get_countries", params || {})
 
 	/**
 * Отладка
